@@ -51,7 +51,7 @@
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina)
+        function breadcrumb($link, $naam, $huidigePagina): string
         {
             $naam = ucfirst($naam);
 
@@ -72,7 +72,7 @@
         <div class="highlighted-products">
             <h2>Uitgelichte producten</h2>
             <?php
-            function highlightedProducts($productnaam, $omschrijving, $prijs)
+            function highlightedProducts($productnaam, $omschrijving, $prijs): string
             {
                 $productnaam = ucfirst($productnaam);
                 $omschrijving = ucfirst($omschrijving);
@@ -111,7 +111,7 @@
                     <!--                    Recensies-->
                     <div>
                         <?php
-                        function printFullStar()
+                        function printFullStar(): void
                         {
                             echo "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"ster\">
                             <path fill-rule=\"evenodd\"
