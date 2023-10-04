@@ -37,7 +37,7 @@ button, input[type="submit"], input[type="reset"] {
 
 
 /* Default fonts */
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6, a, button {
     font-family: 'AR One Sans', sans-serif;
 }
 p, ul, li {
@@ -64,9 +64,10 @@ svg {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.7rem;
 }
-/* Het gedeelte links, met de logo en de links. En het gedeelte met de winkelwagen & gebruiker. */
-.logo-and-hyperlinks, .cart-and-user {
+/* Het gedeelte met de logo en de links. */
+.logo-and-hyperlinks {
     display: flex;
     align-items: center;
 }
@@ -90,15 +91,16 @@ svg {
 .top-navbar nav .hyperlinks a {
     font-size: 1rem;
     color: #F8F9FA; /* licht wit */
-    padding: 0.5rem 0.75rem;
+    padding: 6.5px 0.75rem;
     margin: 0 0.75rem;
     border-radius: 0.4rem;
     text-decoration: none;
     font-weight: bold;
     white-space: nowrap;
+    background-color: red;
 }
 .top-navbar nav .hyperlinks a:hover {
-    background-color: #7657C7; /* lichter paars */
+    background-color: crimson;
     color: white;
 }
 
@@ -111,24 +113,42 @@ input[type=text].main-searchbar {
     border-radius: 0.4rem;
 }
 
+/* het gedeelte met de winkelwagen & gebruiker (inloggen & registreren) */
+.cart-and-user {
+    display: flex;
+    align-items: center;
+}
+
 /* Buttons */
 .cart-and-user button {
-    padding: 0.3rem 0.4rem;
-    margin: 0 0.2rem;
-    cursor: pointer;
+    background-color: red; /* tijdelijk */
+}
+.cart-and-user button:hover {
+    color: white;
+    background-color: crimson;
+}
+
+/* 'Inloggen' & 'Registreren' */
+.cart-and-user button.account-button {
+    font-size: 0.9rem;
+    color: #F8F9FA; /* licht wit */
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.75rem;
+    border-radius: 0.4rem;
+    font-weight: bolder;
 }
 
 /* Het icoontje van de winkelwagen */
 button.cart-button {
-    padding: 0.3rem;
+    padding: 5px;
+    display: flex;
+    border-radius: 1rem;
 }
-.cart {
-    height: 1.8rem;
-    width: 1.8rem;
+.cart { /* het icoontje zelf */
+    height: 27px;
+    width: 27px;
 }
-.cart:hover {
-    background-color: #7657C7; /* lichter paars */
-    border-radius: 2rem;
+.cart:hover { /* het icoontje zelf */
     color: white;
 }
 

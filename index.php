@@ -33,8 +33,8 @@
         <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
 
         <div class="cart-and-user">
-            <button>Inloggen</button>
-            <button>Registreren</button>
+            <button class="account-button">Inloggen</button>
+            <button class="account-button">Registreren</button>
             <button class="cart-button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="cart">
