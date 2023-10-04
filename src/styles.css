@@ -59,12 +59,9 @@ svg {
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
 
     display: flex;
-    height: 4rem;
     align-items: center;
     justify-content: space-between;
 }
@@ -87,13 +84,11 @@ svg {
 .top-navbar nav .hyperlinks {
     margin-left: 1rem;
     display: flex;
-    /*align-items: baseline;*/
 }
 
 /* De hyperlinks zelf */
 .top-navbar nav .hyperlinks a {
     font-size: 1rem;
-    /*background-color: #5BB77B; !* donkerder groen *!*/
     color: #F8F9FA; /* licht wit */
     padding: 0.5rem 0.75rem;
     margin: 0 0.75rem;
