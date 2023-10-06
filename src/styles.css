@@ -142,7 +142,7 @@ input[type=text].main-searchbar {
 button.cart-button {
     padding: 5px;
     display: flex;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 .cart { /* het icoontje zelf */
     height: 27px;
