@@ -97,10 +97,10 @@ svg {
     text-decoration: none;
     font-weight: bold;
     white-space: nowrap;
-    background-color: red;
+    background-color: #4C2887;
 }
 .top-navbar nav .hyperlinks a:hover {
-    background-color: crimson;
+    background-color: #5A2F9F;
     color: white;
 }
 
@@ -121,11 +121,11 @@ input[type=text].main-searchbar {
 
 /* Buttons */
 .cart-and-user button {
-    background-color: red; /* tijdelijk */
+    background-color: #4C2887;
 }
 .cart-and-user button:hover {
     color: white;
-    background-color: crimson;
+    background-color: #5A2F9F;
 }
 
 /* 'Inloggen' & 'Registreren' */
@@ -142,7 +142,7 @@ input[type=text].main-searchbar {
 button.cart-button {
     padding: 5px;
     display: flex;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 .cart { /* het icoontje zelf */
     height: 27px;
@@ -200,6 +200,11 @@ hr {
 .brand-introduction-container {
     display: flex;
     justify-content: space-between;
+}
+
+.intro-logo{
+    height: 300px;
+    width: 500px;
 }
 
 .highlighted-products, .shopping-experience {
