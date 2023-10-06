@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NerdyGadgets</title>
+    <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -103,9 +104,13 @@
         </div>
         <div class="hero">
             <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
-            <h2>
-                Nerdy Gadgets in Nederland is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar
-                technologie en popcultuur samenkomen.</h2>
+            <h2>Nerdy Gadgets: Toevluchtsoord voor techliefhebbers en popcultuurfanaten.<span id="dots">...</span><span
+                        id="more">
+Het merk Nerdy Gadgets in Nederland is een buitengewone plek waar technologische innovatie en geek-cultuur samenkomen, en het nodigt iedereen uit om deel uit te maken van deze opwindende wereld van technologie en popcultuur.
+Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieuwste technologische snufjes en nerdy verzamelobjecten samenkomen voor een magische ervaring. </span>
+            </h2>
+
+            <button onclick="readMore()" id="myBtn">Read more</button>
         </div>
         <div class="shopping-experience">
             <ul>
