@@ -14,12 +14,12 @@
 
         <div class="logo-and-hyperlinks">
             <!--Logo-->
-<!--            <img class="logo" src="img/Logo%20KBS.png">-->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="logo">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
-                        </svg>
+            <img class="logo" src="img/Logo%20KBS.png">
+            <!--            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+            <!--                 stroke="currentColor" class="logo">-->
+            <!--                <path stroke-linecap="round" stroke-linejoin="round"-->
+            <!--                      d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>-->
+            <!--            </svg>-->
 
 
             <!-- Links -->
@@ -102,19 +102,10 @@
 
         </div>
         <div class="hero">
-            <H1>Logo Nerdy Gadgets</H1>
-            <H2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate fuga id praesentium quos
-                voluptate?</H2>
-            <H1>Wie zijn wij</H1>
-            <h2>Het merk Nerdy Gadgets staat synoniem voor een buitengewone wereld van technologische innovatie en
-                geek-cultuurbeleving. Gelegen in het hart van Nederland, fungeert deze unieke winkel als een heiligdom
-                voor techliefhebbers en popcultuurfanaten. Het is een plek waar de grenzen tussen realiteit en fictie
-                vervagen, en waar de nieuwste technologische snufjes en zeldzame verzamelobjecten samenkomen om een
-                magische ervaring te creëren. Nerdy Gadgets omarmt de erfenis van nerd zijn met trots, en nodigt
-                iedereen uit om deel uit te maken van deze opwindende wereld van vintage arcade-machines, hypermoderne
-                virtual reality-headsets en een schat aan nerdy hebbedingetjes. Het merk Nerdy Gadgets is niet zomaar
-                een winkel; het is een toevluchtsoord voor degenen die hun passie voor technologie en popcultuur willen
-                vieren en delen.</h2>
+            <img class="intro-logo" src="img/Logo%20KBS.png">
+            <h2>
+                Nerdy Gadgets in Nederland is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar
+                technologie en popcultuur samenkomen.</h2>
         </div>
         <div class="shopping-experience">
             <ul>
@@ -122,7 +113,7 @@
                     <!--                    Recensies-->
                     <div>
                         <?php
-                        function printFullStar(): void
+                        function printFullStar()
                         {
                             echo "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"ster\">
                             <path fill-rule=\"evenodd\"
