@@ -104,8 +104,7 @@
         <div class="hero">
             <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
             <h2>
-                Nerdy Gadgets in Nederland is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar
-                technologie en popcultuur samenkomen.</h2>
+                Nerdy Gadgets: Toevluchtsoord voor techliefhebbers en popcultuurfanaten.</h2>
         </div>
         <div class="shopping-experience">
             <ul>
