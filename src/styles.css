@@ -218,15 +218,19 @@ hr {
     width: 100%;
     margin-top: 1rem;
     flex-direction: row;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
 }
 
-.highlighted-products h2 {
+h2.highlighted-products-header {
     font-size: 1.2rem;
     padding: 0.2rem 0.5rem;
     background-color: #FFA633; /* oranje */
-    margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     text-align: center;
+    width: 25%;
+    margin: 1rem auto 0.5rem; /* margin-top 1rem, margin-bottom 0.5rem, margin-right auto, margin-left auto */
     color: #F8F9FA; /* bijna zwart */
 }
 
@@ -238,6 +242,7 @@ hr {
     display: grid;
     flex-direction: column;
     box-shadow: 2px 2px #8343CF;
+    min-width: 12rem;
 }
 
 .highlighted-products div .price-and-product-link {

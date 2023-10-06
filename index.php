@@ -115,8 +115,9 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
             </ul>
         </div>
     </div>
+    <h2 class="highlighted-products-header">Uitgelichte producten</h2>
     <div class="highlighted-products">
-        <h2>Uitgelichte producten</h2>
+
         <?php
         function highlightedProducts($productnaam, $omschrijving, $prijs): string
         {
@@ -141,7 +142,9 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
 
         echo highlightedProducts('product 1', 'omschrijving 1', 5);
         echo highlightedProducts('nog een product', 'weer een omschrijving', 100);
-        echo highlightedProducts('jaaaaaaa', 'beschrijving', 2.50);
+        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
+        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
+        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
         ?>
     </div>
 
