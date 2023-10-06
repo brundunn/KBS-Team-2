@@ -191,6 +191,9 @@ hr {
     height: 300px;
     width: 500px;
 }
+#more {
+    display: none;
+}
 
 .highlighted-products, .shopping-experience {
     width: 20%;
