@@ -204,6 +204,11 @@ hr {
     justify-content: space-between;
 }
 
+.intro-logo{
+    height: 200px;
+    width: 400px;
+}
+
 .highlighted-products, .shopping-experience {
     width: 20%;
     margin-top: 1rem;
