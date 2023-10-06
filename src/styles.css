@@ -313,10 +313,10 @@ hr {
     }
 
     /* Brand introduction container */
-    .brand-introduction-container {
-        flex-direction: column;
-    }
-    .brand-introduction-container :first-child {
-        order: 3;
-    }
+    /*.brand-introduction-container {*/
+    /*    flex-direction: column;*/
+    /*}*/
+    /*.brand-introduction-container :first-child {*/
+    /*    order: 3;*/
+    /*}*/
 }
