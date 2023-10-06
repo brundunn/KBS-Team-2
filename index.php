@@ -14,7 +14,7 @@
 
         <div class="logo-and-hyperlinks">
             <!--Logo-->
-            <img class="logo" src="img/Logo_KBS-removebg-preview.png">
+            <img class="logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
             <!--            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
             <!--                 stroke="currentColor" class="logo">-->
             <!--                <path stroke-linecap="round" stroke-linejoin="round"-->
@@ -102,7 +102,7 @@
 
         </div>
         <div class="hero">
-            <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png">
+            <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
             <h2>
                 Nerdy Gadgets in Nederland is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar
                 technologie en popcultuur samenkomen.</h2>
