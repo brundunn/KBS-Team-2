@@ -71,35 +71,7 @@
     </ul>
     <hr>
     <div class="brand-introduction-container">
-        <div class="highlighted-products">
-            <h2>Uitgelichte producten</h2>
-            <?php
-            function highlightedProducts($productnaam, $omschrijving, $prijs): string
-            {
-                $productnaam = ucfirst($productnaam);
-                $omschrijving = ucfirst($omschrijving);
-                if (!is_numeric($prijs)) {
-                    $prijs = "?";
-                }
-                return "<div class=\"highlighted-product\">
-                            <h3>$productnaam</h3>
-                            <p>$omschrijving</p>
-                            <div class=\"price-and-product-link\">
-                                <p class=\"prijs\">€ $prijs</p>
-                                <a href=\"\">
-                                    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"> 
-                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\"/> 
-                                    </svg> 
-                                </a>
-                            </div> 
-                        </div>";
-            }
-
-            echo highlightedProducts('product 1', 'omschrijving 1', 5);
-            echo highlightedProducts('nog een product', 'weer een omschrijving', 100);
-            echo highlightedProducts('jaaaaaaa', 'beschrijving', 2.50);
-            ?>
-
+        <div class="empty">
 
         </div>
         <div class="hero">
@@ -143,7 +115,35 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
             </ul>
         </div>
     </div>
+    <div class="highlighted-products">
+        <h2>Uitgelichte producten</h2>
+        <?php
+        function highlightedProducts($productnaam, $omschrijving, $prijs): string
+        {
+            $productnaam = ucfirst($productnaam);
+            $omschrijving = ucfirst($omschrijving);
+            if (!is_numeric($prijs)) {
+                $prijs = "?";
+            }
+            return "<div class=\"highlighted-product\">
+                            <h3>$productnaam</h3>
+                            <p>$omschrijving</p>
+                            <div class=\"price-and-product-link\">
+                                <p class=\"prijs\">€ $prijs</p>
+                                <a href=\"\">
+                                    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"> 
+                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\"/> 
+                                    </svg> 
+                                </a>
+                            </div> 
+                        </div>";
+        }
 
+        echo highlightedProducts('product 1', 'omschrijving 1', 5);
+        echo highlightedProducts('nog een product', 'weer een omschrijving', 100);
+        echo highlightedProducts('jaaaaaaa', 'beschrijving', 2.50);
+        ?>
+    </div>
 
 </div>
 </body>
