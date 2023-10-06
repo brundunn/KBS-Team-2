@@ -283,9 +283,6 @@ h2.highlighted-products-header {
     background-color: #F5F5F5; /* bijna wit*/
     border-radius: 0.4rem;
 }
-.highlighted-products div:not(:last-child) {
-    margin-bottom: 1rem;
-}
 
 /* Hero */
 .hero {
