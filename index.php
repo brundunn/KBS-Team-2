@@ -102,16 +102,10 @@
 
         </div>
         <div class="hero">
-            <H1>Wie zijn wij</H1>
-            <h2>Het merk Nerdy Gadgets staat synoniem voor een buitengewone wereld van technologische innovatie en
-                geek-cultuurbeleving. Gelegen in het hart van Nederland, fungeert deze unieke winkel als een heiligdom
-                voor techliefhebbers en popcultuurfanaten. Het is een plek waar de grenzen tussen realiteit en fictie
-                vervagen, en waar de nieuwste technologische snufjes en zeldzame verzamelobjecten samenkomen om een
-                magische ervaring te creëren. Nerdy Gadgets omarmt de erfenis van nerd zijn met trots, en nodigt
-                iedereen uit om deel uit te maken van deze opwindende wereld van vintage arcade-machines, hypermoderne
-                virtual reality-headsets en een schat aan nerdy hebbedingetjes. Het merk Nerdy Gadgets is niet zomaar
-                een winkel; het is een toevluchtsoord voor degenen die hun passie voor technologie en popcultuur willen
-                vieren en delen.</h2>
+            <img class="intro-logo" src="img/Logo%20KBS.png">
+            <h2>
+                Nerdy Gadgets in Nederland is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar
+                technologie en popcultuur samenkomen.</h2>
         </div>
         <div class="shopping-experience">
             <ul>
