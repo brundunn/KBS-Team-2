@@ -9,6 +9,7 @@
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link href="src/homepage.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php';
