@@ -1,0 +1,121 @@
+/* De volledige bar, dus nog niet het gedeelte waar de elementen in zitten */
+.top-navbar {
+    background-color: #8343CF; /* paars */
+    width: 100%;
+}
+/* Het gedeelte waar de elementen WEL in zitten */
+.top-navbar nav {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+}
+/* Het gedeelte met de logo en de links. */
+.logo-and-hyperlinks {
+    display: flex;
+    align-items: center;
+}
+
+/* Het logo */
+.logo {
+    height: 2rem;
+    width: 2rem;
+}
+.logo:hover {
+    color: #FFA633; /* feller oranje */
+}
+
+/* De div waar de hyperlinks in zitten */
+.top-navbar nav .hyperlinks {
+    margin-left: 1rem;
+    display: flex;
+}
+
+/* De hyperlinks zelf */
+.top-navbar nav .hyperlinks a {
+    font-size: 1rem;
+    color: #F8F9FA; /* licht wit */
+    padding: 6.5px 0.75rem;
+    margin: 0 0.75rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: #4C2887;
+}
+.top-navbar nav .hyperlinks a:hover {
+    background-color: #5A2F9F;
+    color: white;
+}
+
+/* De zoekbalk */
+input[type=text].main-searchbar {
+    width: 30rem;
+    padding: 0.6rem;
+    border: 2px solid white;
+    color: #212529; /* zwart */
+    border-radius: 0.4rem;
+}
+
+/* het gedeelte met de winkelwagen & gebruiker (inloggen & registreren) */
+.cart-and-user {
+    display: flex;
+    align-items: center;
+}
+
+/* Buttons */
+.cart-and-user button {
+    background-color: #4C2887;
+}
+.cart-and-user button:hover {
+    color: white;
+    background-color: #5A2F9F;
+}
+
+/* 'Inloggen' & 'Registreren' */
+.cart-and-user button.account-button {
+    font-size: 0.9rem;
+    color: #F8F9FA; /* licht wit */
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.75rem;
+    border-radius: 0.4rem;
+    font-weight: bolder;
+}
+
+/* Het icoontje van de winkelwagen */
+button.cart-button {
+    padding: 5px;
+    display: flex;
+    border-radius: 0.5rem;
+}
+.cart { /* het icoontje zelf */
+    height: 27px;
+    width: 27px;
+}
+.cart:hover { /* het icoontje zelf */
+    color: white;
+}
+
+/* De 'container' met alle content van de pagina */
+.main-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    padding: 0 1rem;
+}
+
+/*
+    MEDIA QUERIES
+*/
+
+@media screen and (max-width: 1000px) {
+
+    .top-navbar nav {
+        flex-direction: column;
+    }
+}
