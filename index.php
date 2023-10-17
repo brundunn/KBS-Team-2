@@ -10,6 +10,13 @@
     <link href="src/styles.css" rel="stylesheet">
 </head>
 <body>
+<?php
+$connection = mysqli_connect("127.0.0.1","root", "","nerdy_gadgets_start","3306");
+echo $connection->host_info . "\n";
+
+mysqli_close($connection);
+?>
+
 <div class="top-navbar"> <!-- Volledige bar -->
     <nav> <!-- Inhoud v/d nav bar -->
 
