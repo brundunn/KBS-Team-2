@@ -3,7 +3,9 @@
 
         <div class="logo-and-hyperlinks">
             <!--Logo-->
+            <a href="index.php">
             <img class="logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
+            </a>
             <!--            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
             <!--                 stroke="currentColor" class="logo">-->
             <!--                <path stroke-linecap="round" stroke-linejoin="round"-->
@@ -13,7 +15,7 @@
 
             <!-- Links -->
             <div class="hyperlinks">
-                <a href="#">Assortiment</a>
+                <a href="product-overzicht.php">Assortiment</a>
                 <a href="#">Link 2</a>
                 <a href="#">Link 3</a>
                 <a href="about-us.php">About us</a>
