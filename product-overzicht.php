@@ -13,7 +13,9 @@
 <body>
 <?php include 'header.php'
 ?>
-<div class="main-container"></div>
+<div class="main-container">
+
+</div>
 </body>
 
 
