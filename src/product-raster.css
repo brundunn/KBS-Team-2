@@ -7,5 +7,7 @@
 
 .raster-item{
     margin: 1%;
+    padding: 1px;
     flex: 20%;
+    border: solid;
 }
