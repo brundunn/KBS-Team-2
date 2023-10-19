@@ -1,5 +1,10 @@
 <!-- DATABASE CONNECTIE -->
 <?php
+
+if (empty($_GET["id"])) {
+    header('Location: ' . "product-overzicht.php");
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
