@@ -15,8 +15,8 @@
 ?>
 <div class="main-container">
 
-</div>
-</body>
+
+
 <!--    Breadcrumbs -->
 <ul class="breadcrumbs">
     <?php
@@ -41,5 +41,6 @@
     praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
     sequi similique voluptatem voluptatum?</p>
 
-
+</div>
+</body>
 </html>
