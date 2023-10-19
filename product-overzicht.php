@@ -17,7 +17,29 @@
 
 </div>
 </body>
+<!--    Breadcrumbs -->
+<ul class="breadcrumbs">
+    <?php
+    function breadcrumb($link, $naam, $huidigePagina): string
+    {
+        $naam = ucfirst($naam);
 
+        if (!$huidigePagina) {
+            return "<li><a href=\"$link\">$naam</a></li>";
+        } else {
+            return "<li>$naam</li>";
+        }
+    }
+    echo breadcrumb('index.php', 'Home', false);
+    echo breadcrumb('#', 'Assortiment', true)
+    ?>
+</ul>
+<hr>
+
+<h1>Productassortiment</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
+    praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
+    sequi similique voluptatem voluptatum?</p>
 
 
 </html>
