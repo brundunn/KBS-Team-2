@@ -35,7 +35,7 @@
     <hr>
     <!-- Einde breadcrumbs -->
 
-    <h1>Productassortiment</h1>
+    <h1>Assortiment</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
         praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
         sequi similique voluptatem voluptatum?</p>
@@ -57,7 +57,8 @@
 
 
     // QUERY
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM product
+    LIMIT 1";
     // RESULT
     $result = $conn->query($sql);
 
@@ -66,12 +67,14 @@
         // output data of each row
         while ($row = $result->fetch_assoc()) {
 
-            echo "id: " . $row["id"] .
+            echo "<a href='product.php?id=" . $row["id"] .
+                "'>id: " . $row["id"] .
                 " <br> name: " . $row["name"] .
                 " <br> description: " . $row["description"] .
                 " <br> price: " . $row["price"] .
                 " <br> category: " . $row["category"] .
                 " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
+                "</a>" .
                 "<br><br>";
         }
     } else {
