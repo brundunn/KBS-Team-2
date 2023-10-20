@@ -84,7 +84,7 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
     <div class="highlighted-products">
 
         <?php
-        function highlightedProducts($productnaam, $omschrijving, $prijs): string
+        function highlightedProducts($productnaam, $omschrijving, $foto, $prijs): string
         {
             $productnaam = ucfirst($productnaam);
             $omschrijving = ucfirst($omschrijving);
@@ -92,27 +92,29 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
                 $prijs = "?";
             }
             return "<div class=\"highlighted-product\">
-                            <h3>$productnaam</h3>
-                            <p>$omschrijving</p>
-                            <div class=\"price-and-product-link\">
-                                <p class=\"prijs\">€ $prijs</p>
-                                <a href=\"\">
-                                    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"> 
-                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\"/> 
-                                    </svg> 
-                                </a>
-                            </div> 
-                        </div>";
+                <h3>$productnaam</h3>
+                <p>$omschrijving</p>
+                <div class=\"price-and-product-link\">
+                    <p class=\"prijs\">€ $prijs</p>
+                    <img class=Photo src=\"$foto\" alt=\"$productnaam\">
+                    <a href=\"\">
+                        <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"> 
+                            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\"/> 
+                        </svg> 
+                    </a>
+                </div> 
+            </div>";
         }
 
-        echo highlightedProducts('product 1', 'omschrijving 1', 5);
-        echo highlightedProducts('nog een product', 'weer een omschrijving', 100);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
+        echo highlightedProducts('Iphone 15', 'Apple iPhone 15 128GB Zwart', "img/IPHONE15.png", 999.99);
+        echo highlightedProducts('Dell XPS 15', 'Dell XPS 15 9520 Laptop - Intel® Core™ i7-12700H - 16GB - 512GB SSD - Intel® Iris® Xe Graphics', "img/dellxps.png", 1499);
+        echo highlightedProducts('Galaxy Z Fold 5', '', "img/fold.png", 1299);
+        echo highlightedProducts('Ipad Pro', 'Apple iPad Pro (2022) 12.9 inch 128GB Wifi Space Gray', "img/ipad.png", 1279);
+        echo highlightedProducts('Apple watch', 'Apple watch ultra 46MM', "img/applewatch.png", 899);
         ?>
-    </div>
 
-</div>
+
+    </div>
 </body>
+
 </html>
