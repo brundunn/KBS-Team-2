@@ -1,0 +1,13 @@
+.product-raster{
+    max-width: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    border: solid;
+}
+
+.raster-item{
+    margin: 1%;
+    padding: 1px;
+    flex: 20%;
+    border: solid;
+}
