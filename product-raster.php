@@ -10,12 +10,13 @@
         $productName = $row["name"];
         $productDesc = $row['description'];
         $productPrice = $row['price'];
+
         echo "<div class = 'raster-item'>
               <div class='raster-img'><img src ='img/product_images/$productImage.jpg'></div>
               <div class='raster-name'>$productName</div>
               <div class='raster-price'>$productPrice</div>
               <div class='short-desc'>$productDesc</div>
-</div>";
+              </div>";
 
 //        echo "{$row["name"]} {$row["price"]}<br>\n";
 }
