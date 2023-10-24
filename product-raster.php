@@ -3,12 +3,21 @@
 <?php
     $connection = mysqli_connect('127.0.0.1','root', '','nerdy_gadgets_start', '3306');
     $sql_selectALL = "SELECT * FROM product";
-
-
-
     $res = mysqli_query($connection,$sql_selectALL);
-while($row = mysqli_fetch_assoc($res)){
-    echo "{$row["id"]} {$row["voornaam"]} {$row["achternaam"]}\n";
+
+    while($row = mysqli_fetch_assoc($res)){
+        $productImage = $row["image"];
+        $productName = $row["name"];
+        $productDesc = $row['description'];
+        $productPrice = $row['price'];
+        echo "<div class = 'raster-item'>
+              <div class='raster-img'><img src ='img/product_images/$productImage.jpg'></div>
+              <div class='raster-name'>$productName</div>
+              <div class='raster-price'>$productPrice</div>
+              <div class='short-desc'>$productDesc</div>
+</div>";
+
+//        echo "{$row["name"]} {$row["price"]}<br>\n";
 }
 
 //    $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
