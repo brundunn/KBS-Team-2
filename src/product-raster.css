@@ -10,4 +10,8 @@
     padding: 1px;
     flex: 20%;
     border: solid;
+
+}
+.raster-img img {
+    width: 200px;
 }
