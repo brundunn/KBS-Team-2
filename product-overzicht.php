@@ -44,47 +44,47 @@
         sequi similique voluptatem voluptatum?</p>
 
     <!-- DATABASE CONNECTIE -->
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "nerdy_gadgets_start";
+<!--    --><?php
+//    $servername = "localhost";
+//    $username = "root";
+//    $password = "";
+//    $dbname = "nerdy_gadgets_start";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // echo "Connected successfully<br>";
-
-
-    // QUERY
-    $sql = "SELECT * FROM product
-    LIMIT 1";
-    // RESULT
-    $result = $conn->query($sql);
-
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-
-            echo "<a href='product.php?id=" . $row["id"] .
-                "'>id: " . $row["id"] .
-                " <br> name: " . $row["name"] .
-                " <br> description: " . $row["description"] .
-                " <br> price: " . $row["price"] .
-                " <br> category: " . $row["category"] .
-                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
-                "</a>" .
-                "<br><br>";
-        }
-    } else {
-        echo "0 results";
-    }
-    $conn->close();
-    ?>
+//    // Create connection
+//    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+//    // Check connection
+//    if ($conn->connect_error) {
+//        die("Connection failed: " . $conn->connect_error);
+//    }
+//    // echo "Connected successfully<br>";
+//
+//
+//    // QUERY
+//    $sql = "SELECT * FROM product
+//    LIMIT 1";
+//    // RESULT
+//    $result = $conn->query($sql);
+//
+//
+//    if ($result->num_rows > 0) {
+//        // output data of each row
+//        while ($row = $result->fetch_assoc()) {
+//
+//            echo "<a href='product.php?id=" . $row["id"] .
+//                "'>id: " . $row["id"] .
+//                " <br> name: " . $row["name"] .
+//                " <br> description: " . $row["description"] .
+//                " <br> price: " . $row["price"] .
+//                " <br> category: " . $row["category"] .
+//                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
+//                "</a>" .
+//                "<br><br>";
+//        }
+//    } else {
+//        echo "0 results";
+//    }
+//    $conn->close();
+//    ?>
     <div class="sidenav">
         <a href="#">About</a>
         <a href="#">Services</a>
