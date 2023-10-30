@@ -75,8 +75,8 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
 
                 </li>
                 <li>Eenvoudige navigatie</li>
-                <li>Veilige betalingsmogelijkheden</li>
-                <li>Snelle levering</li>
+                <li>Betaal met iDeal, Paypal en Afterpay!</li>
+                <li>Voor tien uur besteld, morgen in huis!</li>
             </ul>
         </div>
     </div>
