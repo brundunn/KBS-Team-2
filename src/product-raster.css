@@ -10,12 +10,8 @@
     padding: 1px;
     flex: 20%;
     border: solid;
-    width: 180px;
-    max-height:250px;
-}
 
-.raster-img img{
-    width: 170px;
-    max-height: 300px;
-    justify-content: center;
+}
+.raster-img img {
+    width: 200px;
 }
