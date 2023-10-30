@@ -66,22 +66,23 @@
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-
-            echo "<a href='product.php?id=" . $row["id"] .
-                "'>id: " . $row["id"] .
-                " <br> name: " . $row["name"] .
-                " <br> description: " . $row["description"] .
-                " <br> price: " . $row["price"] .
-                " <br> category: " . $row["category"] .
-                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
-                "</a>" .
-                "<br><br>";
+            include "product-raster.php";
+//            echo "<a href='product.php?id=" . $row["id"] .
+//                "'>id: " . $row["id"] .
+//                " <br> name: " . $row["name"] .
+//                " <br> description: " . $row["description"] .
+//                " <br> price: " . $row["price"] .
+//                " <br> category: " . $row["category"] .
+//                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
+//                "</a>" .
+//                "<br><br>";
         }
     } else {
         echo "0 results";
     }
     $conn->close();
-    ?>
+     ?>
+
 
 </div>
 </body>
