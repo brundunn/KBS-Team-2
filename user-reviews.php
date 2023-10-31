@@ -112,7 +112,7 @@ ORDER BY " . $orderBy . ";";
 
         }
     } else {
-        echo "0 results";
+        echo "Er zijn nog geen reviews voor NerdyGadgets achtergelaten.";
     }
     $conn->close();
     ?>

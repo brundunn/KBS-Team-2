@@ -32,10 +32,6 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 
         $name = $row["name"];
-        $description = $row["description"];
-        $price = $row["price"];
-        $category = $row["category"];
-        $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
     }
 } else {
     echo "0 results";
@@ -50,7 +46,7 @@ $conn->close();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $name ?></title>
+    <title>Reviews: <?php echo $name ?></title>
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
@@ -76,19 +72,21 @@ $conn->close();
 
         echo breadcrumb('index.php', 'Home', false);
         echo breadcrumb('product-overzicht.php', 'Assortiment', false);
-        echo breadcrumb('#', "$name", true);
+        echo breadcrumb('product.php?id=' . $id, "$name", false);
+        echo breadcrumb('#', 'Reviews', true);
         ?>
     </ul>
     <hr>
     <!-- Einde breadcrumbs -->
-    <h2><?php echo $name ?></h2>
-    <h3><?php echo "Prijs: €$price" ?></h3>
-    <h4><?php echo "Categorie: $category" ?></h4>
-    <p><?php echo $description ?></p>
-    <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>">
 
     <!-- Product review -->
-    <h3>Reviews over <?php echo $name ?></h3>
+    <h1>Reviews over <?php echo $name ?></h1>
+    <form method="POST" class="sorteerKnoppen">
+        <input type="submit" name="sorteren" value="mostRecent"><br>
+        <input type="submit" name="sorteren" value="leastRecent"><br>
+        <input type="submit" name="sorteren" value="mostStars"><br>
+        <input type="submit" name="sorteren" value="leastStars"><br>
+    </form>
     <?php
     include 'src/print-star-functions.php';
 
@@ -106,34 +104,40 @@ $conn->close();
     }
     // echo "Connected successfully<br>";
 
+    $sortType = '';
+    $orderBy = '';
+    if (!empty($_POST["sorteren"])) {
+        $sortType = $_POST["sorteren"];
+        if ($sortType == 'mostRecent') {
+            $orderBy = 'date DESC';
+        } else if ($sortType == 'leastRecent') {
+            $orderBy = 'date ASC';
+        } else if ($sortType == 'mostStars') {
+            $orderBy = 'score DESC';
+        } else if ($sortType == 'leastStars') {
+            $orderBy = 'score ASC';
+        } else {
+            $orderBy = 'date DESC'; // default
+        }
+    } else {
+        $orderBy = 'date DESC'; // default
+    }
+
     // QUERY - haal alle product reviews op
     $sql = "SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
 FROM product_review pr
 JOIN user u ON pr.user_id = u.id
 WHERE pr.product_id = " . $id . "
-ORDER BY date DESC;";
+ORDER BY " . $orderBy . ";";
     // RESULT
     $result = $conn->query($sql);
 
-    $ingekort = false;
-
     if ($result->num_rows > 0) { // checken of er product reviews zijn voor het product
-        if ($result->num_rows > 4) { // als er meer dan 4 reviews zijn, gaan we het inkorten
-// QUERY - nu ingekort
-            $sql = "SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
-FROM product_review pr
-JOIN user u ON pr.user_id = u.id
-WHERE pr.product_id = " . $id . "
-ORDER BY date DESC LIMIT 4;";
-            // RESULT
-            $result = $conn->query($sql);
-            $ingekort = true;
-        }
 
         // output data of each row
         while ($row = $result->fetch_assoc()) {
 
-            echo '<div class="review highlighted-review">';
+            echo '<div class="review">';
             echo printStars($row["score"]) .
                 "user: " . $row["first_name"];
             if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
@@ -147,9 +151,6 @@ ORDER BY date DESC LIMIT 4;";
             echo '</div>';
             echo "<br>";
 
-        }
-        if ($ingekort) {
-            echo '<a href="product-review.php?id=' . $id . '">Bekijk alle reviews</a>';
         }
     } else {
         echo "Er zijn nog geen reviews voor dit product achtergelaten.";
