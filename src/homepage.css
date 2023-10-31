@@ -98,14 +98,27 @@ h2.highlighted-products-header {
  - reviews, navigatie, betalingsmogelijkheden, levering
  */
 .shopping-experience ul li:first-child {
+    display: flex;
+}
+
+.shopping-experience ul li:first-child a {
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
+
+    text-decoration: none;
+    color: inherit;
+
+    background-color: white;
+    box-shadow: 2px 2px #8343CF;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.4rem;
+
 }
-.ster {
-    height: 1rem;
-    width: 1rem;
-    color: #FFA633; /* oranje */
+
+.shopping-experience ul li:first-child a div {
+    display: flex;
+    align-items: center;
 }

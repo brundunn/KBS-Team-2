@@ -1,0 +1,33 @@
+.ster {
+    height: 1rem;
+    width: 1rem;
+    color: #FFA633; /* oranje */
+}
+div.sterren {
+    display: flex;
+    align-items: center;
+}
+
+
+form.sorteerKnoppen {
+    display: flex;
+}
+form.sorteerKnoppen input {
+    padding: 0.6rem;
+    margin-right: 0.75rem;
+    border-radius: 0.8rem;
+    color: white;
+    background-color: #8343CF; /* paars */;
+    display: inline-block;
+}
+form.sorteerKnoppen input:hover {
+    background-color: #9B4FF5;
+}
+
+
+div.review {
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 2px 2px #8343CF;
+    border-radius: 0.5rem;
+}
