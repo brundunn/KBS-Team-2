@@ -87,10 +87,18 @@ $conn->close();
     <p><?php echo $description ?></p>
     <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>">
 
+
+
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
-    include 'src/print-star-functions.php';
+
+    include 'src/review-functions.php';
+    gemiddeldeScore("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $id);
+
+//    include 'src/print-star-functions.php';
 
     // DATABASE CONNECTIE
     $servername = "localhost";
@@ -149,7 +157,7 @@ ORDER BY date DESC LIMIT 4;";
 
         }
         if ($ingekort) {
-            echo '<a href="product-review.php?id=' . $id . '">Bekijk alle reviews</a>';
+            echo '<a href="product-reviews.php?id=' . $id . '">Bekijk alle reviews</a>';
         }
     } else {
         echo "Er zijn nog geen reviews voor dit product achtergelaten.";

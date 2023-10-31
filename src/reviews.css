@@ -1,3 +1,4 @@
+/* De sterren-SVGs en de container van de sterren */
 .ster {
     height: 1rem;
     width: 1rem;
@@ -8,7 +9,7 @@ div.sterren {
     align-items: center;
 }
 
-
+/* Knoppen met sorteer-opties */
 form.sorteerKnoppen {
     display: flex;
 }
@@ -24,7 +25,7 @@ form.sorteerKnoppen input:hover {
     background-color: #9B4FF5;
 }
 
-
+/* Een review */
 div.review {
     padding: 1rem;
     background-color: white;

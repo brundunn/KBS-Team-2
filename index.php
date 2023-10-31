@@ -1,53 +1,3 @@
-<!-- DATABASE CONNECTIE -->
-<?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nerdy_gadgets_start";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-// echo "Connected successfully<br>";
-
-// GEMIDDELDE SCORE VAN REVIEWS
-// QUERY
-$sql = "SELECT AVG(score) AS avgScore
-FROM review";
-// RESULT
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-
-        $avgScore = round($row["avgScore"], 1);
-    }
-} else {
-    echo "0 results";
-}
-
-// TOTAAL AANTAL REVIEWS
-// QUERY
-$sql = "SELECT COUNT(*) AS amountOfReviews
-FROM review";
-// RESULT
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-
-        $amountOfReviews = $row["amountOfReviews"];
-    }
-} else {
-    echo "0 results";
-}
-//echo "Gemiddelde $avgScore<br>Totaal $amountOfReviews";
-$conn->close();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,18 +54,14 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
                     <a href="user-reviews.php">
                         <!--                    Recensies-->
                         <?php
-                        include 'src/print-star-functions.php';
-// $avgScore = 3.6;
-                        echo "<div>$avgScore ";
-
-                        printStars($avgScore);
-
-                        echo "</div>($amountOfReviews)";
+                        include 'src/review-functions.php';
+                        gemiddeldeScore("SELECT AVG(score) AS avgScore
+FROM review", "SELECT COUNT(*) AS amountOfReviews
+FROM review");
                         ?>
-
-
+                    </a>
                 </li>
-                </a>
+
                 <h4>Recente reviews</h4>
                 <!-- DATABASE CONNECTIE -->
                 <?php
