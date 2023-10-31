@@ -122,3 +122,10 @@ h2.highlighted-products-header {
     display: flex;
     align-items: center;
 }
+
+/* standaard styles van 'review' class overwriten */
+div.review.highlighted-review {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    box-shadow: 1px 1px #8343CF;
+}

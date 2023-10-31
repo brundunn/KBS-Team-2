@@ -80,8 +80,6 @@ $conn->close();
             }
         }
 
-        //                echo breadcrumb('#', 'test', false);
-        //                echo breadcrumb('#', 'test', false);
         echo breadcrumb('#', 'Home', true)
         ?>
     </ul>
@@ -115,8 +113,59 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
                         echo "</div>($amountOfReviews)";
                         ?>
 
+
                 </li>
                 </a>
+                <h4>Recente reviews</h4>
+                <!-- DATABASE CONNECTIE -->
+                <?php
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "nerdy_gadgets_start";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                // echo "Connected successfully<br>";
+
+                // QUERY - 3 meest recente reviews
+                $sql = "SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description
+FROM review r
+JOIN user u ON r.user_id = u.id
+ORDER BY date DESC LIMIT 3;";
+                // RESULT
+                $result = $conn->query($sql);
+
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+
+                        echo '<div class="review highlighted-review">';
+                        echo printStars($row["score"]) .
+                            "user: " . $row["first_name"];
+                        if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
+                            echo " " . $row["surname_prefix"];
+                        }
+                        echo " " . $row["surname"] . "<br>" .
+                            "datum: " . $row["date"];
+                        if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
+                            echo "<br>" . $row["description"];
+                        }
+                        echo '</div>';
+                        echo "<br>";
+
+                    }
+                } else {
+                    echo "0 results";
+                }
+                $conn->close();
+                ?>
                 <li>Eenvoudige navigatie</li>
                 <li>Veilige betalingsmogelijkheden</li>
                 <li>Snelle levering</li>
