@@ -32,3 +32,14 @@ div.review {
     box-shadow: 2px 2px #8343CF;
     border-radius: 0.5rem;
 }
+
+/* Gemiddelde score en aantal reviews */
+div.reviewStats {
+    display: flex;
+    justify-content: space-between;
+    /*width: 100%;*/
+}
+div.reviewStats div {
+    display: flex;
+    align-items: center;
+}

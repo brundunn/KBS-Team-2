@@ -40,7 +40,7 @@
 FROM review r
 JOIN user u ON r.user_id = u.id", "NerdyGadgets", "SELECT AVG(score) AS avgScore
 FROM review", "SELECT COUNT(*) AS amountOfReviews
-FROM review"); ?>
+FROM review", TRUE); ?>
 
 </div>
 </body>

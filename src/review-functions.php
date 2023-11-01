@@ -1,4 +1,7 @@
 <?php
+
+include 'src/print-star-functions.php';
+
 function gemiddeldeScore($avgQuery, $countQuery) {
     // DATABASE CONNECTIE
     $servername = "localhost";
@@ -33,6 +36,8 @@ function gemiddeldeScore($avgQuery, $countQuery) {
 // QUERY
     $sql = $countQuery;
 // RESULT
+    echo '<div class="reviewStats">';
+
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -45,12 +50,70 @@ function gemiddeldeScore($avgQuery, $countQuery) {
     }
     $conn->close();
 
-    include 'src/print-star-functions.php';
+
     echo "<div>$avgScore ";
 
     printStars($avgScore);
 
     echo "</div>($amountOfReviews reviews)";
+   echo '</div>';
+}
+
+function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery) {
+    // DATABASE CONNECTIE
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "nerdy_gadgets_start";
+
+// Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+// echo "Connected successfully<br>";
+
+// GEMIDDELDE SCORE VAN REVIEWS
+// QUERY
+    $sql = $avgQuery;
+// RESULT
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+
+            $avgScore = round($row["avgScore"], 1);
+        }
+    } else {
+        echo "0 results";
+    }
+
+// TOTAAL AANTAL REVIEWS
+// QUERY
+    $sql = $countQuery;
+// RESULT
+    echo '<div class="reviewStats">';
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+
+            $amountOfReviews = $row["amountOfReviews"];
+        }
+    } else {
+        echo "Geen resultaten";
+    }
+    $conn->close();
+
+
+    echo "<div>$avgScore ";
+
+    printStars($avgScore);
+
+    echo "</div>";
+    echo '</div>';
 }
 
 

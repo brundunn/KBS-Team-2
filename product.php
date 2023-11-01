@@ -82,18 +82,23 @@ $conn->close();
     <hr>
     <!-- Einde breadcrumbs -->
     <h2><?php echo $name ?></h2>
+    <?php
+    include 'src/review-functions.php';
+    gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $id);
+    ?>
     <h3><?php echo "Prijs: €$price" ?></h3>
     <h4><?php echo "Categorie: $category" ?></h4>
     <p><?php echo $description ?></p>
     <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>">
 
-
-
+<br><br>
+<hr>
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
 
-    include 'src/review-functions.php';
     gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id);

@@ -103,7 +103,6 @@ h2.highlighted-products-header {
 
 .shopping-experience ul li:first-child a {
     margin-bottom: 0.8rem;
-    display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
@@ -116,11 +115,6 @@ h2.highlighted-products-header {
     border-radius: 0.5rem;
     padding: 0.5rem 0.4rem;
 
-}
-
-.shopping-experience ul li:first-child a div {
-    display: flex;
-    align-items: center;
 }
 
 /* standaard styles van 'review' class overwriten */
