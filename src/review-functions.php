@@ -171,6 +171,7 @@ function reviewPagina($query, $subject, $avgQuery, $countQuery) {
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
+            $date = substr($row["date"], 0, -3);
 
             echo '<div class="review">';
             echo printStars($row["score"]) .
@@ -179,7 +180,7 @@ function reviewPagina($query, $subject, $avgQuery, $countQuery) {
                 echo " " . $row["surname_prefix"];
             }
             echo " " . $row["surname"] . "<br>" .
-                "datum: " . $row["date"];
+                "datum: " . $date;
             if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
                 echo "<br>" . $row["description"];
             }

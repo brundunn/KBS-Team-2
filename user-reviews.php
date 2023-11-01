@@ -34,7 +34,7 @@
     </ul>
     <hr>
 
-    <h1>Reviews van gebruikers</h1>
+    <h1>Reviews over NerdyGadgets</h1>
     <?php include 'src/review-functions.php';
     reviewPagina("SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description
 FROM review r

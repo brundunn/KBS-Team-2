@@ -145,6 +145,7 @@ ORDER BY date DESC LIMIT 4;";
 
         // output data of each row
         while ($row = $result->fetch_assoc()) {
+            $date = substr($row["date"], 0, -3);
 
             echo '<div class="review highlighted-review">';
             echo printStars($row["score"]) .
@@ -153,7 +154,7 @@ ORDER BY date DESC LIMIT 4;";
                 echo " " . $row["surname_prefix"];
             }
             echo " " . $row["surname"] . "<br>" .
-                "datum: " . $row["date"];
+                "datum: " . $date;
             if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
                 echo "<br>" . $row["description"];
             }
