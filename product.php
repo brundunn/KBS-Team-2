@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         $description = $row["description"];
         $price = $row["price"];
         $category = $row["category"];
-        $imgSrc = "img/product_images/" . $row["image"]  . ".jpg";
+        $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
     }
 } else {
     echo "0 results";
@@ -54,6 +54,7 @@ $conn->close();
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -81,10 +82,94 @@ $conn->close();
     <hr>
     <!-- Einde breadcrumbs -->
     <h2><?php echo $name ?></h2>
+    <?php
+    include 'src/review-functions.php';
+    gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $id);
+    ?>
     <h3><?php echo "Prijs: €$price" ?></h3>
-    <h4><?php echo "Categorie: $category"?></h4>
+    <h4><?php echo "Categorie: $category" ?></h4>
     <p><?php echo $description ?></p>
-    <img src="<?php echo $imgSrc ?>" alt="<?php echo $name?>">
+    <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>">
+
+<br><br>
+<hr>
+    <!-- Product review -->
+    <h3>Reviews over <?php echo $name ?></h3>
+    <?php
+
+    gemiddeldeScore("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $id);
+
+//    include 'src/print-star-functions.php';
+
+    // DATABASE CONNECTIE
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "nerdy_gadgets_start";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    // echo "Connected successfully<br>";
+
+    // QUERY - haal alle product reviews op
+    $sql = "SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
+FROM product_review pr
+JOIN user u ON pr.user_id = u.id
+WHERE pr.product_id = " . $id . "
+ORDER BY date DESC;";
+    // RESULT
+    $result = $conn->query($sql);
+
+    $ingekort = false;
+
+    if ($result->num_rows > 0) { // checken of er product reviews zijn voor het product
+        if ($result->num_rows > 4) { // als er meer dan 4 reviews zijn, gaan we het inkorten
+// QUERY - nu ingekort
+            $sql = "SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
+FROM product_review pr
+JOIN user u ON pr.user_id = u.id
+WHERE pr.product_id = " . $id . "
+ORDER BY date DESC LIMIT 4;";
+            // RESULT
+            $result = $conn->query($sql);
+            $ingekort = true;
+        }
+
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $date = substr($row["date"], 0, -3);
+
+            echo '<div class="review highlighted-review">';
+            echo printStars($row["score"]) .
+                "user: " . $row["first_name"];
+            if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
+                echo " " . $row["surname_prefix"];
+            }
+            echo " " . $row["surname"] . "<br>" .
+                "datum: " . $date;
+            if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
+                echo "<br>" . $row["description"];
+            }
+            echo '</div>';
+            echo "<br>";
+
+        }
+        if ($ingekort) {
+            echo '<a href="product-reviews.php?id=' . $id . '">Bekijk alle reviews</a>';
+        }
+    } else {
+        echo "Er zijn nog geen reviews voor dit product achtergelaten.";
+    }
+    $conn->close();
+    ?>
 </div>
 </body>
 </html>

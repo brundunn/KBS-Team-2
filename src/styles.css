@@ -30,14 +30,12 @@ button, input[type="submit"], input[type="reset"] {
     color: inherit;
     border: none;
     padding: 0;
-    font: inherit;
     cursor: pointer;
     outline: inherit;
 }
 
 
-/* Default fonts */
-h1,
+
 <style>
  .filter-container {
      margin: 20px 0;
@@ -61,11 +59,10 @@ h1,
     background-color: #45a049;
 }
 
-</style>
 
 
-
-h2, h3, h4, h5, h6, a, button {
+/* Default fonts */
+h1, h2, h3, h4, h5, h6, a, button {
     font-family: 'AR One Sans', sans-serif;
 }
 p, ul, li {

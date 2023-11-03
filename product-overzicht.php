@@ -31,8 +31,8 @@
             }
         }
 
-        echo breadcrumb('index.php', 'Home', false);
-        echo breadcrumb('#', 'Assortiment', true)
+        echo breadcrumb('index.php', "Home", false);
+        echo breadcrumb('#', 'Assortiment', true);
         ?>
     </ul>
     <hr>
@@ -49,7 +49,7 @@
 //    $username = "root";
 //    $password = "";
 //    $dbname = "nerdy_gadgets_start";
-
+//
 //    // Create connection
 //    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
 //    // Check connection
@@ -60,8 +60,7 @@
 //
 //
 //    // QUERY
-//    $sql = "SELECT * FROM product
-//    LIMIT 1";
+//    $sql = "SELECT * FROM product";
 //    // RESULT
 //    $result = $conn->query($sql);
 //
@@ -122,12 +121,7 @@
         echo highlightedProducts('Ipad Pro', 'Apple iPad Pro (2022) 12.9 inch 128GB Wifi Space Gray', "img/ipad.png", 1279);
         echo highlightedProducts('Apple watch', 'Apple watch ultra 46MM', "img/applewatch.png", 899);
         ?>
-
-
     </div>
-
-
 </div>
 </body>
-
 </html>
