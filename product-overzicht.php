@@ -28,8 +28,8 @@
             }
         }
 
-        echo breadcrumb('index.php', 'Home', false);
-        echo breadcrumb('#', 'Assortiment', true)
+        echo breadcrumb('index.php', "Home", false);
+        echo breadcrumb('#', 'Assortiment', true);
         ?>
     </ul>
     <hr>
@@ -39,6 +39,7 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
         praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
         sequi similique voluptatem voluptatum?</p>
+
 
     <!-- DATABASE CONNECTIE -->
     <?php
@@ -57,8 +58,7 @@
 
 
     // QUERY
-    $sql = "SELECT * FROM product
-    LIMIT 1";
+    $sql = "SELECT * FROM product";
     // RESULT
     $result = $conn->query($sql);
 

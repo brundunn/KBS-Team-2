@@ -10,6 +10,7 @@
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link href="src/homepage.css" rel="stylesheet">
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php';
@@ -29,8 +30,6 @@
             }
         }
 
-        //                echo breadcrumb('#', 'test', false);
-        //                echo breadcrumb('#', 'test', false);
         echo breadcrumb('#', 'Home', true)
         ?>
     </ul>
@@ -52,28 +51,68 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
         <div class="shopping-experience">
             <ul>
                 <li>
-                    <!--                    Recensies-->
-                    <div>
+                    <a href="user-reviews.php">
+                        <!--                    Recensies-->
                         <?php
-                        function printFullStar(): void
-                        {
-                            echo "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"ster\">
-                            <path fill-rule=\"evenodd\"
-                                  d=\"M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z\"
-                                  clip-rule=\"evenodd\"/>
-                        </svg>";
-                        }
-
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
+                        include 'src/review-functions.php';
+                        gemiddeldeScore("SELECT AVG(score) AS avgScore
+FROM review", "SELECT COUNT(*) AS amountOfReviews
+FROM review");
                         ?>
-                    </div>
-                    (500)
-
+                    </a>
                 </li>
+
+                <h4>Recente reviews</h4>
+                <!-- DATABASE CONNECTIE -->
+                <?php
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "nerdy_gadgets_start";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                // echo "Connected successfully<br>";
+
+                // QUERY - 3 meest recente reviews
+                $sql = "SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description
+FROM review r
+JOIN user u ON r.user_id = u.id
+ORDER BY date DESC LIMIT 3;";
+                // RESULT
+                $result = $conn->query($sql);
+
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        $date = substr($row["date"], 0, -3);
+
+                        echo '<div class="review highlighted-review">';
+                        echo printStars($row["score"]) .
+                            $row["first_name"];
+                        if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
+                            echo " " . $row["surname_prefix"];
+                        }
+                        echo " " . $row["surname"] . "<br>" .
+                            $date;
+                        if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
+                            echo "<br>" . $row["description"];
+                        }
+                        echo '</div>';
+                        echo "<br>";
+
+                    }
+                } else {
+                    echo "0 results";
+                }
+                $conn->close();
+                ?>
                 <li>Eenvoudige navigatie</li>
                 <li>Betaal met iDeal, Paypal en Afterpay!</li>
                 <li>Voor tien uur besteld, morgen in huis!</li>
