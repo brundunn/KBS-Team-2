@@ -2,7 +2,7 @@
 <div class="product-raster">
     <?php
     $connection = mysqli_connect('127.0.0.1','root', '','nerdy_gadgets_start', '3306');
-    $sql_selectALL = "SELECT * FROM product";
+    $sql_selectALL = "SELECT * FROM product LIMIT 20";
     $res = mysqli_query($connection,$sql_selectALL);
 
     while($row = mysqli_fetch_assoc($res)){

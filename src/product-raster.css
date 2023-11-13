@@ -1,5 +1,5 @@
 .product-raster{
-    max-width: 60%;
+    max-width: 65%;
     display: flex;
     flex-flow: row wrap;
     /*border: solid;*/
@@ -11,12 +11,13 @@
     max-width: 250px;
     margin: 1%;
     padding: 1px;
-    flex: 20%;
+    /*flex: 20%;*/
     /*border: solid;*/
     flex: 1;
 }
 .raster-img img {
     width: 200px;
+
 }
 a{
     text-decoration: none;
