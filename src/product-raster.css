@@ -1,17 +1,25 @@
 .product-raster{
-    max-width: 50%;
+    max-width: 65%;
     display: flex;
     flex-flow: row wrap;
-    border: solid;
+    /*border: solid;*/
+    position: absolute;
+    margin-left: 200px;
 }
 
 .raster-item{
+    max-width: 250px;
     margin: 1%;
     padding: 1px;
-    flex: 20%;
-    border: solid;
-
+    /*flex: 20%;*/
+    /*border: solid;*/
+    flex: 1;
 }
 .raster-img img {
     width: 200px;
+
+}
+a{
+    text-decoration: none;
+    color: black;
 }
