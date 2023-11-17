@@ -1,13 +1,15 @@
 <head>
     <link rel="stylesheet" href="src/shopping-cart.css">
+    <link href="src/header.css" rel="stylesheet">
 </head>
 
-<div class="topnav">
-    <a class="active" href="index.php">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="about-us.php">About</a>
-</div>
+<?php include 'header.php'?>
+<!--<div class="topnav">-->
+<!--    <a class="active" href="index.php">Home</a>-->
+<!--    <a href="#news">News</a>-->
+<!--    <a href="#contact">Contact</a>-->
+<!--    <a href="about-us.php">About</a>-->
+<!--</div>-->
 
 <h1>Producten Kiezen en Afrekenen</h1>
 
@@ -82,100 +84,3 @@
         window.location.href = 'betaal.php';
     }
 </script>
-
-<style>
-    .topnav {
-        background-color: purple;
-        overflow: hidden;
-    }
-
-    .topnav a {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    .topnav a:hover {
-        background-color: purple;
-        color: black;
-    }
-
-    .topnav a.active {
-        background-color: mediumpurple;
-        color: white;
-    }
-
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    #checkoutForm {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-        color: #333;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    li {
-        margin-bottom: 10px;
-    }
-
-    label {
-        margin-left: 5px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-    button {
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        padding: 15px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #45a049;
-    }
-
-    p {
-        text-align: right;
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-
-    #totalAmount {
-        color: #e44d26;
-    }
-</style>
