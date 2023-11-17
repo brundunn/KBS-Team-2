@@ -1,35 +1,5 @@
-.topnav {
-    background-color: purple;
-    overflow: hidden;
-}
 
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: purple;
-    color: black;
-}
-
-.topnav a.active {
-    background-color: mediumpurple;
-    color: white;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-h1 {
+h1.cartPageHeader {
     text-align: center;
     color: #333;
 }
@@ -43,26 +13,26 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+#checkoutForm h2 {
     color: #333;
 }
 
-ul {
+#checkoutForm ul {
     list-style: none;
     padding: 0;
 }
 
-li {
+#checkoutForm li {
     margin-bottom: 10px;
 }
 
-label {
+#checkoutForm label {
     margin-left: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-button {
+#checkoutForm input[type="text"],
+#checkoutForm input[type="email"],
+button.cartPageCheckoutButton {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -70,7 +40,7 @@ button {
     box-sizing: border-box;
 }
 
-button {
+button.cartPageCheckoutButton {
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -79,11 +49,11 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button.cartPageCheckoutButton:hover {
     background-color: #45a049;
 }
 
-p {
+#checkoutForm p {
     text-align: right;
     font-weight: bold;
     font-size: 1.2em;

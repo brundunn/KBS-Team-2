@@ -1,17 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="src/shopping-cart.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Winkelwagen</title>
+    <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/shopping-cart.css">
 </head>
+<body>
+<?php include 'header.php' ?>
+<div class="main-container">
+    <!--    Breadcrumbs -->
+    <ul class="breadcrumbs">
+        <?php
+        function breadcrumb($link, $naam, $huidigePagina): string
+        {
+            $naam = ucfirst($naam);
 
-<?php include 'header.php'?>
-<!--<div class="topnav">-->
-<!--    <a class="active" href="index.php">Home</a>-->
-<!--    <a href="#news">News</a>-->
-<!--    <a href="#contact">Contact</a>-->
-<!--    <a href="about-us.php">About</a>-->
-<!--</div>-->
+            if (!$huidigePagina) {
+                return "<li><a href=\"$link\">$naam</a></li>";
+            } else {
+                return "<li>$naam</li>";
+            }
+        }
 
-<h1>Producten Kiezen en Afrekenen</h1>
+        echo breadcrumb('index.php', 'Home', false);
+        echo breadcrumb('product-overzicht.php', 'Assortiment', false);
+        echo breadcrumb('#', 'Winkelwagen', true);
+        ?>
+    </ul>
+    <hr>
+<h1 class="cartPageHeader">Producten Kiezen en Afrekenen</h1>
 
 <form id="checkoutForm">
     <h2>Beschikbare producten</h2>
@@ -47,7 +69,7 @@
     <label for="email">E-mail:</label>
     <input type="email" id="email" required>
 
-    <button type="button" onclick="processPayment()">Afrekenen</button>
+    <button class="cartPageCheckoutButton" type="button" onclick="processPayment()">Afrekenen</button>
 </form>
 
 <script>
@@ -83,4 +105,6 @@
 
         window.location.href = 'betaal.php';
     }
-</script>
+</script></div>
+</body>
+</html>
