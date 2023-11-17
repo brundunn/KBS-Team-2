@@ -35,8 +35,34 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 
+
+<style>
+ .filter-container {
+     margin: 20px 0;
+ }
+.filter-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.Photo{
+    height: 200px;
+    width: 140px;
+}
+.highlighted-product{
+    max-width: 210px;
+}
+.filter-container button:hover {
+    background-color: #45a049;
+}
+
+
+
 /* Default fonts */
-h1, h2, h3, h4, h5, h6, a, button, input {
+h1, h2, h3, h4, h5, h6, a, button {
     font-family: 'AR One Sans', sans-serif;
 }
 p, ul, li {

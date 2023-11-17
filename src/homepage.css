@@ -5,8 +5,8 @@
 }
 
 .intro-logo{
-    height: 300px;
-    width: 500px;
+    height: 150px;
+    width: 200px;
 }
 #more {
     display: none;
@@ -122,4 +122,3 @@ div.review.highlighted-review {
     padding: 0.4rem;
     font-size: 0.8rem;
     box-shadow: 1px 1px #8343CF;
-}

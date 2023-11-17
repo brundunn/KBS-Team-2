@@ -9,6 +9,9 @@
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link href="src/Assortiment.css" rel="stylesheet">
+
+
 </head>
 <body>
 <?php include 'header.php'
@@ -40,6 +43,13 @@
         praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
         sequi similique voluptatem voluptatum?</p>
 
+    <div class="sidenav">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="Assortment-products">
 
     <!-- DATABASE CONNECTIE -->
     <?php
@@ -61,7 +71,6 @@
     $sql = "SELECT * FROM product";
     // RESULT
     $result = $conn->query($sql);
-
 
     if ($result->num_rows > 0) {
         // output data of each row
