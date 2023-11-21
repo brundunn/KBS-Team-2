@@ -16,19 +16,9 @@
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina): string
-        {
-            $naam = ucfirst($naam);
+        include 'src/breadcrumbs.php';
 
-            if (!$huidigePagina) {
-                return "<li><a href=\"$link\">$naam</a></li>";
-            } else {
-                return "<li>$naam</li>";
-            }
-        }
-
-        //                echo breadcrumb('#', 'test', false);
-                        echo breadcrumb('index.php', 'Home', false);
+        echo breadcrumb('index.php', 'Home', false);
         echo breadcrumb('#', 'About us', true)
         ?>
     </ul>
