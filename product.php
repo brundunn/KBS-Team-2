@@ -1,24 +1,55 @@
-<!-- DATABASE CONNECTIE -->
 <?php
 
+// CHECKEN OF DE GEBRUIKER IETS TOEVOEGT AAN DE WINKELWAGEN
+// ZO JA, REGISTREER DIT DAN
+if (isset($_POST["add_to_cart"])) {
+    if (isset($_COOKIE["shopping_cart"])) {
+        $cookie_data = stripslashes($_COOKIE["shopping_cart"]);
+        $cart_data = json_decode($cookie_data, true);
+    } else {
+        $cart_data = array();
+    }
+
+    $item_id_list = array_column($cart_data, 'product_id');
+
+    if (in_array($_POST["product_id"], $item_id_list)) {
+        foreach ($cart_data as $keys => $values) {
+            if ($cart_data[$keys]["product_id"] == $_POST["product_id"]) {
+                $cart_data[$keys]["quantity"] = $cart_data[$keys]["quantity"] + $_POST["quantity"];
+            }
+        }
+    } else {
+        $item_array = array(
+            'product_id' => $_POST["product_id"],
+            'quantity' => $_POST["quantity"],
+        );
+        $cart_data[] = $item_array;
+    }
+
+    $item_data = json_encode($cart_data);
+    setcookie('shopping_cart', $item_data, time() + (86400 * 30)); // cookie gaat weg na 1 dag
+    header("Refresh:0");
+}
+
+
+// Als er geen ID is meegegeven, ga dan terug naar product-overzicht.php
 if (empty($_GET["id"])) {
     header('Location: ' . "product-overzicht.php");
 }
 
+// DATABASE CONNECTIE
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "nerdy_gadgets_start";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
-// Check connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully<br>";
 
 $id = $_GET["id"];
+
 // QUERY
 $sql = "SELECT * 
 FROM product
@@ -28,9 +59,9 @@ $result = $conn->query($sql);
 
 
 if ($result->num_rows > 0) {
-    // output data of each row
     while ($row = $result->fetch_assoc()) {
 
+        // variabelen toewijzen voor het gemak
         $name = $row["name"];
         $description = $row["description"];
         $price = $row["price"];
@@ -55,6 +86,7 @@ $conn->close();
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link href="src/reviews.css" rel="stylesheet">
+    <link href="src/productpagina.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -63,16 +95,8 @@ $conn->close();
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina): string
-        {
-            $naam = ucfirst($naam);
+        include 'src/breadcrumbs.php';
 
-            if (!$huidigePagina) {
-                return "<li><a href=\"$link\">$naam</a></li>";
-            } else {
-                return "<li>$naam</li>";
-            }
-        }
 
         echo breadcrumb('index.php', 'Home', false);
         echo breadcrumb('product-overzicht.php', 'Assortiment', false);
@@ -81,20 +105,72 @@ $conn->close();
     </ul>
     <hr>
     <!-- Einde breadcrumbs -->
-    <h2><?php echo $name ?></h2>
-    <?php
-    include 'src/review-functions.php';
-    gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+
+    <!-- Begin productpagina -->
+    <div class="product-informatie">
+        <h2><?php echo $name ?></h2>
+        <?php
+        include 'src/review-functions.php';
+        // Toon gemiddelde score van het product, zonder het totaal aantal reviews
+        gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id);
-    ?>
-    <h3><?php echo "Prijs: €$price" ?></h3>
-    <h4><?php echo "Categorie: $category" ?></h4>
-    <p><?php echo $description ?></p>
-    <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>">
+        ?>
+        <h3><?php echo "Prijs: €$price" ?></h3>  <!-- prijs -->
+        <h4><?php echo "Categorie: $category" ?></h4> <!-- categorie -->
+        <p><?php echo $description ?></p> <!-- beschrijving -->
+        <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>"> <!-- afbeelding -->
+    </div>
 
-<br><br>
-<hr>
+    <?php
+    if (isset($_COOKIE["shopping_cart"])) {
+        $cookie_data = stripslashes($_COOKIE["shopping_cart"]);
+        $cart_data = json_decode($cookie_data, true);
+    } else {
+        $cart_data = array();
+    }
+
+    $item_id_list = array_column($cart_data, 'product_id');
+
+
+    if (in_array($id, $item_id_list)) { // Als het product in de winkelwagen zit, toon dat dan
+        echo '<button class="add-product-to-cart-button product-in-cart">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+                    </svg>
+                    <p>In winkelwagen</p></button>';
+
+
+    } else {
+        // Product toevoegen aan winkelwagen - button
+        echo '<form method="post" action="">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="product_id" value="' . $id . '">
+                <button type="submit" name="add_to_cart" value="1" class="add-product-to-cart-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor"
+                         class="">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+                    </svg>
+                    <p>In winkelwagen</p>
+                </button>
+    </form>';
+    }
+    ?>
+
+    <br><br>
+    <hr>
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
@@ -103,7 +179,7 @@ FROM product_review WHERE product_id = " . $id);
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id);
 
-//    include 'src/print-star-functions.php';
+    //    include 'src/print-star-functions.php';
 
     // DATABASE CONNECTIE
     $servername = "localhost";

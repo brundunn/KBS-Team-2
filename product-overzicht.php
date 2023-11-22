@@ -11,7 +11,7 @@
     <link href="src/header.css" rel="stylesheet">
     <link href="src/product-overzicht.css" rel="stylesheet">
     <link href="src/product-raster.css" rel="stylesheet">
-
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -20,16 +20,7 @@
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina): string
-        {
-            $naam = ucfirst($naam);
-
-            if (!$huidigePagina) {
-                return "<li><a href=\"$link\">$naam</a></li>";
-            } else {
-                return "<li>$naam</li>";
-            }
-        }
+        include 'src/breadcrumbs.php';
 
         echo breadcrumb('index.php', "Home", false);
         echo breadcrumb('#', 'Assortiment', true);

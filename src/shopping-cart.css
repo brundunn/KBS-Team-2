@@ -62,3 +62,10 @@ button.cartPageCheckoutButton:hover {
 #totalAmount {
     color: #e44d26;
 }
+
+.cart-page-svg {
+    color: #4C2887;
+    border: 1px solid #8343CF;
+    height: 1.4rem;
+    width: 1.4rem;
+}
