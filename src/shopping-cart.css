@@ -84,7 +84,7 @@ button.cartPageCheckoutButton:hover {
     align-items: center;
     justify-content: center;
     display: flex;
-    border: 1px solid black;
+    border: 1px solid #53556E;
     border-radius: 0.4rem;
     padding: 0.2rem;
 }
