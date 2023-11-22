@@ -4,6 +4,9 @@
     width: 1rem;
     color: #FFA633; /* oranje */
 }
+div.avgScore .ster:first-child {
+    margin-left: 0.3rem;
+}
 div.sterren {
     display: flex;
     align-items: center;
