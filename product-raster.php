@@ -1,4 +1,7 @@
 <?php
+
+include 'src/review-functions.php';
+
 function toonProductRaster($query) {
     // DATABASE CONNECTIE
     $servername = "localhost";
@@ -39,6 +42,9 @@ function toonProductRaster($query) {
             echo "<div class='raster-item'>";
             echo "<div class='raster-img'><img src ='img/product_images/$productImage.jpg' alt='$productID'></div>";
             echo "<h3 class='raster-name'>$productName</h3>";
+            gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $productID, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $productID);
             echo "<div class='raster-price-and-link-container'>";
             echo "<p class='raster-price'>€$productPrice</p>";
             echo '

@@ -11,7 +11,7 @@
     <link href="src/header.css" rel="stylesheet">
     <link href="src/product-overzicht.css" rel="stylesheet">
     <link href="src/product-raster.css" rel="stylesheet">
-
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
