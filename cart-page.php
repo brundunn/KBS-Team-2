@@ -1,6 +1,3 @@
-<?php
-session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan winkelwagen', etc. berichten
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +9,7 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link rel="stylesheet" href="src/shopping-cart.css">
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php' ?>
@@ -42,6 +40,20 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Check of winkelwagen helemaal leeg is, zorg dan dat de cookie gereset wordt
+    if (isset($_COOKIE["shopping_cart"])) {
+        $cookie_data = stripslashes($_COOKIE["shopping_cart"]);
+        $cart_data = json_decode($cookie_data, true);
+
+        $item_id_list = array_column($cart_data, 'product_id');
+
+        if (empty($item_id_list)) {
+            setcookie("shopping_cart", "", time() - 3600);
+            $_SESSION['status'] = "clear";
+            header("location: cart-page.php");
+        }
+    }
+
     // check of er een product toegevoegd wordt aan de winkelwagen
     if (isset($_POST["add_to_cart"])) {
 
@@ -63,12 +75,10 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
                     if ($_POST["quantity"] < 0) { // als de quantity kleiner is dan 0 (oftewel, als de hoeveelheid van een product verminderd wordt
 
                         if ($cart_data[$keys]["quantity"] == 1) { // als er nog maar 1 van het product in de winkelwagen zit, verwijder het dan
-
-
                             unset($cart_data[$keys]);
                             $item_data = json_encode($cart_data);
                             setcookie('shopping_cart', $item_data, time() + (86400 * 30));
-                            header("location:cart-page.php?remove=1");
+                            header("location: cart-page.php");
 
                         } else { // als er meer dan 1 van het product in de winkelwagen zit, verminder dan de hoeveelheid met het juiste aantal
                             $cart_data[$keys]["quantity"] = $cart_data[$keys]["quantity"] + $_POST["quantity"];
@@ -79,8 +89,7 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
                     }
                 }
             }
-        } else {
-            // als het product nog niet in de winkelwagen zit, voeg deze dan toe aan de winkelwagen
+        } else { // als het product nog niet in de winkelwagen zit, voeg deze dan toe aan de winkelwagen
             $item_array = array(
                 'product_id' => $_POST["product_id"],
                 'quantity' => $_POST["quantity"],
@@ -88,20 +97,15 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
             $cart_data[] = $item_array;
         }
 
-
-        // cookie instellen met winkelwagen-data
+        // cookie instellen met inhoud van winkelwagen
         $item_data = json_encode($cart_data);
         setcookie('shopping_cart', $item_data, time() + (86400 * 30)); // cookie gaat weg na 1 dag
-
-        // gebruiker redirecten naar de juiste pagina op basis van of een product toegevoegd of verwijderd is
-        if ($_POST["quantity"] < 0) {
-            header("location:cart-page.php?remove=1");
-        } else {
-            header("location:cart-page.php?success=1");
-        }
+        header("location: cart-page.php");
     }
 
     if (isset($_GET["action"])) {
+        // product wordt verwijderd of winkelwagen wordt geheel leeggemaakt
+
         if ($_GET["action"] == "delete") { // product verwijderen
             $cookie_data = stripslashes($_COOKIE['shopping_cart']);
             $cart_data = json_decode($cookie_data, true);
@@ -111,48 +115,22 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
                     unset($cart_data[$keys]);
                     $item_data = json_encode($cart_data);
                     setcookie('shopping_cart', $item_data, time() + (86400 * 30)); // cookie de nieuwe data meegeven
-                    header("location:cart-page.php?remove=1");
+                    header("location: cart-page.php");
                 }
             }
         }
+
         if ($_GET["action"] == "clear") { // winkelwagen leegmaken
             setcookie("shopping_cart", "", time() - 3600); // cookie resetten
-            header("location:cart-page.php?clearall=1");
+            header("location: cart-page.php");
         }
     }
-
-    $message = '';
-    if (isset($_GET["success"])) {
-        $message = "Product toegevoegd aan winkelwagen.";
-    }
-
-
-    if (isset($_GET["remove"])) {
-        $message = "Product verwijderd uit winkelwagen.";
-
-        // Check of winkelwagen helemaal leeg is na het verwijderen van een product, zorg dan dat de cookie gereset wordt
-        if (isset($_COOKIE["shopping_cart"])) {
-            $cookie_data = stripslashes($_COOKIE["shopping_cart"]);
-            $cart_data = json_decode($cookie_data, true);
-
-            $item_id_list = array_column($cart_data, 'product_id');
-
-            if (empty($item_id_list)) {
-                setcookie("shopping_cart", "", time() - 3600);
-                header("location:cart-page.php?clearall=1");
-            }
-        }
-
-    }
-
-    if (isset($_GET["clearall"])) {
-        $message = "Winkelwagen leeggemaakt.";
-    }
-
     ?>
 
     <div id="checkoutForm">
         <?php
+        include 'src/review-functions.php';
+
         if (isset($_COOKIE["shopping_cart"])) {
             $total = 0;
             $count = 0;
@@ -161,15 +139,28 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
             $cart_data = json_decode($cookie_data, true);
 
             foreach ($cart_data as $keys => $values) {
-                echo "Product " . $values["product_id"] . " --- ";
-                echo $values["quantity"] . "x --- ";
+//                echo "Product " . $values["product_id"] . " --- ";
+//                echo $values["quantity"] . "x --- ";
                 $result = $conn->query("SELECT * from product WHERE ID = " . $values["product_id"]);
                 if ($result->num_rows > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         $price = $row['price'];
                         $productID = $row["id"];
-                        echo $price . " euro per product";
-                        echo ' --- ' . $values["quantity"] * $price . " euro totaal";
+                        $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
+                        $name = $row["name"];
+
+                        //                        echo "Product " . $values["product_id"] . " --- ";
+                        echo "<img src='$imgSrc' alt='$name' style='width: 50px; height: 50px;'><br>";
+                        echo $name . "<br>";
+                        gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $productID, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $productID);
+                        echo $values["quantity"] . "x";
+//                        echo $price . " euro per product";
+                        echo '<br>€' . $values["quantity"] * $price . '<br>';
+
+
+
                         $total += $values["quantity"] * $price;
                         $count += 1 * $values["quantity"];
                     }
@@ -205,22 +196,17 @@ session_start(); // dit is voor het laten zien van eventuele 'toegevoegd aan win
         ';
                 echo '</a>';
 
-                echo '<br>';
+                echo '<br><br>';
 
             }
             echo "<p>Totaal aantal producten: $count</p>";
             echo "<p>Totaal bedrag: €<span id='totalAmount'>$total</span></p>";
             echo '<br>';
 
-            echo '<a href="cart-page.php?action=clear">Winkelwagen leegmaken</a><br>';
+//            echo '<a href="cart-page.php?action=clear">Winkelwagen leegmaken</a><br>';
 
         } else {
             echo 'Uw winkelwagen is leeg! Bekijk ons <a href="product-overzicht.php">assortiment</a>.';
-        }
-
-        if ($message != '') {
-            // Toon eventueel 'Product toegevoegd aan winkelwagen', 'Winkelwagen leeggemaakt', etc.
-            echo '<br><br><br><h3 class="info-message">' . $message . '</h3>';
         }
 
         $conn->close();
