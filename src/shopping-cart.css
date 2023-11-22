@@ -69,3 +69,9 @@ button.cartPageCheckoutButton:hover {
     height: 1.4rem;
     width: 1.4rem;
 }
+
+.info-message {
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 0.4rem;
+}
