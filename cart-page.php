@@ -149,8 +149,11 @@
                         $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
                         $name = $row["name"];
 
+
+                        echo '<div class="shopping-cart-product">';
                         //                        echo "Product " . $values["product_id"] . " --- ";
-                        echo "<img src='$imgSrc' alt='$name' style='width: 50px; height: 50px;'><br>";
+                        echo "<div class='shopping-cart-img-container'>";
+                        echo "<img src='$imgSrc' alt='$name' '></div>";
                         echo $name . "<br>";
                         gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $productID, "SELECT COUNT(*) AS amountOfReviews
@@ -158,7 +161,6 @@ FROM product_review WHERE product_id = " . $productID);
                         echo $values["quantity"] . "x";
 //                        echo $price . " euro per product";
                         echo '<br>€' . $values["quantity"] * $price . '<br>';
-
 
 
                         $total += $values["quantity"] * $price;
@@ -195,8 +197,8 @@ FROM product_review WHERE product_id = " . $productID);
         </svg>
         ';
                 echo '</a>';
-
-                echo '<br><br>';
+                echo '</div>';
+//                echo '<hr class="shopping-cart-hr">';
 
             }
             echo "<p>Totaal aantal producten: $count</p>";

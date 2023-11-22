@@ -51,7 +51,7 @@ function gemiddeldeScore($avgQuery, $countQuery) {
     $conn->close();
 
 
-    echo "<div>$avgScore ";
+    echo "<div  class='avgScore'>$avgScore ";
 
     printStars($avgScore);
 
@@ -108,7 +108,7 @@ function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery) {
     $conn->close();
 
 
-    echo "<div>$avgScore ";
+    echo "<div class='avgScore'>$avgScore ";
 
     printStars($avgScore);
 

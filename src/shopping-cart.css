@@ -7,7 +7,7 @@ h1.cartPageHeader {
 #checkoutForm {
     max-width: 600px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #F8F9FA;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -64,8 +64,36 @@ button.cartPageCheckoutButton:hover {
 }
 
 .cart-page-svg {
-    color: #4C2887;
+    color: #5A2F9F;
     border: 1px solid #8343CF;
     height: 1.4rem;
     width: 1.4rem;
+}
+
+.shopping-cart-product {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px #FFA633;
+    margin-bottom: 10px;
+    padding: 0.8rem 1rem;
+}
+
+.shopping-cart-img-container {
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+}
+
+.shopping-cart-img-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.shopping-cart-hr {
+    border: 1px solid #FFA633;
 }
