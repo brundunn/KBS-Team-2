@@ -50,12 +50,15 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
             <button onclick="readMore()" id="myBtn">Read more</button>
         </div>
         <div class="shopping-experience">
+            <?php include 'product-raster.php';
+            // De review functions worden al ge-include in product-raster.php, dus deze hoeven niet opnieuw te worden ge-include
+            ?>
             <ul>
                 <li>
                     <a href="user-reviews.php">
                         <!--                    Recensies-->
                         <?php
-                        include 'src/review-functions.php';
+//                        include 'src/review-functions.php';
                         gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM review", "SELECT COUNT(*) AS amountOfReviews
 FROM review");
@@ -122,7 +125,7 @@ ORDER BY date DESC LIMIT 3;";
     </div>
     <h2 class="highlighted-products-header">Uitgelichte producten</h2>
     <?php
-    include 'product-raster.php';
+
     toonProductRaster("SELECT * FROM product WHERE category = 'laptops' ORDER BY price DESC LIMIT 5");
     ?>
 </body>
