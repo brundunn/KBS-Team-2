@@ -16,8 +16,8 @@
             <!-- Links -->
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+<!--                <a href="#">Link 2</a>-->
+<!--                <a href="#">Link 3</a>-->
                 <a href="about-us.php">About us</a>
             </div>
         </div>
