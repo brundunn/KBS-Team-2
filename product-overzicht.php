@@ -9,9 +9,9 @@
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
-    <link href="src/Assortiment.css" rel="stylesheet">
-
-
+    <link href="src/product-overzicht.css" rel="stylesheet">
+    <link href="src/product-raster.css" rel="stylesheet">
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -20,16 +20,7 @@
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina): string
-        {
-            $naam = ucfirst($naam);
-
-            if (!$huidigePagina) {
-                return "<li><a href=\"$link\">$naam</a></li>";
-            } else {
-                return "<li>$naam</li>";
-            }
-        }
+        include 'src/breadcrumbs.php';
 
         echo breadcrumb('index.php', "Home", false);
         echo breadcrumb('#', 'Assortiment', true);
@@ -43,56 +34,17 @@
         praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
         sequi similique voluptatem voluptatum?</p>
 
-    <div class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </div>
-    <div class="Assortment-products">
+        <div class="sidenav">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div>
 
-    <!-- DATABASE CONNECTIE -->
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "nerdy_gadgets_start";
+    include 'product-raster.php';
+    toonProductRaster("SELECT * FROM product");
+    ?>
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // echo "Connected successfully<br>";
-
-
-    // QUERY
-    $sql = "SELECT * FROM product";
-    // RESULT
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            include "product-raster.php";
-//            echo "<a href='product.php?id=" . $row["id"] .
-//                "'>id: " . $row["id"] .
-//                " <br> name: " . $row["name"] .
-//                " <br> description: " . $row["description"] .
-//                " <br> price: " . $row["price"] .
-//                " <br> category: " . $row["category"] .
-//                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
-//                "</a>" .
-//                "<br><br>";
-        }
-    } else {
-        echo "0 results";
-    }
-    $conn->close();
-     ?>
-
-
-</div>
 </body>
 </html>

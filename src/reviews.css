@@ -4,6 +4,9 @@
     width: 1rem;
     color: #FFA633; /* oranje */
 }
+div.avgScore .ster:first-child {
+    margin-left: 0.3rem;
+}
 div.sterren {
     display: flex;
     align-items: center;
@@ -13,7 +16,7 @@ div.sterren {
 form.sorteerKnoppen {
     display: flex;
 }
-form.sorteerKnoppen input {
+form.sorteerKnoppen button {
     padding: 0.6rem;
     margin-right: 0.75rem;
     border-radius: 0.8rem;
@@ -21,7 +24,7 @@ form.sorteerKnoppen input {
     background-color: #8343CF; /* paars */;
     display: inline-block;
 }
-form.sorteerKnoppen input:hover {
+form.sorteerKnoppen button:hover {
     background-color: #9B4FF5;
 }
 
@@ -42,4 +45,33 @@ div.reviewStats {
 div.reviewStats div {
     display: flex;
     align-items: center;
+}
+
+.reviews-ingekort {
+    text-decoration: none;
+    background-color: #8343CF;
+    display: flex;
+    align-items: center;
+    width: 22%;
+    justify-content: space-between;
+    padding: 0.5rem;
+    color: #F8F9FA;
+    border-radius: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.reviews-ingekort:hover {
+    background-color: #9B4FF5;
+    color: white;
+}
+
+.reviews-ingekort:hover svg {
+    color: white;
+}
+
+.reviews-ingekort svg {
+    height: 1.7rem;
+    width: 1.7rem;
+    color: #F8F9FA;
+    justify-self: end;
 }

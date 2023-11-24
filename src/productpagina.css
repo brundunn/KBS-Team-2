@@ -1,0 +1,53 @@
+/* Product-informatie */
+
+.product-informatie h2 { /* productnaam */
+
+}
+
+.product-informatie h3 { /* productprijs */
+
+}
+
+.product-informatie h4 { /* categorie */
+
+}
+
+.product-informatie p { /* beschrijving */
+
+}
+
+.product-informatie img { /* afbeelding */
+
+}
+
+
+/* Knop om producten toe te voegen aan de winkelwagen */
+.add-product-to-cart-button {
+    background-color: #FFA633;
+    color: white;
+    padding: 0.9rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    display: flex;
+}
+
+.add-product-to-cart-button p {
+    margin-left: 1rem;
+    font-size: 1.1rem;
+}
+
+.add-product-to-cart-button svg {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.product-in-cart {
+    background-color: white;
+    color: #FFA633;
+    border: 2px solid #FFA633;
+    font-weight: bolder;
+}
+
+.product-in-cart svg {
+    color: #FFA633;
+}

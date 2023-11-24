@@ -1,35 +1,5 @@
-.topnav {
-    background-color: purple;
-    overflow: hidden;
-}
 
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: purple;
-    color: black;
-}
-
-.topnav a.active {
-    background-color: mediumpurple;
-    color: white;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-h1 {
+h1.cartPageHeader {
     text-align: center;
     color: #333;
 }
@@ -37,32 +7,32 @@ h1 {
 #checkoutForm {
     max-width: 600px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #F8F9FA;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+#checkoutForm h2 {
     color: #333;
 }
 
-ul {
+#checkoutForm ul {
     list-style: none;
     padding: 0;
 }
 
-li {
+#checkoutForm li {
     margin-bottom: 10px;
 }
 
-label {
+#checkoutForm label {
     margin-left: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-button {
+#checkoutForm input[type="text"],
+#checkoutForm input[type="email"],
+button.cartPageCheckoutButton {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -70,7 +40,7 @@ button {
     box-sizing: border-box;
 }
 
-button {
+button.cartPageCheckoutButton {
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -79,11 +49,11 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button.cartPageCheckoutButton:hover {
     background-color: #45a049;
 }
 
-p {
+#checkoutForm p {
     text-align: right;
     font-weight: bold;
     font-size: 1.2em;
@@ -91,4 +61,39 @@ p {
 
 #totalAmount {
     color: #e44d26;
+}
+
+.cart-page-svg {
+    color: #5A2F9F;
+    border: 1px solid #8343CF;
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.shopping-cart-product {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px #FFA633;
+    margin-bottom: 10px;
+    padding: 0.8rem 1rem;
+}
+
+.shopping-cart-img-container {
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid #53556E;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+}
+
+.shopping-cart-img-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.shopping-cart-hr {
+    border: 1px solid #FFA633;
 }
