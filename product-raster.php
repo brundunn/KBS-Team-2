@@ -14,19 +14,21 @@ function toonProductRaster($query) {
     }
     // echo "Connected successfully<br>";
 
+    $connection = mysqli_connect('127.0.0.1', 'root', '', 'nerdy_gadgets_start', '3306');
 
     // QUERY
-    $sql = "SELECT * FROM product";
+    $sql_selectALL = $query;
+    $res = mysqli_query($connection, $sql_selectALL);
+//    $sql = "SELECT * FROM product";
     // RESULT
-    $result = $conn->query($sql);
+//    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($res->num_rows > 0) {
         // PRODUCT RASTER
         echo '<div class="product-raster">';
-        $connection = mysqli_connect('127.0.0.1', 'root', '', 'nerdy_gadgets_start', '3306');
+
 //        $sql_selectALL = "SELECT * FROM product WHERE category = 'laptops' ORDER BY price DESC LIMIT 5";
-        $sql_selectALL = $query;
-        $res = mysqli_query($connection, $sql_selectALL);
+
 
         while ($row = mysqli_fetch_assoc($res)) {
             $productID = $row["id"];

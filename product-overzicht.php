@@ -44,13 +44,16 @@
         sequi similique voluptatem voluptatum?</p>
 
         <div class="sidenav">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+<!--            <a href="#">About</a>-->
+<!--            <a href="#">Services</a>-->
+<!--            <a href="#">Clients</a>-->
+<!--            <a href="#">Contact</a>-->
         </div>
 
     <?php
+    $query = "";
+
+    $query = $query . "WHERE ...";
     include 'product-raster.php';
     toonProductRaster("SELECT * FROM product");
     ?>
