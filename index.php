@@ -114,8 +114,8 @@ ORDER BY date DESC LIMIT 3;";
                 $conn->close();
                 ?>
                 <li>Eenvoudige navigatie</li>
-                <li>Veilige betalingsmogelijkheden</li>
-                <li>Snelle levering</li>
+                <li>Betaal met iDeal, Paypal en Afterpay!</li>
+                <li>Voor tien uur besteld, morgen in huis!</li>
             </ul>
         </div>
     </div>
