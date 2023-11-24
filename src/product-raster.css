@@ -1,25 +1,57 @@
-.product-raster{
-    max-width: 65%;
+.product-raster {
+    width: 100%;
     display: flex;
     flex-flow: row wrap;
-    /*border: solid;*/
-    position: absolute;
-    margin-left: 200px;
+    margin-top: 1rem;
+    gap: 0.3rem;
+    justify-content: space-between;
 }
 
-.raster-item{
-    max-width: 250px;
-    margin: 1%;
-    padding: 1px;
-    /*flex: 20%;*/
-    /*border: solid;*/
-    flex: 1;
+.product-raster a {
+    text-decoration: none;
+    color: black;
 }
+
+.raster-item {
+    max-width: 250px;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: grid;
+    box-shadow: 2px 2px #8343CF;
+    min-width: 10rem;
+}
+
 .raster-img img {
     width: 200px;
 
 }
-a{
-    text-decoration: none;
-    color: black;
+
+.raster-name {
+color: #252530;
+    font-size: 0.9rem;
 }
+
+.raster-price-and-link-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-direction: row;
+    padding: 0;
+}
+
+
+.raster-price-and-link-container svg {
+    height: 1.7rem;
+    width: 1.7rem;
+    color: #FFA633;
+    justify-self: end;
+}
+
+.raster-price {
+    font-weight: bolder;
+    font-size: 0.9rem;
+    color: #8343CF;
+    white-space: nowrap;
+}
+

@@ -51,7 +51,7 @@ function gemiddeldeScore($avgQuery, $countQuery) {
     $conn->close();
 
 
-    echo "<div>$avgScore ";
+    echo "<div  class='avgScore'>$avgScore ";
 
     printStars($avgScore);
 
@@ -108,7 +108,7 @@ function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery) {
     $conn->close();
 
 
-    echo "<div>$avgScore ";
+    echo "<div class='avgScore'>$avgScore ";
 
     printStars($avgScore);
 
@@ -122,10 +122,10 @@ function reviewPagina($query, $subject, $avgQuery, $countQuery) {
     gemiddeldeScore($avgQuery, $countQuery);
 
     echo '<form method="POST" class="sorteerKnoppen">
-        <input type="submit" name="sorteren" value="mostRecent"><br>
-        <input type="submit" name="sorteren" value="leastRecent"><br>
-        <input type="submit" name="sorteren" value="mostStars"><br>
-        <input type="submit" name="sorteren" value="leastStars"><br>
+        <button type="submit" name="sorteren" value="mostRecent">Meest recent</button><br>
+        <button type="submit" name="sorteren" value="leastRecent">Minst recent</button><br>
+        <button type="submit" name="sorteren" value="mostStars">Hoogste score</button><br>
+        <button type="submit" name="sorteren" value="leastStars">Laagste score</button>
     </form>';
 
 
