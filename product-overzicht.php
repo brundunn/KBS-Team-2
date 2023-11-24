@@ -85,10 +85,10 @@
 //    $conn->close();
 //    ?>
     <div class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="index.php">Home</a>
+        <a href="#">Assoirtiment</a>
+        <a href="contact%20pagina.php">contact</a>
+        <a href="#">------</a>
     </div>
     <div class="Assortment-products">
 
