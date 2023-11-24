@@ -1,4 +1,4 @@
-<head>
+ <head>
     <link rel="stylesheet" href="src/shopping-cart.css">
     <link href="src/header.css" rel="stylesheet">
 </head>
