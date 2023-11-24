@@ -19,6 +19,7 @@
 <!--                <a href="#">Link 2</a>-->
 <!--                <a href="#">Link 3</a>-->
                 <a href="about-us.php">About us</a>
+                <a href="contact%20pagina.php">Contact</a>
             </div>
         </div>
 
