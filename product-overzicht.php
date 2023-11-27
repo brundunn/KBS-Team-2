@@ -35,6 +35,105 @@
         sequi similique voluptatem voluptatum?</p>
 
         <div class="sidenav">
+            <h3>Filter op:</h3><br>
+            <h4>Categorie</h4>
+            <form action="" method="post">
+            <input type="checkbox" name="category[]" value="laptops" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("laptops", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Laptops</label>
+            <br>
+            <input type="checkbox" name="category[]" value="phones" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("phones", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Smartphones</label>
+            <br>
+            <input type="checkbox" name="category[]" value="opslag" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("opslag", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Opslag</label>
+            <br>
+            <input type="checkbox" name="category[]" value="routers" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("routers", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Routers</label>
+            <br>
+            <input type="checkbox" name="category[]" value="componenten" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("componenten", $category)) {
+                    echo 'checked';
+                }
+            }
+            
+            ?>>
+            <label for="category">Componenten</label>
+            <br>
+            <input type="checkbox" name="category[]" value="desktops" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("desktops", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Desktops</label>
+            <br>
+            <h4>Prijsklasse</h4>
+            <h4>Populariteit</h4>
+            <input type="submit" value="Submit">
+            </form>
+            <?php
+            if (isset($_POST["category"])) {
+                print_r($_POST["category"]);
+            }
+            ?>
+
+            <?php
+            // DATABASE CONNECTIE
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "nerdy_gadgets_start";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+
+
+
+
+            ?>
 <!--            <a href="#">About</a>-->
 <!--            <a href="#">Services</a>-->
 <!--            <a href="#">Clients</a>-->
