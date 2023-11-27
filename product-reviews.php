@@ -72,7 +72,10 @@ $conn->close();
 
     <!-- Product reviews -->
     <h1>Reviews over <?php echo $name ?></h1>
-    <?php include 'src/review-functions.php';
+    <?php
+    echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
+
+    include 'src/review-functions.php';
     reviewPagina("SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
 FROM product_review pr
 JOIN user u ON pr.user_id = u.id
