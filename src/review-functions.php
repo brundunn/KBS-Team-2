@@ -2,7 +2,8 @@
 
 include 'src/print-star-functions.php';
 
-function gemiddeldeScore($avgQuery, $countQuery) {
+function gemiddeldeScore($avgQuery, $countQuery)
+{
     // DATABASE CONNECTIE
     $servername = "localhost";
     $username = "root";
@@ -56,10 +57,11 @@ function gemiddeldeScore($avgQuery, $countQuery) {
     printStars($avgScore);
 
     echo "</div>($amountOfReviews reviews)";
-   echo '</div>';
+    echo '</div>';
 }
 
-function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery) {
+function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery)
+{
     // DATABASE CONNECTIE
     $servername = "localhost";
     $username = "root";
@@ -117,20 +119,65 @@ function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery) {
 }
 
 
-
-function reviewPagina($query, $subject, $avgQuery, $countQuery) {
+function reviewPagina($query, $subject, $avgQuery, $countQuery)
+{
     gemiddeldeScore($avgQuery, $countQuery);
+    ?><br>Sorteren op:
+    <form method="POST" class="sorteerKnoppen">
+<!--        <select>-->
+<!--            <option name="sorteren" value="mostRecent"-->
+<!--                --><?php
+//                if (!empty($_POST["sorteren"])) {
+//                    if ($_POST["sorteren"] == 'mostRecent') {
+//                        echo 'checked="checked"';
+//                    }
+//                } ?>
+<!--            >Meest recent-->
+<!--            </option>-->
+<!--            <option name="sorteren"-->
+<!--                    value="leastRecent"-->
+<!--                --><?php //if (!empty($_POST["sorteren"])) {
+//                    if ($_POST["sorteren"] == 'leastRecent') {
+//                        echo 'checked="checked"';
+//                    }
+//                } ?>
+<!---->
+<!--                >Minst recent-->
+<!--            </option>-->
+<!--        </select>-->
 
-    echo '<form method="POST" class="sorteerKnoppen">
-        <button type="submit" name="sorteren" value="mostRecent">Meest recent</button><br>
-        <button type="submit" name="sorteren" value="leastRecent">Minst recent</button><br>
-        <button type="submit" name="sorteren" value="mostStars">Hoogste score</button><br>
-        <button type="submit" name="sorteren" value="leastStars">Laagste score</button>
-    </form>';
 
 
-    echo '<br>';
+                <button type="submit" name="sorteren" value="mostRecent"
+                    <?php
+                    if (((!empty($_POST["sorteren"])) && ($_POST["sorteren"] == 'mostRecent')) || empty($_POST["sorteren"])) {
+                        echo ' disabled';
+                    } ?>>Meest recent</button>
+                <br>
+                <button type="submit" name="sorteren" value="leastRecent"
+                    <?php
+                    if ((!empty($_POST["sorteren"])) && ($_POST["sorteren"] == 'leastRecent')) {
+                        echo ' disabled';
+                    } ?>
+                >Minst recent</button>
+                <br>
+                <button type="submit" name="sorteren" value="mostStars"
+                    <?php
+                    if ((!empty($_POST["sorteren"])) && ($_POST["sorteren"] == 'mostStars')) {
+                        echo ' disabled';
+                    } ?>
+                >Hoogste score</button>
+                <br>
+                <button type="submit" name="sorteren" value="leastStars"
+                    <?php
+                    if ((!empty($_POST["sorteren"])) && ($_POST["sorteren"] == 'leastStars')) {
+                        echo ' disabled';
+                    } ?>
+                >Laagste score</button>
+    </form>
+    <br>
 
+    <?php
     // DATABASE CONNECTIE
 
     $servername = "localhost";
@@ -175,14 +222,14 @@ function reviewPagina($query, $subject, $avgQuery, $countQuery) {
 
             echo '<div class="review">';
             echo printStars($row["score"]) .
-                "user: " . $row["first_name"];
+                "<h3>" . $row["first_name"];
             if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
                 echo " " . $row["surname_prefix"];
             }
-            echo " " . $row["surname"] . "<br>" .
-                "datum: " . $date;
+            echo " " . $row["surname"] . "</h3>" .
+                "<h4>" . $date . '</h4>';
             if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
-                echo "<br>" . $row["description"];
+                echo "<p>" . $row["description"] . '</p>';
             }
             echo '</div>';
             echo "<br>";

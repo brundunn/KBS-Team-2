@@ -28,12 +28,30 @@ form.sorteerKnoppen button:hover {
     background-color: #9B4FF5;
 }
 
+form.sorteerKnoppen button:disabled {
+    background-color: #6843AA;
+    color: #D3D3D3;
+}
+
 /* Een review */
 div.review {
     padding: 1rem;
     background-color: white;
     box-shadow: 2px 2px #8343CF;
     border-radius: 0.5rem;
+}
+div.review h3 {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+div.review h4 {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+div.review p {
+    font-weight: lighter;
+    font-size: 1rem;
+
 }
 
 /* Gemiddelde score en aantal reviews */
