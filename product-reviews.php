@@ -32,6 +32,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 
         $name = $row["name"];
+        $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
     }
 } else {
     echo "0 results";
@@ -72,6 +73,7 @@ $conn->close();
 
     <!-- Product reviews -->
     <h1>Reviews over <?php echo $name ?></h1>
+    <img class="review-product-img" src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>"> <!-- afbeelding --><br>
     <?php
     echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
 

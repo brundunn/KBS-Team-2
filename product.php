@@ -175,6 +175,7 @@ FROM product_review WHERE product_id = " . $id);
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
+    echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
 
     gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
