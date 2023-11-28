@@ -106,6 +106,7 @@ if ((!empty($_GET["user_id"])) && (!empty($_GET["rating"]))) {
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link href="src/reviews.css" rel="stylesheet">
+    <link href="src/write-review.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php';
