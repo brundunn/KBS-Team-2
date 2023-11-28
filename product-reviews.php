@@ -81,7 +81,7 @@ $conn->close();
     reviewPagina("SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
 FROM product_review pr
 JOIN user u ON pr.user_id = u.id
-WHERE pr.product_id = " . $id, "NerdyGadgets", "SELECT AVG(score) AS avgScore
+WHERE pr.product_id = " . $id, $name, "SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id); ?>
 </div>
