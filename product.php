@@ -70,6 +70,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     echo "0 results";
+    header('Location: ' . "product-overzicht.php");
 }
 $conn->close();
 ?>
@@ -174,10 +175,13 @@ FROM product_review WHERE product_id = " . $id);
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
+    echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
 
     gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id);
+
+    echo '<br>';
 
     //    include 'src/print-star-functions.php';
 
@@ -225,14 +229,14 @@ ORDER BY date DESC LIMIT 4;";
 
             echo '<div class="review highlighted-review">';
             echo printStars($row["score"]) .
-                "user: " . $row["first_name"];
+                "<h3>" . $row["first_name"];
             if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
                 echo " " . $row["surname_prefix"];
             }
-            echo " " . $row["surname"] . "<br>" .
-                "datum: " . $date;
+            echo " " . $row["surname"] . "</h3>" .
+                "<h4>" . $date . '</h4>';
             if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
-                echo "<br>" . $row["description"];
+                echo "<p>" . $row["description"] . '</p>';
             }
             echo '</div>';
             echo "<br>";

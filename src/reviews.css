@@ -1,12 +1,16 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 /* De sterren-SVGs en de container van de sterren */
 .ster {
     height: 1rem;
     width: 1rem;
     color: #FFA633; /* oranje */
 }
+
 div.avgScore .ster:first-child {
     margin-left: 0.3rem;
 }
+
 div.sterren {
     display: flex;
     align-items: center;
@@ -16,6 +20,7 @@ div.sterren {
 form.sorteerKnoppen {
     display: flex;
 }
+
 form.sorteerKnoppen button {
     padding: 0.6rem;
     margin-right: 0.75rem;
@@ -24,8 +29,14 @@ form.sorteerKnoppen button {
     background-color: #8343CF; /* paars */;
     display: inline-block;
 }
+
 form.sorteerKnoppen button:hover {
     background-color: #9B4FF5;
+}
+
+form.sorteerKnoppen button:disabled {
+    background-color: #6843AA;
+    color: #D3D3D3;
 }
 
 /* Een review */
@@ -36,12 +47,29 @@ div.review {
     border-radius: 0.5rem;
 }
 
+div.review h3 {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+div.review h4 {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+div.review p {
+    font-weight: lighter;
+    font-size: 1rem;
+
+}
+
 /* Gemiddelde score en aantal reviews */
 div.reviewStats {
     display: flex;
     justify-content: space-between;
     /*width: 100%;*/
 }
+
 div.reviewStats div {
     display: flex;
     align-items: center;
@@ -74,4 +102,77 @@ div.reviewStats div {
     width: 1.7rem;
     color: #F8F9FA;
     justify-self: end;
+}
+
+.review-product-img {
+    width: 100px;
+    max-height: 100%;
+}
+
+.schrijf-review-form {
+
+}
+
+.schrijf-review-form textarea {
+    height: 10rem;
+    width: 35rem;
+}
+
+
+/* Star rating input voor 'schrijf review' formulier */
+.rate {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+}
+
+/* Verberg de standaard radio buttons */
+.rate > input {
+    display: none;
+}
+
+/* Juiste volgorde, hoogste score rechts */
+.rate > label {
+    float: right;
+    color: #BEC0DB;
+}
+
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+
+/* Zero stars rating */
+/* .rate > label:last-child:before {
+    content: "\f006 "; /* empty star outline */
+/* } */
+
+/* Halve ster */
+.rate .half:before {
+    content: "\f089 "; /* halve ster */
+    position: absolute;
+    padding-right: 0;
+}
+
+/* Click + hover color */
+input:checked ~ label, /* color current and previous stars on checked */
+label:hover, label:hover ~ label {
+    /*color: #73B100;*/
+    color: #FFA633;
+
+}
+
+/* color previous stars on hover */
+
+/* Hover highlights */
+input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label /* highlight previous selected stars */
+{
+    color: #FFD130;
 }

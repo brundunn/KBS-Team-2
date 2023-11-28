@@ -32,6 +32,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 
         $name = $row["name"];
+        $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
     }
 } else {
     echo "0 results";
@@ -72,11 +73,15 @@ $conn->close();
 
     <!-- Product reviews -->
     <h1>Reviews over <?php echo $name ?></h1>
-    <?php include 'src/review-functions.php';
+    <img class="review-product-img" src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>"> <!-- afbeelding --><br>
+    <?php
+    echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
+
+    include 'src/review-functions.php';
     reviewPagina("SELECT pr.product_id, u.first_name, u.surname_prefix, u.surname, pr.date, pr.score, pr.description
 FROM product_review pr
 JOIN user u ON pr.user_id = u.id
-WHERE pr.product_id = " . $id, "NerdyGadgets", "SELECT AVG(score) AS avgScore
+WHERE pr.product_id = " . $id, $name, "SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $id); ?>
 </div>
