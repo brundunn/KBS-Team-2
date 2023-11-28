@@ -37,7 +37,7 @@ function gemiddeldeScore($avgQuery, $countQuery)
 // QUERY
     $sql = $countQuery;
 // RESULT
-    echo '<div class="reviewStats">';
+
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -51,12 +51,12 @@ function gemiddeldeScore($avgQuery, $countQuery)
     }
     $conn->close();
 
-
-    echo "<div  class='avgScore'>$avgScore ";
-
-    printStars($avgScore);
-
-    echo "</div>($amountOfReviews reviews)";
+    echo '<div class="reviewStats">';
+    if ($amountOfReviews > 0) {
+        echo "<div  class='avgScore'>$avgScore ";
+        printStars($avgScore);
+        echo "</div>($amountOfReviews reviews)";
+    }
     echo '</div>';
 }
 
@@ -95,7 +95,7 @@ function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery)
 // QUERY
     $sql = $countQuery;
 // RESULT
-    echo '<div class="reviewStats">';
+
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -109,12 +109,12 @@ function gemiddeldeScoreZonderTotaal($avgQuery, $countQuery)
     }
     $conn->close();
 
-
-    echo "<div class='avgScore'>$avgScore ";
-
-    printStars($avgScore);
-
-    echo "</div>";
+    echo '<div class="reviewStats">';
+    if ($amountOfReviews > 0) {
+        echo "<div class='avgScore'>$avgScore ";
+        printStars($avgScore);
+        echo "</div>";
+    }
     echo '</div>';
 }
 
