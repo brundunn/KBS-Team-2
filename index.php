@@ -92,12 +92,14 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
                 <li>
                     <a href="user-reviews.php">
                         <!--                    Recensies-->
+                        <h4>Reviews</h4>
                         <?php
 //                        include 'src/review-functions.php';
                         gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM review", "SELECT COUNT(*) AS amountOfReviews
 FROM review");
                         ?>
+
                     </a>
                 </li>
 
@@ -148,7 +150,7 @@ ORDER BY date DESC LIMIT 3;";
 
                     }
                 } else {
-                    echo "0 results";
+                    echo "Er zijn nog geen reviews voor NerdyGadgets achtergelaten.<br><br>";
                 }
                 $conn->close();
                 ?>
