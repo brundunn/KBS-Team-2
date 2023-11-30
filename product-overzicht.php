@@ -37,8 +37,8 @@
     <div class="sidenav-raster-container">
     <div class="sidenav">
         <h3>Filter op:</h3><br>
-        <h4>Categorie</h4>
         <form action="" method="post">
+            <h4>Categorie</h4>
             <input type="checkbox" name="category[]" value="laptops" <?php
             if (isset($_POST['category'])) {
                 $category = $_POST["category"];
@@ -106,7 +106,17 @@
             ?>>
             <label for="category">Desktops</label>
             <br>
-            <h4>Prijsklasse</h4>
+            <h4>Prijs</h4>
+            €
+            <input type="tel" class="price-input" name="price-from" <?php
+            if (isset($_POST["price-from"]))
+                echo 'value = "' . $_POST["price-from"] . '"';
+            ?>>
+            tot
+            <input type="tel" class="price-input" name="price-to" <?php
+            if (isset($_POST["price-from"]))
+                echo 'value = "' . $_POST["price-to"] . '"';
+            ?>>
             <h4>Populariteit</h4>
             <input id="submit" type="submit" value="Submit">
         </form>
@@ -114,7 +124,7 @@
         $query = "SELECT * FROM product";
 
         if (isset($_POST["category"])) {
-            $query = $query . " WHERE ";
+            $query = $query . " WHERE (";
 //            print_r($_POST["category"]);
             $res = $_POST["category"];
             $len = sizeof($res);
@@ -133,11 +143,51 @@
 
                 }
             }
-            $query = $query . ';';
+            $query = $query . ')';
 //echo '<br>' . $query;
 //                $query = 'SELECT * FROM product WHERE category = "laptops"';
         }
+        $priceFrom = $_POST["price-from"];
+        $priceTo = $_POST["price-to"];
+        $category = $_POST["category"];
+        $priceFromFilled = isset($_POST["price-from"]);
+        $priceToFilled = isset($_POST["price-to"]);
+        $categoryFilled = isset($_POST["category"]);
 
+//        if ($categoryFilled) {
+//            if ($priceFromFilled && $priceToFilled) {
+//                $query = $query . " AND price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
+//            } elseif ($priceFromFilled && !$priceToFilled) {
+//                $query = $query . " AND price >= " . $_POST["price-from"];
+//            } elseif (!$priceFromFilled && $priceToFilled) {
+//                $query = $query . " AND price <= " . $_POST["price-to"];
+//            }
+//        }
+//        else{
+//            if ($priceFromFilled && $priceToFilled){
+//                $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+//            }elseif($priceFromFilled && !$priceToFilled){
+//                $query = $query . " WHERE price >= " . $_POST["price-from"];
+//            }elseif(!$priceFromFilled && $priceToFilled){
+//                $query = $query . " WHERE price <= " . $_POST["price-to"];
+//            }
+//        }
+
+        if ($priceFromFilled && $priceToFilled && $categoryFilled){
+            $query = $query . " AND price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+        }
+
+        if ($priceFromFilled && $priceToFilled && !$categoryFilled){
+            $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+        }
+
+        if ($priceFromFilled && empty($priceTo) && $categoryFilled){
+            $query = $query . " AND price >= " . $_POST["price-from"];
+        }
+
+
+        $query = $query . ";";
+        echo $query;
         ?>
 
         <?php

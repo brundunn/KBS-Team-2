@@ -47,7 +47,9 @@
     padding: 0px 10px;
     width: calc(100% - 160px); /* Breedte van de hoofdinhoud minus de breedte van de zijbalk */
 }
-
+.price-input{
+    width: 2rem;
+}
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
