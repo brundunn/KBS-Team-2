@@ -114,7 +114,7 @@
             ?>>
             tot
             <input type="tel" class="price-input" name="price-to" <?php
-            if (isset($_POST["price-from"]))
+            if (isset($_POST["price-to"]))
                 echo 'value = "' . $_POST["price-to"] . '"';
             ?>>
             <h4>Populariteit</h4>
@@ -147,12 +147,12 @@
 //echo '<br>' . $query;
 //                $query = 'SELECT * FROM product WHERE category = "laptops"';
         }
-        $priceFrom = $_POST["price-from"];
-        $priceTo = $_POST["price-to"];
-        $category = $_POST["category"];
-        $priceFromFilled = isset($_POST["price-from"]);
-        $priceToFilled = isset($_POST["price-to"]);
-        $categoryFilled = isset($_POST["category"]);
+//        $priceFrom = $_POST["price-from"];
+//        $priceTo = $_POST["price-to"];
+//        $category = $_POST["category"];
+        $priceFromFilled = !empty($_POST["price-from"]);
+        $priceToFilled = !empty($_POST["price-to"]);
+        $categoryFilled = !empty($_POST["category"]);
 
 //        if ($categoryFilled) {
 //            if ($priceFromFilled && $priceToFilled) {
@@ -172,22 +172,36 @@
 //                $query = $query . " WHERE price <= " . $_POST["price-to"];
 //            }
 //        }
-
+        //if alles ingevuld
         if ($priceFromFilled && $priceToFilled && $categoryFilled){
             $query = $query . " AND price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
         }
-
-        if ($priceFromFilled && $priceToFilled && !$categoryFilled){
+        //if categorie niet ingevuld
+        if ($priceFromFilled && $priceToFilled && empty($categoryFilled)){
             $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
         }
-
-        if ($priceFromFilled && empty($priceTo) && $categoryFilled){
+        //alleen price to niet ingevuld
+        if ($priceFromFilled && empty($priceToFilled) && $categoryFilled){
             $query = $query . " AND price >= " . $_POST["price-from"];
         }
+        //if price from niet ingevuld
+        if (empty($priceFromFilled) && $priceToFilled && $categoryFilled){
+            $query = $query . " AND price <= " . $_POST["price-to"];
+        }
+        //alleen price to
+        if (empty($priceFromFilled) && $priceToFilled && empty($categoryFilled)){
+            $query = $query . " WHERE price <= " . $_POST["price-to"];
+        }
+        //alleen price from
+        if ($priceFromFilled && empty($priceToFilled) && empty($categoryFilled)){
+            $query = $query . " WHERE price >= " . $_POST["price-to"];
+        }
+
+
 
 
         $query = $query . ";";
-        echo $query;
+//        echo $query;
         ?>
 
         <?php
