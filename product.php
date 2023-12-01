@@ -30,12 +30,22 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-
         $name = $row["name"];
         $description = $row["description"];
         $price = $row["price"];
         $category = $row["category"];
         $imgSrc = "img/product_images/" . $row["image"]  . ".jpg";
+
+        // Get products from the same category
+        $sameCategorySql = "SELECT * FROM product WHERE category='$category' AND id!=$id";
+        $sameCategoryResult = $conn->query($sameCategorySql);
+        $sameCategoryProducts = [];
+
+        if ($sameCategoryResult->num_rows > 0) {
+            while ($sameCategoryRow = $sameCategoryResult->fetch_assoc()) {
+                $sameCategoryProducts[] = $sameCategoryRow;
+            }
+        }
     }
 } else {
     echo "0 results";
@@ -85,7 +95,22 @@ $conn->close();
     <h4><?php echo "Categorie: $category"?></h4>
     <p><?php echo $description ?></p>
     <img src="<?php echo $imgSrc ?>" alt="<?php echo $name?>">
+
+
 </div>
+
+<div class="product-list">
+    <h2>Misschien bent u ook geïntereseerd in::</h2>
+    <?php foreach ($sameCategoryProducts as $product) { ?>
+        <div class="product-item">
+            <a href="product.php?id=<?php echo $product['id']; ?>">
+                <img src="img/product_images/<?php echo $product['image']; ?>.jpg" alt="<?php echo $product['name']; ?>">
+                <h5><?php echo $product['name']; ?></h5>
+            </a>
+        </div>
+    <?php } ?>
+</div>
+
 </body>
 </html>
 
