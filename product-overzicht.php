@@ -32,7 +32,7 @@
     <h1>Assortiment</h1>
     <p>Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie samenkomen om aan al jouw behoeften te voldoen.
         Ontdek een wereld van mogelijkheden terwijl je bladert door ons zorgvuldig samengestelde aanbod, ontworpen om aan de uiteenlopende
-        wensen van onze gewaardeerde klanten te voldoen.</p>
+        wensen van onze gewaardeerde klanten te voldoen.</p><br>
 
     <div class="sidenav-raster-container">
     <div class="sidenav">
@@ -108,12 +108,12 @@
             <br>
             <h4>Prijs</h4>
             €
-            <input type="tel" class="price-input" name="price-from" <?php
+            <input type="number" class="price-input" name="price-from" <?php
             if (isset($_POST["price-from"]))
                 echo 'value = "' . $_POST["price-from"] . '"';
             ?>>
             tot
-            <input type="tel" class="price-input" name="price-to" <?php
+            <input type="number" class="price-input" name="price-to" <?php
             if (isset($_POST["price-to"]))
                 echo 'value = "' . $_POST["price-to"] . '"';
             ?>>
@@ -143,8 +143,8 @@
             $query = $query . ')';
         }
 
-        $priceFromFilled = !empty($_POST["price-from"]);
-        $priceToFilled = !empty($_POST["price-to"]);
+        $priceFromFilled = !empty($_POST["price-from"]) && is_numeric($_POST["price-from"]);
+        $priceToFilled = !empty($_POST["price-to"]) && is_numeric($_POST["price-from"]);
         $categoryFilled = !empty($_POST["category"]);
 
         //if alles ingevuld
@@ -169,7 +169,7 @@
         }
         //alleen price from
         if ($priceFromFilled && empty($priceToFilled) && empty($categoryFilled)){
-            $query = $query . " WHERE price >= " . $_POST["price-to"];
+            $query = $query . " WHERE price >= " . $_POST["price-from"];
         }
 
         $query = $query . ";";
