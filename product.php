@@ -153,7 +153,7 @@ FROM product_review WHERE product_id = " . $id);
         }
         ?>
     <div class="product-list">
-        <h2>Misschien bent u ook geïntereseerd in::</h2>
+        <h2>Misschien bent u ook geïntereseerd in:</h2>
         <?php foreach ($sameCategoryProducts as $product) { ?>
         <div class="product-item">
             <a href="product.php?id=<?php echo $product['id']; ?>">
