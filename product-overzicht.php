@@ -39,6 +39,7 @@
         <h3>Filter op:</h3><br>
         <form action="" method="post">
             <h4>Categorie</h4>
+
             <input type="checkbox" name="category[]" value="laptops" <?php
             if (isset($_POST['category'])) {
                 $category = $_POST["category"];
