@@ -150,9 +150,9 @@
         $priceFrom = $_POST["price-from"];
         $priceTo = $_POST["price-to"];
         $category = $_POST["category"];
-        $priceFromFilled = isset($_POST["price-from"]);
-        $priceToFilled = isset($_POST["price-to"]);
-        $categoryFilled = isset($_POST["category"]);
+        $priceFromFilled = !empty($_POST["price-from"]);
+        $priceToFilled = !empty($_POST["price-to"]);
+        $categoryFilled = !empty($_POST["category"]);
 
 //        if ($categoryFilled) {
 //            if ($priceFromFilled && $priceToFilled) {
