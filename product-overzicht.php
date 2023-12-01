@@ -56,7 +56,7 @@
                 // QUERY
                 // Haal alle verschillende categorieën uit de database
                 $sql = "SELECT DISTINCT category
-            FROM product";
+                FROM product";
                 // RESULT
                 $result = $conn->query($sql);
 
