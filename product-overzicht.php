@@ -125,10 +125,8 @@
 
         if (isset($_POST["category"])) {
             $query = $query . " WHERE (";
-//            print_r($_POST["category"]);
             $res = $_POST["category"];
             $len = sizeof($res);
-//            echo '<br>'.$len;
             if ($len == 1) {
                 foreach ($res as $category) {
                     $query = $query . 'category = "' . $category . '"';
@@ -140,37 +138,15 @@
                     } else {
                         $query = $query . 'category = "' . $category . '"';
                     }
-
                 }
             }
             $query = $query . ')';
-//echo '<br>' . $query;
-//                $query = 'SELECT * FROM product WHERE category = "laptops"';
         }
-
 
         $priceFromFilled = !empty($_POST["price-from"]);
         $priceToFilled = !empty($_POST["price-to"]);
         $categoryFilled = !empty($_POST["category"]);
 
-//        if ($categoryFilled) {
-//            if ($priceFromFilled && $priceToFilled) {
-//                $query = $query . " AND price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
-//            } elseif ($priceFromFilled && !$priceToFilled) {
-//                $query = $query . " AND price >= " . $_POST["price-from"];
-//            } elseif (!$priceFromFilled && $priceToFilled) {
-//                $query = $query . " AND price <= " . $_POST["price-to"];
-//            }
-//        }
-//        else{
-//            if ($priceFromFilled && $priceToFilled){
-//                $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
-//            }elseif($priceFromFilled && !$priceToFilled){
-//                $query = $query . " WHERE price >= " . $_POST["price-from"];
-//            }elseif(!$priceFromFilled && $priceToFilled){
-//                $query = $query . " WHERE price <= " . $_POST["price-to"];
-//            }
-//        }
         //if alles ingevuld
         if ($priceFromFilled && $priceToFilled && $categoryFilled){
             $query = $query . " AND price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
@@ -196,14 +172,8 @@
             $query = $query . " WHERE price >= " . $_POST["price-to"];
         }
 
-
-
-
         $query = $query . ";";
-//        echo $query;
-        ?>
 
-        <?php
         // DATABASE CONNECTIE
         $servername = "localhost";
         $username = "root";
@@ -217,10 +187,6 @@
             die("Connection failed: " . $conn->connect_error);
         }
         ?>
-        <!--            <a href="#">About</a>-->
-        <!--            <a href="#">Services</a>-->
-        <!--            <a href="#">Clients</a>-->
-        <!--            <a href="#">Contact</a>-->
     </div>
 
     <?php
