@@ -9,6 +9,9 @@
     <script src="js/readmore.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link href="src/product-overzicht.css" rel="stylesheet">
+    <link href="src/product-raster.css" rel="stylesheet">
+    <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -17,72 +20,200 @@
     <!--    Breadcrumbs -->
     <ul class="breadcrumbs">
         <?php
-        function breadcrumb($link, $naam, $huidigePagina): string
-        {
-            $naam = ucfirst($naam);
+        include 'src/breadcrumbs.php';
 
-            if (!$huidigePagina) {
-                return "<li><a href=\"$link\">$naam</a></li>";
-            } else {
-                return "<li>$naam</li>";
-            }
-        }
-
-        echo breadcrumb('index.php', 'Home', false);
-        echo breadcrumb('#', 'Assortiment', true)
+        echo breadcrumb('index.php', "Home", false);
+        echo breadcrumb('#', 'Assortiment', true);
         ?>
     </ul>
     <hr>
     <!-- Einde breadcrumbs -->
 
     <h1>Assortiment</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
-        praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
-        sequi similique voluptatem voluptatum?</p>
+    <p>Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie samenkomen om aan al jouw behoeften te voldoen.
+        Ontdek een wereld van mogelijkheden terwijl je bladert door ons zorgvuldig samengestelde aanbod, ontworpen om aan de uiteenlopende
+        wensen van onze gewaardeerde klanten te voldoen.</p>
 
-    <!-- DATABASE CONNECTIE -->
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "nerdy_gadgets_start";
+    <div class="sidenav-raster-container">
+    <div class="sidenav">
+        <h3>Filter op:</h3><br>
+        <form action="" method="post">
+            <h4>Categorie</h4>
+            <input type="checkbox" name="category[]" value="laptops" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // echo "Connected successfully<br>";
+                if (in_array("laptops", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Laptops</label>
+            <br>
+            <input type="checkbox" name="category[]" value="phones" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
 
+                if (in_array("phones", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Smartphones</label>
+            <br>
+            <input type="checkbox" name="category[]" value="opslag" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
 
-    // QUERY
-    $sql = "SELECT * FROM product
-    LIMIT 1";
-    // RESULT
-    $result = $conn->query($sql);
+                if (in_array("opslag", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Opslag</label>
+            <br>
+            <input type="checkbox" name="category[]" value="routers" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
 
+                if (in_array("routers", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Routers</label>
+            <br>
+            <input type="checkbox" name="category[]" value="componenten" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
+                if (in_array("componenten", $category)) {
+                    echo 'checked';
+                }
+            }
 
-            echo "<a href='product.php?id=" . $row["id"] .
-                "'>id: " . $row["id"] .
-                " <br> name: " . $row["name"] .
-                " <br> description: " . $row["description"] .
-                " <br> price: " . $row["price"] .
-                " <br> category: " . $row["category"] .
-                " <br> <img src=\"img/product_images/" . $row["image"] . ".jpg\" alt=\"" . $row["name"] . "\">" .
-                "</a>" .
-                "<br><br>";
+            ?>>
+            <label for="category">Componenten</label>
+            <br>
+            <input type="checkbox" name="category[]" value="desktops" <?php
+            if (isset($_POST['category'])) {
+                $category = $_POST["category"];
+
+                if (in_array("desktops", $category)) {
+                    echo 'checked';
+                }
+            }
+            ?>>
+            <label for="category">Desktops</label>
+            <br>
+            <h4>Prijs</h4>
+            €
+            <input type="tel" class="price-input" name="price-from" <?php
+            if (isset($_POST["price-from"]))
+                echo 'value = "' . $_POST["price-from"] . '"';
+            ?>>
+            tot
+            <input type="tel" class="price-input" name="price-to" <?php
+            if (isset($_POST["price-from"]))
+                echo 'value = "' . $_POST["price-to"] . '"';
+            ?>>
+            <h4>Populariteit</h4>
+            <input id="submit" type="submit" value="Submit">
+        </form>
+        <?php
+        $query = "SELECT * FROM product";
+
+        if (isset($_POST["category"])) {
+            $query = $query . " WHERE (";
+//            print_r($_POST["category"]);
+            $res = $_POST["category"];
+            $len = sizeof($res);
+//            echo '<br>'.$len;
+            if ($len == 1) {
+                foreach ($res as $category) {
+                    $query = $query . 'category = "' . $category . '"';
+                }
+            } else {
+                foreach ($res as $i => $category) {
+                    if ($i != $len-1) {
+                        $query = $query . 'category = "' . $category . '" OR ';
+                    } else {
+                        $query = $query . 'category = "' . $category . '"';
+                    }
+
+                }
+            }
+            $query = $query . ')';
+//echo '<br>' . $query;
+//                $query = 'SELECT * FROM product WHERE category = "laptops"';
         }
-    } else {
-        echo "0 results";
-    }
-    $conn->close();
-    ?>
+        $priceFrom = $_POST["price-from"];
+        $priceTo = $_POST["price-to"];
+        $category = $_POST["category"];
+        $priceFromFilled = !empty($_POST["price-from"]);
+        $priceToFilled = !empty($_POST["price-to"]);
+        $categoryFilled = !empty($_POST["category"]);
 
-</div>
+//        if ($categoryFilled) {
+//            if ($priceFromFilled && $priceToFilled) {
+//                $query = $query . " AND price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
+//            } elseif ($priceFromFilled && !$priceToFilled) {
+//                $query = $query . " AND price >= " . $_POST["price-from"];
+//            } elseif (!$priceFromFilled && $priceToFilled) {
+//                $query = $query . " AND price <= " . $_POST["price-to"];
+//            }
+//        }
+//        else{
+//            if ($priceFromFilled && $priceToFilled){
+//                $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+//            }elseif($priceFromFilled && !$priceToFilled){
+//                $query = $query . " WHERE price >= " . $_POST["price-from"];
+//            }elseif(!$priceFromFilled && $priceToFilled){
+//                $query = $query . " WHERE price <= " . $_POST["price-to"];
+//            }
+//        }
+
+        if ($priceFromFilled && $priceToFilled && $categoryFilled){
+            $query = $query . " AND price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+        }
+
+        if ($priceFromFilled && $priceToFilled && !$categoryFilled){
+            $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
+        }
+
+        if ($priceFromFilled && empty($priceTo) && $categoryFilled){
+            $query = $query . " AND price >= " . $_POST["price-from"];
+        }
+
+
+        $query = $query . ";";
+        echo $query;
+        ?>
+
+        <?php
+        // DATABASE CONNECTIE
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "nerdy_gadgets_start";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        ?>
+        <!--            <a href="#">About</a>-->
+        <!--            <a href="#">Services</a>-->
+        <!--            <a href="#">Clients</a>-->
+        <!--            <a href="#">Contact</a>-->
+    </div>
+
+    <?php
+    include 'product-raster.php';
+    toonProductRaster("$query");
+    ?>
+    </div>
 </body>
 </html>

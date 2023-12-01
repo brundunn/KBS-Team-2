@@ -7,9 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NerdyGadgets</title>
     <script src="js/readmore.js"></script>
+    <script src="js/slider.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link href="src/homepage.css" rel="stylesheet">
+    <link href="src/reviews.css" rel="stylesheet">
+    <link href="src/slider.css" rel="stylesheet">
+    <link href="src/product-raster.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php';
@@ -29,16 +33,47 @@
             }
         }
 
-        //                echo breadcrumb('#', 'test', false);
-        //                echo breadcrumb('#', 'test', false);
         echo breadcrumb('#', 'Home', true)
         ?>
     </ul>
     <hr>
-    <div class="brand-introduction-container">
-        <div class="empty">
+    <!-- Dynamische HTML Slider --->
 
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="img/slide1.jpg" style="width:100%">
         </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="img/slide2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="img/slide3.jpg" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <!-- Dynamische HTML Slider --->
+    <div class="brand-introduction-container">
+        <div class="empty"></div>
+
+
+
         <div class="hero">
             <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
             <h2>Nerdy Gadgets: Toevluchtsoord voor techliefhebbers en popcultuurfanaten.<span id="dots">...</span><span
@@ -50,69 +85,86 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
             <button onclick="readMore()" id="myBtn">Read more</button>
         </div>
         <div class="shopping-experience">
+            <?php include 'product-raster.php';
+            // De review functions worden al ge-include in product-raster.php, dus deze hoeven niet opnieuw te worden ge-include
+            ?>
             <ul>
                 <li>
-                    <!--                    Recensies-->
-                    <div>
+                    <a href="user-reviews.php">
+                        <!--                    Recensies-->
+                        <h4>Reviews</h4>
                         <?php
-                        function printFullStar(): void
-                        {
-                            echo "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"ster\">
-                            <path fill-rule=\"evenodd\"
-                                  d=\"M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z\"
-                                  clip-rule=\"evenodd\"/>
-                        </svg>";
-                        }
-
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
-                        printFullStar();
+//                        include 'src/review-functions.php';
+                        gemiddeldeScore("SELECT AVG(score) AS avgScore
+FROM review", "SELECT COUNT(*) AS amountOfReviews
+FROM review");
                         ?>
-                    </div>
-                    (500)
 
+                    </a>
                 </li>
-                <li>Eenvoudige navigatie</li>
-                <li>Veilige betalingsmogelijkheden</li>
-                <li>Snelle levering</li>
+
+                <h4>Recente reviews</h4>
+                <!-- DATABASE CONNECTIE -->
+                <?php
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "nerdy_gadgets_start";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname); // Connect direct met de database ipv alleen met SQL
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                // echo "Connected successfully<br>";
+
+                // QUERY - 3 meest recente reviews
+                $sql = "SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description
+FROM review r
+JOIN user u ON r.user_id = u.id
+ORDER BY date DESC LIMIT 3;";
+                // RESULT
+                $result = $conn->query($sql);
+
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        $date = substr($row["date"], 0, -3);
+
+                        echo '<div class="review highlighted-review">';
+                        echo printStars($row["score"]) .
+                            $row["first_name"];
+                        if (!empty($row["surname_prefix"])) { // check of persoon een tussenvoegsel heeft
+                            echo " " . $row["surname_prefix"];
+                        }
+                        echo " " . $row["surname"] . "<br>" .
+                            $date;
+                        if (!empty($row["description"])) { // check of persoon een beschrijving heeft geplaatst bji de review
+                            echo "<br>" . $row["description"];
+                        }
+                        echo '</div>';
+                        echo "<br>";
+
+                    }
+                } else {
+                    echo "Er zijn nog geen reviews voor NerdyGadgets achtergelaten.<br><br>";
+                }
+                $conn->close();
+                ?>
+<!--                <li>Eenvoudige navigatie</li>-->
+                <li>Betaal met iDeal, PayPal en Afterpay!</li>
+                <li>Voor 22:00 uur besteld, morgen in huis!</li>
             </ul>
         </div>
     </div>
     <h2 class="highlighted-products-header">Uitgelichte producten</h2>
-    <div class="highlighted-products">
+    <?php
 
-        <?php
-        function highlightedProducts($productnaam, $omschrijving, $prijs): string
-        {
-            $productnaam = ucfirst($productnaam);
-            $omschrijving = ucfirst($omschrijving);
-            if (!is_numeric($prijs)) {
-                $prijs = "?";
-            }
-            return "<div class=\"highlighted-product\">
-                            <h3>$productnaam</h3>
-                            <p>$omschrijving</p>
-                            <div class=\"price-and-product-link\">
-                                <p class=\"prijs\">€ $prijs</p>
-                                <a href=\"\">
-                                    <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"> 
-                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\"/> 
-                                    </svg> 
-                                </a>
-                            </div> 
-                        </div>";
-        }
-
-        echo highlightedProducts('product 1', 'omschrijving 1', 5);
-        echo highlightedProducts('nog een product', 'weer een omschrijving', 100);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
-        echo highlightedProducts('jaaaaaaaaaaa', 'beschrijving', 2.50);
-        ?>
-    </div>
-
-</div>
+    toonProductRaster("SELECT * FROM product WHERE category = 'laptops' ORDER BY price DESC LIMIT 5");
+    ?>
 </body>
+
 </html>

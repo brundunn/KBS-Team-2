@@ -9,7 +9,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0.5rem 1rem;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -87,6 +86,10 @@ input[type=text].main-searchbar {
     font-weight: bolder;
 }
 
+
+.cart-button-link {
+    position: relative;
+}
 /* Het icoontje van de winkelwagen */
 button.cart-button {
     padding: 5px;
@@ -99,6 +102,18 @@ button.cart-button {
 }
 .cart:hover { /* het icoontje zelf */
     color: white;
+}
+
+.cart-badge { /* toont hoeveel producten er in de winkelwagen zitten */
+    position: absolute;
+    background-color: #FFA633;
+    color: white;
+    top: -8px;
+    right: -11px;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 0.8rem;
+    font-weight: bolder;
 }
 
 /* De 'container' met alle content van de pagina */

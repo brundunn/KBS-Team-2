@@ -1,0 +1,60 @@
+/*.Assortment-products{*/
+/*    width: 100%;*/
+/*    margin-top: 1rem;*/
+/*    flex-direction: row;*/
+/*    display: flex;*/
+/*    gap: 1rem;*/
+/*    justify-content: space-between;*/
+/*}*/
+/*.content-wrapper {*/
+/*    display: flex;*/
+/*}*/
+
+.sidenav-raster-container {
+    display: flex;
+}
+
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: sticky; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #8343CF;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 20px;
+    border-radius: 10px;
+
+}
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #F7F7FF;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: white;
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+    width: calc(100% - 160px); /* Breedte van de hoofdinhoud minus de breedte van de zijbalk */
+}
+.price-input{
+    width: 2rem;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}

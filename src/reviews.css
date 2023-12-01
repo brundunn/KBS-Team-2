@@ -1,0 +1,121 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/* De sterren-SVGs en de container van de sterren */
+.ster {
+    height: 1rem;
+    width: 1rem;
+    color: #FFA633; /* oranje */
+}
+
+div.avgScore .ster:first-child {
+    margin-left: 0.3rem;
+}
+
+div.sterren {
+    display: flex;
+    align-items: center;
+}
+
+/* Knoppen met sorteer-opties */
+form.sorteerKnoppen {
+    display: flex;
+}
+
+form.sorteerKnoppen button {
+    padding: 0.6rem;
+    margin-right: 0.75rem;
+    border-radius: 0.8rem;
+    color: white;
+    background-color: #8343CF; /* paars */;
+    display: inline-block;
+}
+
+form.sorteerKnoppen button:hover {
+    background-color: #9B4FF5;
+}
+
+form.sorteerKnoppen button:disabled {
+    background-color: #6843AA;
+    color: #D3D3D3;
+}
+
+/* Een review */
+div.review {
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 2px 2px #8343CF;
+    border-radius: 0.5rem;
+}
+
+div.review h3 {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+div.review h4 {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+div.review p {
+    font-weight: lighter;
+    font-size: 1rem;
+
+}
+
+/* Gemiddelde score en aantal reviews */
+div.reviewStats {
+    display: flex;
+    justify-content: space-between;
+    /*width: 100%;*/
+}
+
+div.reviewStats div {
+    display: flex;
+    align-items: center;
+}
+
+.reviews-ingekort {
+    text-decoration: none;
+    background-color: #8343CF;
+    display: flex;
+    align-items: center;
+    width: 22%;
+    justify-content: space-between;
+    padding: 0.5rem;
+    color: #F8F9FA;
+    border-radius: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.reviews-ingekort:hover {
+    background-color: #9B4FF5;
+    color: white;
+}
+
+.reviews-ingekort:hover svg {
+    color: white;
+}
+
+.reviews-ingekort svg {
+    height: 1.7rem;
+    width: 1.7rem;
+    color: #F8F9FA;
+    justify-self: end;
+}
+
+.review-product-img {
+    width: 100px;
+    max-height: 100%;
+}
+
+.schrijf-review-form {
+
+}
+
+.schrijf-review-form textarea {
+    height: 10rem;
+    width: 35rem;
+}
+
+
