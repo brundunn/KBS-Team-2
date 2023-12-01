@@ -114,7 +114,7 @@
             ?>>
             tot
             <input type="tel" class="price-input" name="price-to" <?php
-            if (isset($_POST["price-from"]))
+            if (isset($_POST["price-to"]))
                 echo 'value = "' . $_POST["price-to"] . '"';
             ?>>
             <h4>Populariteit</h4>
@@ -125,10 +125,8 @@
 
         if (isset($_POST["category"])) {
             $query = $query . " WHERE (";
-//            print_r($_POST["category"]);
             $res = $_POST["category"];
             $len = sizeof($res);
-//            echo '<br>'.$len;
             if ($len == 1) {
                 foreach ($res as $category) {
                     $query = $query . 'category = "' . $category . '"';
@@ -140,57 +138,42 @@
                     } else {
                         $query = $query . 'category = "' . $category . '"';
                     }
-
                 }
             }
             $query = $query . ')';
-//echo '<br>' . $query;
-//                $query = 'SELECT * FROM product WHERE category = "laptops"';
         }
-        $priceFrom = $_POST["price-from"];
-        $priceTo = $_POST["price-to"];
-        $category = $_POST["category"];
+
         $priceFromFilled = !empty($_POST["price-from"]);
         $priceToFilled = !empty($_POST["price-to"]);
         $categoryFilled = !empty($_POST["category"]);
 
-//        if ($categoryFilled) {
-//            if ($priceFromFilled && $priceToFilled) {
-//                $query = $query . " AND price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
-//            } elseif ($priceFromFilled && !$priceToFilled) {
-//                $query = $query . " AND price >= " . $_POST["price-from"];
-//            } elseif (!$priceFromFilled && $priceToFilled) {
-//                $query = $query . " AND price <= " . $_POST["price-to"];
-//            }
-//        }
-//        else{
-//            if ($priceFromFilled && $priceToFilled){
-//                $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
-//            }elseif($priceFromFilled && !$priceToFilled){
-//                $query = $query . " WHERE price >= " . $_POST["price-from"];
-//            }elseif(!$priceFromFilled && $priceToFilled){
-//                $query = $query . " WHERE price <= " . $_POST["price-to"];
-//            }
-//        }
-
+        //if alles ingevuld
         if ($priceFromFilled && $priceToFilled && $categoryFilled){
             $query = $query . " AND price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
         }
-
-        if ($priceFromFilled && $priceToFilled && !$categoryFilled){
+        //if categorie niet ingevuld
+        if ($priceFromFilled && $priceToFilled && empty($categoryFilled)){
             $query = $query . " WHERE price BETWEEN ". $_POST["price-from"] . " AND " . $_POST["price-to"];
         }
-
-        if ($priceFromFilled && empty($priceTo) && $categoryFilled){
+        //alleen price to niet ingevuld
+        if ($priceFromFilled && empty($priceToFilled) && $categoryFilled){
             $query = $query . " AND price >= " . $_POST["price-from"];
         }
-
+        //if price from niet ingevuld
+        if (empty($priceFromFilled) && $priceToFilled && $categoryFilled){
+            $query = $query . " AND price <= " . $_POST["price-to"];
+        }
+        //alleen price to
+        if (empty($priceFromFilled) && $priceToFilled && empty($categoryFilled)){
+            $query = $query . " WHERE price <= " . $_POST["price-to"];
+        }
+        //alleen price from
+        if ($priceFromFilled && empty($priceToFilled) && empty($categoryFilled)){
+            $query = $query . " WHERE price >= " . $_POST["price-to"];
+        }
 
         $query = $query . ";";
-        echo $query;
-        ?>
 
-        <?php
         // DATABASE CONNECTIE
         $servername = "localhost";
         $username = "root";
@@ -204,10 +187,6 @@
             die("Connection failed: " . $conn->connect_error);
         }
         ?>
-        <!--            <a href="#">About</a>-->
-        <!--            <a href="#">Services</a>-->
-        <!--            <a href="#">Clients</a>-->
-        <!--            <a href="#">Contact</a>-->
     </div>
 
     <?php
