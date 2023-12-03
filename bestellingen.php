@@ -25,9 +25,11 @@
     <hr>
 
     <h1>Mijn bestellingen</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati sequi similique voluptatem voluptatum?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
+        praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
+        sequi similique voluptatem voluptatum?</p>
 
-    <?php include 'header.php';
+    <?php
     // If the user is not logged in redirect to the login page...
     if (!isset($_SESSION['loggedin'])) {
         header('Location: index.php');
@@ -56,9 +58,9 @@
     $stmt->close();
     ?>
 
-<!--    Je zou de query hierboven kunnen aanpassen zodat je de informatie van bestellingen van een bepaalde gebruiker ophaalt-->
-<!--    Hierbij heb je waarschijnlijk een join nodig tussen order en order_item-->
-<!--    Of je haalt met meerdere joins informatie op uit alle drie (user, order & order_item) als je ook informatie over de gebruiker wil tonen-->
+    <!--    Je zou de query hierboven kunnen aanpassen zodat je de informatie van bestellingen van een bepaalde gebruiker ophaalt-->
+    <!--    Hierbij heb je waarschijnlijk een join nodig tussen order en order_item-->
+    <!--    Of je haalt met meerdere joins informatie op uit alle drie (user, order & order_item) als je ook informatie over de gebruiker wil tonen-->
 </div>
 
 
