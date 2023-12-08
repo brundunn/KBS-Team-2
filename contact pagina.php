@@ -24,8 +24,9 @@
     </div>
 
     <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1234.5678901234567!2d6.123456!3d52.123456!4m12!1m6!3m5!1s0x47c6e2039b7c7a7d%3A0x654321fedcba9876!2sSample%20Location!8m2!3d52.123456!4d6.123456!3m4!1s0x0:0x654321fedcba9876!8m2!3d52.123456!4d6.123456" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1234.5678901234567!2d5.22263158753069!3d52.3704482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDUyJzQyLjIiTiA1LjIyMjE2MzEsNTcnMTQnMDcuMiJF!5e0!3m2!1sen!2sus!4v1638235405709!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
+
 </div>
 
 </body>
