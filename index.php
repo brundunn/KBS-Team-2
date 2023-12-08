@@ -14,6 +14,8 @@
     <link href="src/reviews.css" rel="stylesheet">
     <link href="src/slider.css" rel="stylesheet">
     <link href="src/product-raster.css" rel="stylesheet">
+    <link href="src/search.css" rel="stylesheet">
+
 </head>
 <body>
 <?php include 'header.php';

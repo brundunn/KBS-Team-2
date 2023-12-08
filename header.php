@@ -12,7 +12,6 @@
                 </svg>
             </a>
 
-
             <!-- Links -->
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
@@ -24,6 +23,7 @@
         </div>
 
         <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
+
 
         <div class="cart-and-user">
             <button class="account-button">Inloggen</button>
