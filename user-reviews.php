@@ -26,7 +26,11 @@
     <hr>
 
     <h1>Reviews over NerdyGadgets</h1>
-    <?php include 'src/review-functions.php';
+
+    <?php
+    echo '<a href="write-review.php?type=nerdygadgets">Schrijf review</a>';
+
+    include 'src/review-functions.php';
     reviewPagina("SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description
 FROM review r
 JOIN user u ON r.user_id = u.id", "NerdyGadgets", "SELECT AVG(score) AS avgScore

@@ -59,7 +59,7 @@ button, input[type="submit"], input[type="reset"] {
 
 
 /* Default fonts */
-h1, h2, h3, h4, h5, h6, a, button {
+h1, h2, h3, h4, h5, h6, a, button, label, span {
     font-family: 'AR One Sans', sans-serif;
 }
 p, ul, li {
@@ -86,7 +86,7 @@ ul.breadcrumbs li {
 ul.breadcrumbs li + li:before {
     padding: 0.1rem;
     color: #212529; /* black */
-    content: "/\00a0";
+    content: " /\00a0";
 }
 
 ul.breadcrumbs li a {
