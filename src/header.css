@@ -3,6 +3,7 @@
     background-color: #8343CF; /* paars */
     width: 100%;
 }
+
 /* Het gedeelte waar de elementen WEL in zitten */
 .top-navbar nav {
     max-width: 1400px;
@@ -14,6 +15,7 @@
     justify-content: space-between;
     gap: 0.7rem;
 }
+
 /* Het gedeelte met de logo en de links. */
 .logo-and-hyperlinks {
     display: flex;
@@ -25,6 +27,7 @@
     height: 2rem;
     width: 2rem;
 }
+
 .logo:hover {
     color: #FFA633; /* feller oranje */
 }
@@ -47,6 +50,7 @@
     white-space: nowrap;
     background-color: #4C2887;
 }
+
 .top-navbar nav .hyperlinks a:hover {
     background-color: #5A2F9F;
     color: white;
@@ -65,19 +69,23 @@ input[type=text].main-searchbar {
 .cart-and-user {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 /* Buttons */
-.cart-and-user button {
+.cart-and-user button, .cart-and-user a {
     background-color: #4C2887;
+    border-radius: 0.5rem;
 }
-.cart-and-user button:hover {
+
+.cart-and-user button:hover, .cart-and-user a:hover {
     color: white;
     background-color: #5A2F9F;
 }
 
 /* 'Inloggen' & 'Registreren' */
-.cart-and-user button.account-button {
+.cart-and-user button.account-button, .cart-and-user a.account-button {
+    text-decoration: none;
     font-size: 0.9rem;
     color: #F8F9FA; /* licht wit */
     padding: 0.5rem 0.75rem;
@@ -86,20 +94,101 @@ input[type=text].main-searchbar {
     font-weight: bolder;
 }
 
+.user-dropdown-menu-container {
+    position: absolute;
+    top: 100%;
+    right: 23%;
+    width: 300px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+}
+.user-dropdown-menu-container.open-menu {
+    max-height: 1000px;
+}
+
+.user-dropdown-menu {
+    background-color: white;
+    padding: 0.7rem 1rem 0.4rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px #FFA633;
+    margin: 2px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info h4 {
+    font-weight: normal;
+}
+
+.user-dropdown-menu hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #53556E;
+    margin: 0.7rem 0 0.9rem;
+}
+
+a.user-dropdown-link {
+    background-color: unset;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+a.user-dropdown-link:hover {
+    background-color: unset;
+    /*background-color: #F7F7FF;*/
+}
+
+a.user-dropdown-link svg {
+    width: 2rem;
+    height: 2rem;
+    color: #4C2887;
+    margin-right: 0.5rem;
+}
+
+a.user-dropdown-link:hover svg {
+    color: #8343CF;
+}
+
+a.user-dropdown-link p {
+    width: 100%;
+    font-weight: normal;
+}
+
+a.user-dropdown-link:hover p {
+    color: black;
+    font-weight: bold;
+}
+
+a.user-dropdown-link:hover span {
+    color: black;
+}
+
 
 .cart-button-link {
     position: relative;
 }
+
 /* Het icoontje van de winkelwagen */
 button.cart-button {
     padding: 5px;
     display: flex;
     border-radius: 0.5rem;
 }
+
 .cart { /* het icoontje zelf */
     height: 27px;
     width: 27px;
 }
+
 .cart:hover { /* het icoontje zelf */
     color: white;
 }
