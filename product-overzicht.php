@@ -216,11 +216,11 @@
             }
             //alleen price from
             if ($priceFromFilled && empty($priceToFilled) && empty($categoryFilled)) {
-                $query = $query . " WHERE price >= " . $_POST["price-to"];
+                $query = $query . " WHERE price >= " . $_POST["price-from"];
             }
 
             $selection = $_POST["stars"];
-            if (isset($_POST["category"]) || isset($_POST["price-from"]) || isset($_POST["price-to"])) {
+            if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
                    $query = $query . " AND id IN (
 SELECT product_id FROM product_review
@@ -251,10 +251,42 @@ SELECT product_id FROM product_review
 HAVING AVG(score) >= 1
 )";
                 }
+            }else{
+                if ($selection == "five"){
+                    $query = $query . " WHERE id IN (
+SELECT product_id FROM product_review
+HAVING AVG(score) >= 5
+)";
+                }
+                if ($selection == "four"){
+                    $query = $query . " WHERE id IN (
+SELECT product_id FROM product_review
+HAVING AVG(score) >= 4
+)";
+                }
+                if ($selection == "three"){
+                    $query = $query . " WHERE id IN (
+SELECT product_id FROM product_review
+HAVING AVG(score) >= 3
+)";
+                }
+                if ($selection == "two"){
+                    $query = $query . " WHERE id IN (
+SELECT product_id FROM product_review
+HAVING AVG(score) >= 2
+)";
+                }
+                if ($selection == "one"){
+                    $query = $query . " WHERE id IN (
+SELECT product_id FROM product_review
+HAVING AVG(score) >= 1
+)";
+                }
             }
 
 
             $query = $query . ";";
+            echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";
