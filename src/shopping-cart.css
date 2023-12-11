@@ -1,11 +1,11 @@
 
-h1.cartPageHeader {
-    text-align: center;
-    color: #333;
-}
+/*h1.cartPageHeader {*/
+/*    text-align: center;*/
+/*    color: #333;*/
+/*}*/
 
 #checkoutForm {
-    max-width: 600px;
+    max-width: 55%;
     margin: 20px auto;
     background-color: #F8F9FA;
     padding: 20px;
@@ -59,8 +59,30 @@ button.cartPageCheckoutButton:hover {
     font-size: 1.2em;
 }
 
-#totalAmount {
-    color: #e44d26;
+/*#totalAmount {*/
+/*    color: #e44d26;*/
+/*}*/
+
+span.artikelCount {
+    opacity: 0.45;
+    font-size: 80%;
+}
+
+span.productNaam {
+    width: 100%;
+}
+
+.divider:not(:first-child) {
+    display: flex;
+    margin-left: 30px;
+}
+
+span.totaalPrijs {
+    margin-top: 58px;
+}
+
+span.aantalItems {
+    margin-right: 18px;
 }
 
 .cart-page-svg {
@@ -76,6 +98,8 @@ button.cartPageCheckoutButton:hover {
     box-shadow: 2px 2px #FFA633;
     margin-bottom: 10px;
     padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .shopping-cart-img-container {
