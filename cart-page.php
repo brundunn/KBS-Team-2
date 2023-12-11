@@ -170,7 +170,7 @@ FROM product_review WHERE product_id = " . $productID, "SELECT COUNT(*) AS amoun
 FROM product_review WHERE product_id = " . $productID);
                         echo "</a>";
 
-                        echo '<div style="display: flex; align-items: center">';
+                        echo '<div class="aantalItemsEnKnoppen">';
                         echo "<span class='aantalItems'>Aantal: " . $values["quantity"] . "</span>";
 //                        echo $price . " euro per product";
 

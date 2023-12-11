@@ -81,8 +81,15 @@ span.totaalPrijs {
     margin-top: 58px;
 }
 
+div.aantalItemsEnKnoppen {
+    display: flex;
+    margin-top: 7px;
+    align-items: center;
+}
+
 span.aantalItems {
     margin-right: 18px;
+    /*margin-top: 10px;*/
 }
 
 .cart-page-svg {
