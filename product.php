@@ -67,6 +67,20 @@ if ($result->num_rows > 0) {
         $price = $row["price"];
         $category = $row["category"];
         $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
+
+
+        // Get products from the same category
+        $sameCategorySql = "SELECT * FROM product WHERE category='$category' AND id!=$id";
+        $sameCategoryResult = $conn->query($sameCategorySql);
+        $sameCategoryProducts = [];
+
+        if ($sameCategoryResult->num_rows > 0) {
+            while ($sameCategoryRow = $sameCategoryResult->fetch_assoc()) {
+                $sameCategoryProducts[] = $sameCategoryRow;
+            }
+        }
+
+
     }
 } else {
     echo "0 results";
@@ -169,6 +183,18 @@ FROM product_review WHERE product_id = " . $id);
     </form>';
     }
     ?>
+
+    <div class="product-list">
+        <h2>Misschien bent u ook geïntereseerd in:</h2>
+        <?php foreach ($sameCategoryProducts as $product) { ?>
+            <div class="product-item">
+                <a href="product.php?id=<?php echo $product['id']; ?>">
+                    <img src="img/product_images/<?php echo $product['image']; ?>.jpg"
+                         alt="<?php echo $product['name']; ?>">
+                    <h5><?php echo $product['name']; ?></h5>
+                </a>
+            </div>
+        <?php } ?>
 
     <br><br>
     <hr>
