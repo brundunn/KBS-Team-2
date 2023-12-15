@@ -223,63 +223,63 @@
             if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
                    $query = $query . " AND id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 5
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) = 5
 )";
                 }
                 if ($selection == "four") {
                     $query = $query . " AND id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 4
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 4 AND 5
 )";
                 }
                 if ($selection == "three") {
                     $query = $query . " AND id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 3
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 3 AND 5
 )";
                 }
                 if ($selection == "two") {
                     $query = $query . " AND id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 2
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 2 AND 5
 )";
                 }
                 if ($selection == "one") {
                     $query = $query . " AND id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 1
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 1 AND 5
 )";
                 }
             }else{
                 if ($selection == "five"){
                     $query = $query . " WHERE id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 5
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) = 5
 )";
                 }
                 if ($selection == "four"){
                     $query = $query . " WHERE id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 4
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 4 AND 5
 )";
                 }
                 if ($selection == "three"){
                     $query = $query . " WHERE id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 3
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 3 AND 5
 )";
                 }
                 if ($selection == "two"){
                     $query = $query . " WHERE id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 2
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 2 AND 5
 )";
                 }
                 if ($selection == "one"){
                     $query = $query . " WHERE id IN (
-SELECT product_id FROM product_review
-HAVING AVG(score) >= 1
+SELECT product_id FROM product_review GROUP BY product_id
+HAVING AVG(score) BETWEEN 1 AND 5
 )";
                 }
             }
