@@ -219,7 +219,11 @@
                 $query = $query . " WHERE price >= " . $_POST["price-from"];
             }
 
-            $selection = $_POST["stars"];
+            $selection = "";
+            if (!empty($_POST["stars"])) {
+                $selection = $_POST["stars"];
+            }
+
             if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
                    $query = $query . " AND id IN (
@@ -286,7 +290,7 @@ HAVING AVG(score) >= 1
 
 
             $query = $query . ";";
-            echo $query;
+//            echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";
