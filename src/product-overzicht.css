@@ -27,6 +27,7 @@
     border-radius: 10px;
 
 }
+
 /* The navigation menu links */
 .sidenav a {
     padding: 6px 8px 6px 16px;
@@ -47,14 +48,25 @@
     padding: 0px 10px;
     width: calc(100% - 160px); /* Breedte van de hoofdinhoud minus de breedte van de zijbalk */
 }
-.price-input{
+
+.price-input {
     width: 2rem;
 }
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
     }
+
     .sidenav a {
         font-size: 18px;
     }
+}
+
+/*input.filter-stars {*/
+/*    display: none;*/
+/*}*/
+
+input[type="radio"].filter-stars:checked + label {
+    background-color: white;
 }
