@@ -14,7 +14,8 @@
     <link href="src/reviews.css" rel="stylesheet">
 </head>
 <body>
-<?php include 'header.php'
+<?php include 'header.php';
+include 'product-raster.php';
 ?>
 <div class="main-container">
     <!--    Breadcrumbs -->
@@ -123,49 +124,49 @@
                 <br>
                 <br>
                 <h4>Populariteit</h4>
-                <input type="radio" id="five-stars" name="stars" value="five" <?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "five"){
+                <input type="radio" id="five-stars" name="stars" value="five" class="filter-stars"<?php
+                if (isset($_POST["stars"]) && $_POST["stars"] == "five") {
                     echo "checked";
                 }
                 ?>>
-                <label for="five-stars">Vijf sterren</label>
+                <label for="five-stars"><?php printStars(5); ?></label>
                 <br>
-                <input type="radio" id="four-stars" name="stars" value="four"<?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "four"){
+                <input type="radio" id="four-stars" name="stars" value="four" class="filter-stars"<?php
+                if (isset($_POST["stars"]) && $_POST["stars"] == "four") {
                     echo "checked";
                 }
                 ?>>
-                <label for="four-stars">Vier sterren</label>
+                <label for="four-stars"><?php printStars(4); ?></label>
                 <br>
-                <input type="radio" id="three-stars" name="stars" value="three"<?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "three"){
+                <input type="radio" id="three-stars" name="stars" value="three" class="filter-stars"<?php
+                if (isset($_POST["stars"]) && $_POST["stars"] == "three") {
                     echo "checked";
                 }
                 ?>>
-                <label for="three-stars">Drie sterren</label>
+                <label for="three-stars"><?php printStars(3); ?></label>
                 <br>
-                <input type="radio" id="two-stars" name="stars" value="two"<?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "two"){
+                <input type="radio" id="two-stars" name="stars" value="two" class="filter-stars"<?php
+                if (isset($_POST["stars"]) && $_POST["stars"] == "two") {
                     echo "checked";
                 }
                 ?>>
-                <label for="two-stars">Twee sterren</label>
+                <label for="two-stars"><?php printStars(2); ?></label>
                 <br>
-                <input type="radio" id="one-star" name="stars" value="one"<?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "one"){
+                <input type="radio" id="one-star" name="stars" value="one" class="filter-stars"<?php
+                if (isset($_POST["stars"]) && $_POST["stars"] == "one") {
                     echo "checked";
                 }
                 ?>>
-                <label for="one-star">Één ster</label>
+                <label for="one-star"><?php printStars(1); ?></label>
                 <br>
                 <input type="radio" id="showAll" name="stars" value="all"<?php
-                if (isset($_POST["stars"]) && $_POST["stars"] == "all"){
+                if (isset($_POST["stars"]) && $_POST["stars"] == "all") {
                     echo "checked";
                 }
                 ?>>
                 <label for="showAll">Toon alles</label>
 
-                <input id="submit" type="submit" value="Submit">
+                <input id="submit" type="submit" value="Submit" class="submitKnopFiltering">
             </form>
             <?php
             $query = "SELECT * FROM product";
@@ -219,10 +220,14 @@
                 $query = $query . " WHERE price >= " . $_POST["price-from"];
             }
 
-            $selection = $_POST["stars"];
+            $selection = "";
+            if (!empty($_POST["stars"])) {
+                $selection = $_POST["stars"];
+            }
+
             if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
-                   $query = $query . " AND id IN (
+                    $query = $query . " AND id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) = 5
 )";
@@ -251,32 +256,32 @@ SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 1 AND 5
 )";
                 }
-            }else{
-                if ($selection == "five"){
+            } else {
+                if ($selection == "five") {
                     $query = $query . " WHERE id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) = 5
 )";
                 }
-                if ($selection == "four"){
+                if ($selection == "four") {
                     $query = $query . " WHERE id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 4 AND 5
 )";
                 }
-                if ($selection == "three"){
+                if ($selection == "three") {
                     $query = $query . " WHERE id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 3 AND 5
 )";
                 }
-                if ($selection == "two"){
+                if ($selection == "two") {
                     $query = $query . " WHERE id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 2 AND 5
 )";
                 }
-                if ($selection == "one"){
+                if ($selection == "one") {
                     $query = $query . " WHERE id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 1 AND 5
@@ -286,7 +291,7 @@ HAVING AVG(score) BETWEEN 1 AND 5
 
 
             $query = $query . ";";
-            echo $query;
+//            echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";
@@ -304,7 +309,6 @@ HAVING AVG(score) BETWEEN 1 AND 5
         </div>
 
         <?php
-        include 'product-raster.php';
         toonProductRaster("$query");
         ?>
     </div>

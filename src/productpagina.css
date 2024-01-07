@@ -31,6 +31,10 @@
     display: flex;
 }
 
+.add-product-to-cart-button:hover {
+    background-color: #FFBF38;
+}
+
 .add-product-to-cart-button p {
     margin-left: 1rem;
     font-size: 1.1rem;

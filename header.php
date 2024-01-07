@@ -15,7 +15,6 @@ session_start();
                 </svg>
             </a>
 
-
             <!-- Links -->
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
@@ -42,6 +41,7 @@ session_start();
 
         ?>>
         </form>
+
 
 
 
