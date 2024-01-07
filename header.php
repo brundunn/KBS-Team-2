@@ -26,7 +26,25 @@ session_start();
             </div>
         </div>
 
-        <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
+        <form action="" method="post" class="searchbar">
+        <input type="text" name="search" class="main-searchbar" placeholder="Zoeken naar een product..." <?php
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            if (str_starts_with($search, "google")) {
+                $search = str_replace("google", "", $search);
+                header("Location: https://www.google.com/search?q=$search");
+            }
+            if (str_starts_with($search, "youtube")) {
+                $search = str_replace("youtube", "", $search);
+                header("Location: https://www.youtube.com/results?search_query=$search");
+            }
+        }
+
+        ?>>
+        </form>
+
+
+
 
         <div class="cart-and-user">
             <?php
