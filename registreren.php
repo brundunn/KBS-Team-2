@@ -77,7 +77,14 @@
         $postalcode = $_POST["postalcode"];
         $city = $_POST["city"];
         $email = $_POST["email"];
+        // Easter egg Thomas
+        // https://cybernews.com/best-password-managers/most-common-passwords/
+        $mostCommonPasswords = ['123456', '12346789', 'qwerty', 'password', '12345', 'qwerty123', '1q2w3e', '12345678', '111111', '1234567890'];
+        if (isset($_POST["password"]) && in_array($_POST["password"], $mostCommonPasswords)) {
+            header('Location: https://cybernews.com/best-password-managers/most-common-passwords/');
+        }
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
 
         if (!empty($_POST["surname_prefix"])) {
             $surname_prefix = $_POST["surname_prefix"];

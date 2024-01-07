@@ -28,13 +28,6 @@ if (!isset($_POST['email'], $_POST['password'])) {
     exit('Please fill both the email and password fields!');
 }
 
-// Easter egg Thomas
-// https://cybernews.com/best-password-managers/most-common-passwords/
-$mostCommonPasswords = ['123456', '12346789', 'qwerty', 'password', '12345', 'qwerty123', '1q2w3e', '12345678', '111111', '1234567890'];
-if (isset($_POST["password"]) && in_array($_POST["password"], $mostCommonPasswords)) {
-    header('Location: https://cybernews.com/best-password-managers/most-common-passwords/');
-}
-
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $conn->prepare('SELECT id, password FROM user WHERE email = ?')) {
     // Bind parameters (s = string, i = int, b = blob, etc.), in our case the username is a string, so we use "s"
