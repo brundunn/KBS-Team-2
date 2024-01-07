@@ -70,3 +70,18 @@
 input[type="radio"].filter-stars:checked + label {
     background-color: white;
 }
+
+input[type="submit"].submitKnopFiltering {
+    background-color: #FFA633;
+    color: white;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    display: flex;
+}
+
+input[type="submit"].submitKnopFiltering:hover {
+    background-color: #FFBF38;
+}

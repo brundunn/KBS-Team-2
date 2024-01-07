@@ -166,7 +166,7 @@ include 'product-raster.php';
                 ?>>
                 <label for="showAll">Toon alles</label>
 
-                <input id="submit" type="submit" value="Submit">
+                <input id="submit" type="submit" value="Submit" class="submitKnopFiltering">
             </form>
             <?php
             $query = "SELECT * FROM product";
@@ -227,7 +227,7 @@ include 'product-raster.php';
 
             if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
-                   $query = $query . " AND id IN (
+                    $query = $query . " AND id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) = 5
 )";
@@ -291,7 +291,7 @@ HAVING AVG(score) BETWEEN 1 AND 5
 
 
             $query = $query . ";";
-            echo $query;
+//            echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";

@@ -1,0 +1,14 @@
+input[type="submit"].submitKnop {
+    background-color: #FFA633;
+    color: white;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    display: flex;
+}
+
+input[type="submit"].submitKnop:hover {
+    background-color: #FFBF38;
+}
