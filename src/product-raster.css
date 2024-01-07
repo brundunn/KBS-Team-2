@@ -23,7 +23,7 @@
     box-shadow: 2px 2px #8343CF;
     min-width: 10rem;
     margin: 0.6rem;
-  height: fit-content;
+    height: fit-content;
 }
 
 .raster-img {
@@ -40,7 +40,7 @@
 }
 
 .raster-name {
-color: #252530;
+    color: #252530;
     font-size: 0.9rem;
 }
 
