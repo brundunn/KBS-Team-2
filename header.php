@@ -15,7 +15,6 @@ session_start();
                 </svg>
             </a>
 
-
             <!-- Links -->
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
@@ -27,6 +26,7 @@ session_start();
         </div>
 
         <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
+
 
         <div class="cart-and-user">
             <?php
