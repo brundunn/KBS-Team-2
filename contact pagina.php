@@ -6,11 +6,12 @@
     <link href="src/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="contact%20pagina.css">
     <link href="src/header.css" rel="stylesheet">
+    <link href=""
 </head>
 <body>
 <?php include 'header.php';
 ?>
-<div class="main-container"
+<div class="main-container">
     <ul class="breadcrumbs">
         <?php
         function breadcrumb($link, $naam, $huidigePagina): string
