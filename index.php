@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -18,6 +19,25 @@
 
 </head>
 <body>
+<button onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
+<script>
+    function veranderKleuren() {
+        var body = document.body;
+
+        body.style.backgroundColor = getRandomColor();
+        body.style.color = getRandomColor();
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
 <?php include 'header.php';
 ?>
 <div class="main-container">
@@ -39,7 +59,7 @@
         ?>
     </ul>
     <hr>
-    <!-- Dynamische HTML Slider --->
+
 
     <div class="carousel">
         <div class="carousel-wrapper">

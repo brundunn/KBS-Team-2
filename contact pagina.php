@@ -10,8 +10,7 @@
 <body>
 <?php include 'header.php';
 ?>
-<div class="main-container">
-    <!--    Breadcrumbs -->
+<div class="main-container"
     <ul class="breadcrumbs">
         <?php
         function breadcrumb($link, $naam, $huidigePagina): string
