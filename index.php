@@ -8,13 +8,13 @@
     <title>NerdyGadgets</title>
     <script src="js/readmore.js"></script>
     <script src="js/slider.js"></script>
+    <script src="js/searchbar.js"></script>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link href="src/homepage.css" rel="stylesheet">
     <link href="src/reviews.css" rel="stylesheet">
     <link href="src/slider.css" rel="stylesheet">
     <link href="src/product-raster.css" rel="stylesheet">
-    <link href="src/search.css" rel="stylesheet">
 
 </head>
 <body>
@@ -73,7 +73,6 @@
     <!-- Dynamische HTML Slider --->
     <div class="brand-introduction-container">
         <div class="empty"></div>
-
 
 
         <div class="hero">
@@ -167,6 +166,9 @@ ORDER BY date DESC LIMIT 3;";
 
     toonProductRaster("SELECT * FROM product WHERE category = 'laptops' ORDER BY price DESC LIMIT 5");
     ?>
-</body>
 
+
+    <a href="funnyeasteregg.php">
+        <button>Wat is dit?</button>
+    </a>
 </html>

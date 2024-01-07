@@ -25,8 +25,12 @@ session_start();
             </div>
         </div>
 
-        <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
-
+    <body>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Zoeken naar een product...">
+            <ul id="suggestionsList"></ul>
+        </div>
+    </body>
 
         <div class="cart-and-user">
             <?php
@@ -135,8 +139,6 @@ session_start();
                 ?>
             </a>
         </div>
-
-
     </nav>
 </div>
 

@@ -42,6 +42,57 @@
             <form action="" method="post">
                 <h4>Categorie</h4>
 
+<!--                Product filter query-->
+
+                <?php
+                $query = "SELECT * FROM product";
+
+                if (isset($_POST["category"])) {
+                    $query .= " WHERE (";
+                    $res = $_POST["category"];
+                    $len = sizeof($res);
+                    if ($len == 1) {
+                        foreach ($res as $category) {
+                            $query .= 'category = "' . $category . '"';
+                        }
+                    } else {
+                        foreach ($res as $i => $category) {
+                            if ($i != $len - 1) {
+                                $query .= 'category = "' . $category . '" OR ';
+                            } else {
+                                $query .= 'category = "' . $category . '"';
+                            }
+                        }
+                    }
+                    $query .= ')';
+                }
+
+                if (!empty($_POST["search"])) {
+                    $searchTerm = $_POST["search"];
+                    $query .= " AND (product_name LIKE '%$searchTerm%' OR description LIKE '%$searchTerm%')";
+                }
+
+                $priceFromFilled = !empty($_POST["price-from"]) && is_numeric($_POST["price-from"]);
+                $priceToFilled = !empty($_POST["price-to"]) && is_numeric($_POST["price-from"]);
+                $categoryFilled = !empty($_POST["category"]);
+
+                ?>
+
+                <div class="container">
+                    <form method="post">
+                        <input type="text" placeholder="Zoek naar een product..">
+                    </form>
+                </div>
+
+                <?php
+                if(isset($_POST['submit'])){
+                    $search=$_POST['search'];
+                    $sql = "SELECT * FROM 'product' where category='$search'";
+                }
+                ?>
+
+
+
                 <?php
                 // DATABASE CONNECTIE
                 $servername = "localhost";

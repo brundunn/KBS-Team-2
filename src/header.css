@@ -213,6 +213,48 @@ button.cart-button {
     padding: 0 1rem;
 }
 
+
+/*CSS VOOR SEARCHBAR*/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    position: relative;
+    width: 475px;
+    margin: 25px auto;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#suggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#suggestionsList li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#suggestionsList li:last-child {
+    border-bottom: none;
+}
+
+
+
 /*
     MEDIA QUERIES
 */
