@@ -1,11 +1,11 @@
 <?php
 session_start();
 ?>
-<div class="top-navbar"> <!-- Volledige bar -->
-    <nav> <!-- Inhoud v/d nav bar -->
+<div class="top-navbar">
+    <nav>
 
         <div class="logo-and-hyperlinks">
-            <!--Logo-->
+
             <a href="index.php">
                 <!--            <img class="logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">-->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -16,11 +16,10 @@ session_start();
             </a>
 
 
-            <!-- Links -->
+
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
-                <!--                <a href="#">Link 2</a>-->
-                <!--                <a href="#">Link 3</a>-->
+
                 <a href="about-us.php">About us</a>
                 <a href="contact%20pagina.php">Contact</a>
             </div>
