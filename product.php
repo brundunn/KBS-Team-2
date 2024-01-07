@@ -102,6 +102,7 @@ $conn->close();
     <link href="src/header.css" rel="stylesheet">
     <link href="src/reviews.css" rel="stylesheet">
     <link href="src/productpagina.css" rel="stylesheet">
+    <link href="src/product-raster.css" rel="stylesheet">
 </head>
 <body>
 <?php include 'header.php'
@@ -125,7 +126,8 @@ $conn->close();
     <div class="product-informatie">
         <h2><?php echo $name ?></h2>
         <?php
-        include 'src/review-functions.php';
+        include 'product-raster.php';
+//        include 'src/review-functions.php';
         // Toon gemiddelde score van het product, zonder het totaal aantal reviews
         gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews
@@ -186,15 +188,20 @@ FROM product_review WHERE product_id = " . $id);
 
     <div class="product-list">
         <h2>Misschien bent u ook geïntereseerd in:</h2>
-        <?php foreach ($sameCategoryProducts as $product) { ?>
-            <div class="product-item">
-                <a href="product.php?id=<?php echo $product['id']; ?>">
-                    <img src="img/product_images/<?php echo $product['image']; ?>.jpg"
-                         alt="<?php echo $product['name']; ?>">
-                    <h5><?php echo $product['name']; ?></h5>
-                </a>
-            </div>
-        <?php } ?>
+        <?php
+
+        toonProductRaster("SELECT * FROM product WHERE category='$category' AND id!=$id");
+        ?>
+
+<!--        --><?php //foreach ($sameCategoryProducts as $product) { ?>
+<!--            <div class="product-item">-->
+<!--                <a href="product.php?id=--><?php //echo $product['id']; ?><!--">-->
+<!--                    <img src="img/product_images/--><?php //echo $product['image']; ?><!--.jpg"-->
+<!--                         alt="--><?php //echo $product['name']; ?><!--">-->
+<!--                    <h5>--><?php //echo $product['name']; ?><!--</h5>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        --><?php //} ?>
 
     <br><br>
     <hr>

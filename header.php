@@ -15,17 +15,18 @@ session_start();
                 </svg>
             </a>
 
-
-
+            <!-- Links -->
             <div class="hyperlinks">
                 <a href="product-overzicht.php">Assortiment</a>
-
+                <!--                <a href="#">Link 2</a>-->
+                <!--                <a href="#">Link 3</a>-->
                 <a href="about-us.php">About us</a>
                 <a href="contact%20pagina.php">Contact</a>
             </div>
         </div>
 
         <input type="text" class="main-searchbar" placeholder="Zoeken naar een product...">
+
 
         <div class="cart-and-user">
             <?php

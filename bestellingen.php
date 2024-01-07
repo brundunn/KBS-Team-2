@@ -35,6 +35,7 @@
         header('Location: index.php');
         exit;
     }
+    $id = $_SESSION["id"];
     // DATABASE CONNECTIE
     $servername = "localhost";
     $username = "root";
@@ -47,15 +48,89 @@
     if (mysqli_connect_errno()) {
         exit('Failed to connect to MySQL: ' . mysqli_connect_error());
     }
-    //$stmt = $conn->prepare('SELECT password, email FROM user WHERE id = ?');
-    $stmt = $conn->prepare('SELECT * FROM user WHERE id = ?');
-    // In this case we can use the account ID to get the account info.
-    $stmt->bind_param('i', $_SESSION['id']);
-    $stmt->execute();
-    //$stmt->bind_result($password, $email);
-    $stmt->bind_result($id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
-    $stmt->fetch();
-    $stmt->close();
+    // QUERY
+    $sql = "SELECT * 
+FROM `order` WHERE user_id = $id";
+    // RESULT
+    $result = $conn->query($sql);
+
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+
+            // variabelen toewijzen voor het gemak
+            $order_id = $row["id"];
+            $date = $row["order_date"];
+            $user_id = $row["user_id"];
+
+            echo "<h1>Order #$order_id</h1>";
+
+            $conn2 = new mysqli($servername, $username, $password, $dbname);
+            if ($conn2->connect_error) {
+                die("Connection failed: " . $conn2->connect_error);
+            }
+            if (mysqli_connect_errno()) {
+                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+            }
+            // QUERY
+            $sql2 = "SELECT * 
+FROM `order_item` WHERE order_id = $order_id";
+            // RESULT
+            $result2 = $conn2->query($sql2);
+
+
+            if ($result2->num_rows > 0) {
+                while ($row = $result2->fetch_assoc()) {
+
+                    $quantity = $row["quantity"];
+                    // variabelen toewijzen voor het gemak
+                    $product_id = $row["product_id"];
+                    $conn3 = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn3->connect_error) {
+                        die("Connection failed: " . $conn3->connect_error);
+                    }
+                    if (mysqli_connect_errno()) {
+                        exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+                    }
+                    // QUERY
+                    $sql3 = "SELECT * 
+FROM `product` WHERE id = $product_id";
+                    // RESULT
+                    $result3 = $conn3->query($sql3);
+                    if ($result3->num_rows > 0) {
+
+                        while ($row = $result3->fetch_assoc()) {
+
+                            // variabelen toewijzen voor het gemak
+                            $name = $row["name"];
+                            $description = $row["description"];
+                            $price = $row["price"];
+                            $category = $row["category"];
+                            $imgSrc = "img/product_images/" . $row["image"] . ".jpg";
+                        }
+
+
+                    } else {
+                        echo "Productinformatie onbekend";
+                    }
+                    $conn3->close();
+
+
+                    echo $name . " x " . $quantity . "<br>";
+                }
+            } else {
+                echo "Order is leeg";
+            }
+            $conn2->close();
+
+        }
+    } else {
+        echo "0 results";
+        header('Location: ' . "product-overzicht.php");
+    }
+    $conn->close();
+
+
     ?>
 
     <!--    Je zou de query hierboven kunnen aanpassen zodat je de informatie van bestellingen van een bepaalde gebruiker ophaalt-->

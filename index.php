@@ -15,6 +15,8 @@
     <link href="src/reviews.css" rel="stylesheet">
     <link href="src/slider.css" rel="stylesheet">
     <link href="src/product-raster.css" rel="stylesheet">
+    <link href="src/search.css" rel="stylesheet">
+
 </head>
 <body>
 <button onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
@@ -59,34 +61,46 @@
     <hr>
 
 
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="img/slide1.jpg" style="width:100%">
-        </div>
-
-        <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
-            <img src="img/slide2.jpg" style="width:100%">
-        </div>
-
-        <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
-            <img src="img/slide3.jpg" style="width:100%">
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
+    <div class="carousel">
+        <div class="carousel-wrapper">
+            <div class="carousel-item">
+                <img src="img/slide1.jpg" alt="">
+            </div>
+            <div class="carousel-item" style="display: none;">
+                <img src="img/slide2.jpg" alt="">
+            </div>
+            <div class="carousel-item" style="display: none;">
+                <img src="img/slide3.jpg" alt="">
+            </div>
     </div>
-    <br>
-
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
+<!--    <div class="slideshow-container">-->
+<!---->
+<!--        <div class="mySlides fade">-->
+<!--            <div class="numbertext">1 / 3</div>-->
+<!--            <img src="img/slide1.jpg" style="width:100%">-->
+<!--        </div>-->
+<!---->
+<!--        <div class="mySlides fade">-->
+<!--            <div class="numbertext">2 / 3</div>-->
+<!--            <img src="img/slide2.jpg" style="width:100%">-->
+<!--        </div>-->
+<!---->
+<!--        <div class="mySlides fade">-->
+<!--            <div class="numbertext">3 / 3</div>-->
+<!--            <img src="img/slide3.jpg" style="width:100%">-->
+<!--        </div>-->
+<!---->
+<!--        <a class="prev" onclick="plusSlides(-1)">❮</a>-->
+<!--        <a class="next" onclick="plusSlides(1)">❯</a>-->
+<!---->
+<!--    </div>-->
+<!--    <br>-->
+<!---->
+<!--    <div style="text-align:center">-->
+<!--        <span class="dot" onclick="currentSlide(1)"></span>-->
+<!--        <span class="dot" onclick="currentSlide(2)"></span>-->
+<!--        <span class="dot" onclick="currentSlide(3)"></span>-->
+<!--    </div>-->
 
     <!-- Dynamische HTML Slider --->
     <div class="brand-introduction-container">
