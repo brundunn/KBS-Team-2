@@ -102,6 +102,7 @@ input[type=text].main-searchbar {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s;
+    z-index: 9999;
 }
 .user-dropdown-menu-container.open-menu {
     max-height: 1000px;

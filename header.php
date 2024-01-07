@@ -1,11 +1,11 @@
 <?php
 session_start();
 ?>
-<div class="top-navbar"> <!-- Volledige bar -->
-    <nav> <!-- Inhoud v/d nav bar -->
+<div class="top-navbar">
+    <nav>
 
         <div class="logo-and-hyperlinks">
-            <!--Logo-->
+
             <a href="index.php">
                 <!--            <img class="logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">-->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -25,12 +25,26 @@ session_start();
             </div>
         </div>
 
-    <body>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Zoeken naar een product...">
-            <ul id="suggestionsList"></ul>
-        </div>
-    </body>
+        <form action="" method="post" class="searchbar">
+        <input type="text" name="search" class="main-searchbar" placeholder="Zoeken naar een product..." <?php
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            if (str_starts_with($search, "google")) {
+                $search = str_replace("google", "", $search);
+                header("Location: https://www.google.com/search?q=$search");
+            }
+            if (str_starts_with($search, "youtube")) {
+                $search = str_replace("youtube", "", $search);
+                header("Location: https://www.youtube.com/results?search_query=$search");
+            }
+        }
+
+        ?>>
+        </form>
+
+
+
+
 
         <div class="cart-and-user">
             <?php
@@ -139,6 +153,8 @@ session_start();
                 ?>
             </a>
         </div>
+
+
     </nav>
 </div>
 

@@ -151,16 +151,29 @@
 
 
                         echo '<div class="shopping-cart-product">';
+
+//                        echo '<div class="divider">';
+//
+//                        echo '</div>';
+
+                        echo '<div class="divider">';
+
                         //                        echo "Product " . $values["product_id"] . " --- ";
+                        echo "<a href='product.php?id=$productID'>";
                         echo "<div class='shopping-cart-img-container'>";
                         echo "<img src='$imgSrc' alt='$name' '></div>";
-                        echo $name . "<br>";
+                        echo "</a>";
+                        echo "<a style='text-decoration: none; color: inherit;' href='product.php?id=$productID'>";
+                        echo "<span class='productNaam'>" . $name . "</span><br>";
                         gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $productID, "SELECT COUNT(*) AS amountOfReviews
 FROM product_review WHERE product_id = " . $productID);
-                        echo $values["quantity"] . "x";
+                        echo "</a>";
+
+                        echo '<div class="aantalItemsEnKnoppen">';
+                        echo "<span class='aantalItems'>Aantal: " . $values["quantity"] . "</span>";
 //                        echo $price . " euro per product";
-                        echo '<br>€' . $values["quantity"] * $price . '<br>';
+
 
 
                         $total += $values["quantity"] * $price;
@@ -197,12 +210,20 @@ FROM product_review WHERE product_id = " . $productID);
         </svg>
         ';
                 echo '</a>';
+
+                echo '</div>';
+                echo '</div>';
+
+                echo '<div class="divider"><br><span class="totaalPrijs">€' . $values["quantity"] * $price . '</span><br></div>';
+
                 echo '</div>';
 //                echo '<hr class="shopping-cart-hr">';
 
             }
-            echo "<p>Totaal aantal producten: $count</p>";
-            echo "<p>Totaal bedrag: €<span id='totalAmount'>$total</span></p>";
+//            echo "<p>Totaal aantal producten: $count</p>";
+//            echo "<p>Totaal bedrag: €<span id='totalAmount'>$total</span></p>";
+            echo "<p>Artikelen <span class='artikelCount'>($count)</span>: ";
+            echo "€<span id='totalAmount'>$total</span></p>";
             echo '<br>';
 
 //            echo '<a href="cart-page.php?action=clear">Winkelwagen leegmaken</a><br>';
