@@ -60,7 +60,7 @@ FROM product_review WHERE product_id = " . $productID);
         mysqli_close($connection);
         echo "</div>";
     } else {
-        echo "0 results";
+        echo "<span style='font-weight: bold; margin-left: 0.5rem;'>Geen producten gevonden!</span>";
     }
     $conn->close();
 }

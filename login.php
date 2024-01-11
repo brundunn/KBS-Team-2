@@ -25,7 +25,7 @@
     <hr>
 
     <h1>Inloggen</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati sequi similique voluptatem voluptatum?</p>
+    <p>Log in met uw e-mailadres en wachtwoord.</p>
     <form action="authenticate.php" method="post">
         <label for="email">
             <i class="fas fa-user"></i>
