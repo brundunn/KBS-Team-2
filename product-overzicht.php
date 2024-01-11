@@ -299,21 +299,19 @@ HAVING AVG(score) BETWEEN 1 AND 5
 
             if (isset($_GET["q"])) {
                 $searchFor = $_GET["q"];
-                if (empty($_POST["price-from"]) && empty($_POST["price-to"]) && empty($_POST["category"])) {
+                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled) {
                     // Er is een zoekterm ingevuld, maar verder geen filtering
-
-                    if (!isset($_POST["category"])) {
-                        $query = $query . " WHERE lower(name) LIKE '%$searchFor%'";
-                    }
+                        $query = $query . " WHERE ";
                 } else {
                     // Er is ook andere filtering aanwezig
-                    $query = $query . " AND lower(name) LIKE '%$searchFor%'";
+                    $query = $query . " AND ";
                 }
+                $query = $query . "lower(name) LIKE '%$searchFor%'";
             }
 
 
             $query = $query . ";";
-//                        echo $query;
+                        echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";
