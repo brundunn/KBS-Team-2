@@ -10,7 +10,6 @@
     <link href="src/header.css" rel="stylesheet">
     <link rel="stylesheet" href="src/shopping-cart.css">
     <link rel="stylesheet" href="src/reviews.css">
-    ;
 </head>
 <body>
 <?php include 'header.php';
@@ -23,7 +22,7 @@ include 'src/review-functions.php';
         include 'src/breadcrumbs.php';
 
         echo breadcrumb('index.php', 'Home', false);
-        echo breadcrumb('#', 'Bestellingen', true)
+        echo breadcrumb('#', 'Bestellingen', true);
         ?>
     </ul>
     <hr>
