@@ -136,7 +136,7 @@ FROM product_review WHERE product_id = " . $id);
         <h3><?php echo "Prijs: €$price" ?></h3>  <!-- prijs -->
         <h4><?php echo "Categorie: $category" ?></h4> <!-- categorie -->
         <p><?php echo $description ?></p> <!-- beschrijving -->
-        <img src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>"> <!-- afbeelding -->
+        <img style="border-radius: 1rem; border: 1px solid #53556E; margin-top: 0.6rem;" src="<?php echo $imgSrc ?>" alt="<?php echo $name ?>"> <!-- afbeelding -->
     </div>
 
     <?php
@@ -151,7 +151,7 @@ FROM product_review WHERE product_id = " . $id);
 
 
     if (in_array($id, $item_id_list)) { // Als het product in de winkelwagen zit, toon dat dan
-        echo '<button class="add-product-to-cart-button product-in-cart">
+        echo '<button class="add-product-to-cart-button product-in-cart" style="margin-bottom: 1rem; margin-top: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="">
   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
 </svg>
@@ -166,7 +166,7 @@ FROM product_review WHERE product_id = " . $id);
 
     } else {
         // Product toevoegen aan winkelwagen - button
-        echo '<form method="post" action="">
+        echo '<form method="post" action="" style="margin-bottom: 1rem; margin-top: 1rem;">
         <input type="hidden" name="quantity" value="1">
         <input type="hidden" name="product_id" value="' . $id . '">
                 <button type="submit" name="add_to_cart" value="1" class="add-product-to-cart-button">
@@ -187,7 +187,7 @@ FROM product_review WHERE product_id = " . $id);
     ?>
 
     <div class="product-list">
-        <h2>Misschien bent u ook geïntereseerd in:</h2>
+        <h2>Misschien bent u ook geïnteresseerd in:</h2>
         <?php
 
         toonProductRaster("SELECT * FROM product WHERE category='$category' AND id!=$id");
@@ -208,7 +208,12 @@ FROM product_review WHERE product_id = " . $id);
     <!-- Product review -->
     <h3>Reviews over <?php echo $name ?></h3>
     <?php
-    echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
+    if (!isset($_SESSION['loggedin'])) {
+        echo '<p style="font-style: italic">Log in om een review achter te laten!</p>';
+    } else {
+        echo '<a href="write-review.php?type=product&id=' . $id . '">Schrijf review</a>';
+    }
+
 
     gemiddeldeScore("SELECT AVG(score) AS avgScore
 FROM product_review WHERE product_id = " . $id, "SELECT COUNT(*) AS amountOfReviews

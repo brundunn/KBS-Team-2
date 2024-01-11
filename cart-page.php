@@ -178,8 +178,7 @@ FROM product_review WHERE product_id = " . $productID);
 
                         $total += $values["quantity"] * $price;
                         $count += 1 * $values["quantity"];
-                    }
-                }
+
                 // Button om de hoeveelheid van het product te vergroten
                 echo '<form method="POST" style="display: inline">';
                 echo '<input type="hidden" name="quantity" value="1">';
@@ -219,6 +218,7 @@ FROM product_review WHERE product_id = " . $productID);
                 echo '</div>';
 //                echo '<hr class="shopping-cart-hr">';
 
+            }     }
             }
 //            echo "<p>Totaal aantal producten: $count</p>";
 //            echo "<p>Totaal bedrag: €<span id='totalAmount'>$total</span></p>";
@@ -234,15 +234,15 @@ FROM product_review WHERE product_id = " . $productID);
 
         $conn->close();
         ?>
-        <br><br>
-        <h2>Klantgegevens</h2>
-        <label for="name">Naam:</label>
-        <input type="text" id="name" required>
-
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" required>
-
-        <button class="cartPageCheckoutButton" type="button" onclick="processPayment()">Afrekenen</button>
+<!--        <br><br>-->
+<!--        <h2>Klantgegevens</h2>-->
+<!--        <label for="name">Naam:</label>-->
+<!--        <input type="text" id="name" required>-->
+<!---->
+<!--        <label for="email">E-mail:</label>-->
+<!--        <input type="email" id="email" required>-->
+<!---->
+<!--        <button class="cartPageCheckoutButton" type="button" onclick="processPayment()">Afrekenen</button>-->
     </div>
 
 

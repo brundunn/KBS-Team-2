@@ -67,9 +67,9 @@ session_start();
                 }
                 $stmt = $conn->prepare('SELECT * FROM user WHERE id = ?');
 // In this case we can use the account ID to get the account info.
-                $stmt->bind_param('i', $_SESSION['id']);
+                $stmt->bind_param('i', $_SESSION['user_id']);
                 $stmt->execute();
-                $stmt->bind_result($id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
+                $stmt->bind_result($user_id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
                 $stmt->fetch();
                 $stmt->close();
                 echo '<button class="account-button" onclick="toggleUserDropdown()">Welkom, ' . $first_name . '!</button>';
@@ -104,8 +104,6 @@ session_start();
 <span>></span>
 </a>';
                 echo '</div></div>';
-//                echo '<a href="account.php" class="account-button">Account</a>';
-//                echo '<a href="loguit.php" class="account-button">Uitloggen</a>';
             }
             ?>
 

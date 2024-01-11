@@ -28,12 +28,12 @@ if (!isset($_POST['email'], $_POST['password'])) {
     exit('Please fill both the email and password fields!');
 }
 
-// Easter egg Thomas
-// https://cybernews.com/best-password-managers/most-common-passwords/
-$mostCommonPasswords = ['123456', '12346789', 'qwerty', 'password', '12345', 'qwerty123', '1q2w3e', '12345678', '111111', '1234567890'];
-if (isset($_POST["password"]) && in_array($_POST["password"], $mostCommonPasswords)) {
-    header('Location: https://cybernews.com/best-password-managers/most-common-passwords/');
-}
+//// Easter egg Thomas
+//// https://cybernews.com/best-password-managers/most-common-passwords/
+//$mostCommonPasswords = ['123456', '12346789', 'qwerty', 'password', '12345', 'qwerty123', '1q2w3e', '12345678', '111111', '1234567890'];
+//if (isset($_POST["password"]) && in_array($_POST["password"], $mostCommonPasswords)) {
+//    header('Location: https://cybernews.com/best-password-managers/most-common-passwords/');
+//}
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $conn->prepare('SELECT id, password FROM user WHERE email = ?')) {
@@ -44,7 +44,7 @@ if ($stmt = $conn->prepare('SELECT id, password FROM user WHERE email = ?')) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password);
+        $stmt->bind_result($user_id, $password);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -54,7 +54,7 @@ if ($stmt = $conn->prepare('SELECT id, password FROM user WHERE email = ?')) {
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
 //            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['id'] = $id;
+            $_SESSION['user_id'] = $user_id;
 //            echo 'Welcome ' . $_SESSION['email'] . '!';
             header('Location: index.php');
         } else {

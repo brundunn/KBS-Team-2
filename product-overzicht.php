@@ -31,7 +31,7 @@ include 'product-raster.php';
     <!-- Einde breadcrumbs -->
 
     <h1>Assortiment</h1>
-    <p>Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie samenkomen om aan al jouw
+    <p style="margin-bottom: 1rem;">Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie samenkomen om aan al jouw
         behoeften te voldoen.
         Ontdek een wereld van mogelijkheden terwijl je bladert door ons zorgvuldig samengestelde aanbod, ontworpen om
         aan de uiteenlopende

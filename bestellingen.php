@@ -8,6 +8,7 @@
     <title>Bestellingen</title>
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/shopping-cart.css">
 </head>
 <body>
 <?php include 'header.php';
@@ -25,9 +26,7 @@
     <hr>
 
     <h1>Mijn bestellingen</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
-        praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
-        sequi similique voluptatem voluptatum?</p>
+    <p style="margin-bottom: 0.6rem">Op deze pagina vindt u uw voorheen geplaatste bestellingen.</p>
 
     <?php
     // If the user is not logged in redirect to the login page...
@@ -35,7 +34,7 @@
         header('Location: index.php');
         exit;
     }
-    $id = $_SESSION["id"];
+    $user_id = $_SESSION["user_id"];
     // DATABASE CONNECTIE
     $servername = "localhost";
     $username = "root";
@@ -50,7 +49,7 @@
     }
     // QUERY
     $sql = "SELECT * 
-FROM `order` WHERE user_id = $id";
+FROM `order` WHERE user_id = $user_id";
     // RESULT
     $result = $conn->query($sql);
 
@@ -125,8 +124,8 @@ FROM `product` WHERE id = $product_id";
 
         }
     } else {
-        echo "0 results";
-        header('Location: ' . "product-overzicht.php");
+        echo "<p style='font-style: italic'>Geen bestellingen gevonden</p>";
+//        header('Location: ' . "product-overzicht.php");
     }
     $conn->close();
 
