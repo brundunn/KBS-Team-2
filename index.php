@@ -83,8 +83,28 @@
 <!--    </div>-->
 
     <!-- Dynamische HTML Slider --->
-    <div class="brand-introduction-container">
-        <div class="empty"></div>
+    <div class="brand-introduction-container" style="margin-top: 0.5rem;">
+        <div class="empty">
+            <button onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
+            <script>
+                function veranderKleuren() {
+                    var body = document.body;
+
+                    body.style.backgroundColor = getRandomColor();
+                    body.style.color = getRandomColor();
+                }
+
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+            </script>
+
+        </div>
 
 
 
