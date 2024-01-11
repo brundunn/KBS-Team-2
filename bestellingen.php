@@ -9,9 +9,12 @@
     <link href="src/styles.css" rel="stylesheet">
     <link href="src/header.css" rel="stylesheet">
     <link rel="stylesheet" href="src/shopping-cart.css">
+    <link rel="stylesheet" href="src/reviews.css">
+    ;
 </head>
 <body>
 <?php include 'header.php';
+include 'src/review-functions.php';
 ?>
 <div class="main-container">
     <!--    Breadcrumbs -->
@@ -49,13 +52,17 @@
     }
     // QUERY
     $sql = "SELECT * 
-FROM `order` WHERE user_id = $user_id";
+FROM `order` WHERE user_id = $user_id ORDER BY order_date DESC";
     // RESULT
     $result = $conn->query($sql);
 
 
+    $total = 0;
+    $count = 0;
+
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            echo '<div style="padding-bottom: 1.5rem;">';
 
             // variabelen toewijzen voor het gemak
             $order_id = $row["id"];
@@ -63,6 +70,8 @@ FROM `order` WHERE user_id = $user_id";
             $user_id = $row["user_id"];
 
             echo "<h1>Order #$order_id</h1>";
+            echo "<span style='font-weight: bold;'>Geplaatst op: </span><span>$date</span>";
+
 
             $conn2 = new mysqli($servername, $username, $password, $dbname);
             if ($conn2->connect_error) {
@@ -115,13 +124,45 @@ FROM `product` WHERE id = $product_id";
                     $conn3->close();
 
 
-                    echo $name . " x " . $quantity . "<br>";
+                    echo '<div class="shopping-cart-product">';
+                    echo '<div class="divider">';
+                    echo "<a href='product.php?id=$product_id'>";
+                    echo "<div class='shopping-cart-img-container'>";
+                    echo "<img src='$imgSrc' alt='$name' '></div>";
+                    echo '</a>';
+                    echo "<a style='text-decoration: none; color: inherit;' href='product.php?id=$product_id'>";
+                    echo "<span class='productNaam'>" . $name . "</span><br>";
+                    gemiddeldeScoreZonderTotaal("SELECT AVG(score) AS avgScore
+FROM product_review WHERE product_id = " . $product_id, "SELECT COUNT(*) AS amountOfReviews
+FROM product_review WHERE product_id = " . $product_id);
+                    echo "</a>";
+                    echo "<div class='aantalItemsEnKnoppen'>";
+                    echo "<span class='aantalItems'>Aantal: " . $quantity . "</span>";
+                    echo '</div>';
+                    echo '</div>'; // divider
+
+
+                    if ($quantity > 1) {
+                        echo '<div class="divider"><br><span class="totaalPrijs">' . $quantity . ' x €' . $price . '</span><br></div>';
+                    } else {
+                        echo '<div class="divider"><br><span class="totaalPrijs">' . '€' . $price . '</span><br></div>';
+                    }
+
+                    echo '</div>'; // shopping-cart-product
+
+
+                    $total += $quantity * $price;
+                    $count += 1 * $quantity;
                 }
+                echo "<span>Artikelen <span class='artikelCount'>($count)</span>: ";
+                echo "€<span id='totalAmount'>$total</span></span>";
+                echo '<br>';
             } else {
                 echo "Order is leeg";
             }
             $conn2->close();
 
+            echo '</div>';
         }
     } else {
         echo "<p style='font-style: italic'>Geen bestellingen gevonden</p>";
