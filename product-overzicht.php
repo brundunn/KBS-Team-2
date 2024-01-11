@@ -311,7 +311,7 @@ HAVING AVG(score) BETWEEN 1 AND 5
 
 
             $query = $query . ";";
-                        echo $query;
+//                        echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";
