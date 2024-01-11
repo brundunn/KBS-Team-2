@@ -97,7 +97,7 @@
 //        echo $sql;
 
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+            echo "<p style='font-weight: bold;'>Registratie succesvol!</p>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
