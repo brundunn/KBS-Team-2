@@ -235,12 +235,13 @@ FROM product_review WHERE product_id = " . $productID);
         $conn->close();
         ?>
         <?php
-        echo '<div style="width: 100%; display: flex; justify-content: end;">';
-        if (!isset($_SESSION['loggedin'])) {
-            echo '<span style="font-style: italic">Log in om bestelling te plaatsen.</span>';
-        } else {
+        if (isset($_COOKIE["shopping_cart"])) {
+            echo '<div style="width: 100%; display: flex; justify-content: end;">';
+            if (!isset($_SESSION['loggedin'])) {
+                echo '<span style="font-style: italic">Log in om bestelling te plaatsen.</span>';
+            } else {
 
-            echo '<a href="place-order.php" style="background-color: #FFA633;
+                echo '<a href="place-order.php" style="background-color: #FFA633;
     color: white;
     font-weight: bold;
     margin-top: 1rem;
@@ -248,8 +249,9 @@ FROM product_review WHERE product_id = " . $productID);
     border-radius: 0.8rem;
     align-items: center; text-decoration: none;
     display: flex;">Plaats bestelling</a>';
+            }
+            echo '</div>';
         }
-        echo '</div>';
         ?>
 
     </div>
