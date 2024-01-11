@@ -241,14 +241,7 @@ FROM product_review WHERE product_id = " . $productID);
                 echo '<span style="font-style: italic">Log in om bestelling te plaatsen.</span>';
             } else {
 
-                echo '<a href="place-order.php" style="background-color: #FFA633;
-    color: white;
-    font-weight: bold;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.8rem;
-    align-items: center; text-decoration: none;
-    display: flex;">Plaats bestelling</a>';
+                echo '<a href="place-order.php" class="hoverButtonEffect">Plaats bestelling</a>';
             }
             echo '</div>';
         }

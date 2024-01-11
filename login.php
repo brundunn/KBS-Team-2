@@ -35,7 +35,7 @@
             <i class="fas fa-lock"></i>
         </label>
         <input type="password" name="password" placeholder="Password" id="password" required>
-        <input type="submit" value="Login">
+        <input class="hoverButtonEffect" type="submit" value="Login">
     </form>
 
 </div>

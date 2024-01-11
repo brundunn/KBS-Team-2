@@ -110,10 +110,34 @@ hr {
     margin-bottom: 0.8rem;
 }
 
-/*
-    MEDIA QUERIES
-*/
+.hoverButtonEffect {
+    background-color: #FFA633;
+    color: white;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
 
-@media screen and (max-width: 1000px) {
+.hoverButtonEffect:hover {
+    background-color: #FFBF38;
+}
 
+input[type="submit"].hoverButtonEffect {
+    background-color: #FFA633;
+    color: white;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
+
+input[type="submit"].hoverButtonEffect:hover {
+    background-color: #FFBF38;
 }

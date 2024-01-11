@@ -59,7 +59,7 @@
     <!-- Dynamische HTML Slider --->
     <div class="brand-introduction-container" style="margin-top: 0.5rem;">
         <div class="empty">
-            <button onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
+            <button class="hoverButtonEffect" onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
             <script>
                 function veranderKleuren() {
                     var body = document.body;

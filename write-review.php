@@ -206,7 +206,7 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
 
         <label for="beschrijving">Beschrijving</label><textarea id="beschrijving" name="beschrijving"></textarea>
         <br>
-        <input type="submit">
+        <input type="submit" class="hoverButtonEffect">
     </form>
 </div>
 
