@@ -26,17 +26,25 @@ session_start();
         </div>
 
         <form action="" method="post" class="searchbar">
-        <input type="text" name="search" class="main-searchbar" placeholder="Zoeken naar een product..." <?php
+        <input type="text" name="search" class="main-searchbar"
+               <?php
+               if (isset($_GET["q"])) {
+                   $searchFor = $_GET["q"];
+                    echo "value='$searchFor'";
+               }?>
+               placeholder="Zoeken naar een product..." <?php
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
             if (str_starts_with($search, "google")) {
                 $search = str_replace("google", "", $search);
                 header("Location: https://www.google.com/search?q=$search");
             }
-            if (str_starts_with($search, "youtube")) {
+             else if (str_starts_with($search, "youtube")) {
                 $search = str_replace("youtube", "", $search);
                 header("Location: https://www.youtube.com/results?search_query=$search");
-            }
+            } else {
+                 header("location: product-overzicht.php?q=$search");
+             }
         }
 
         ?>>
@@ -67,9 +75,9 @@ session_start();
                 }
                 $stmt = $conn->prepare('SELECT * FROM user WHERE id = ?');
 // In this case we can use the account ID to get the account info.
-                $stmt->bind_param('i', $_SESSION['id']);
+                $stmt->bind_param('i', $_SESSION['user_id']);
                 $stmt->execute();
-                $stmt->bind_result($id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
+                $stmt->bind_result($user_id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
                 $stmt->fetch();
                 $stmt->close();
                 echo '<button class="account-button" onclick="toggleUserDropdown()">Welkom, ' . $first_name . '!</button>';
@@ -104,8 +112,6 @@ session_start();
 <span>></span>
 </a>';
                 echo '</div></div>';
-//                echo '<a href="account.php" class="account-button">Account</a>';
-//                echo '<a href="loguit.php" class="account-button">Uitloggen</a>';
             }
             ?>
 

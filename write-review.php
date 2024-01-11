@@ -3,6 +3,7 @@
 if ((empty($_GET["type"])) || ($_GET["type"] == "product" && empty($_GET["id"])) || ($_GET["type"] != "nerdygadgets" && $_GET["type"] != "product")) {
     header('Location: ' . "index.php");
 }
+
 $type = $_GET["type"];
 $productReview = false;
 $id = '';
@@ -110,6 +111,12 @@ if ((!empty($_GET["user_id"])) && (!empty($_GET["rating"]))) {
 </head>
 <body>
 <?php include 'header.php';
+
+if (!isset($_SESSION['loggedin'])) { // Als de gebruiker niet ingelogd is, stuur terug naar homepage
+header('Location: index.php');
+exit;
+}
+$user_id = $_SESSION["user_id"]; // Haal id van de ingelogde gebruiker op uit de SESSION
 ?>
 <div class="main-container">
     <!--    Breadcrumbs -->
@@ -154,10 +161,10 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
     <form method="GET" class="schrijf-review-form">
         <?php
         if ($productReview) {
-            echo "<input type='hidden' name='type' value='product'>";
+            echo "<input type='hidden' name='type' value='product'>"; // assign value 'product' met product id
             echo "<input type='hidden' name='id' value='$id'";
         } else {
-            echo '<input type="hidden" name="type" value="nerdygadgets">';
+            echo '<input type="hidden" name="type" value="nerdygadgets">'; // assign value 'nerdygadgets'
         }
         ?>
 
@@ -165,7 +172,7 @@ Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieu
         <!--        <label for="voornaam">Voornaam</label><input type="text" id="voornaam" name="voornaam" required>-->
         <!--        <br>-->
         <!--        <label for="achternaam">Achternaam</label><input type="text" id="achternaam" name="achternaam">-->
-        <input type="hidden" name="user_id" value="1">
+        <input type="hidden" name="user_id" value="<?php echo $user_id?>">
 
         <span>Score</span>
         <fieldset class="rate">

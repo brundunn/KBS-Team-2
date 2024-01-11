@@ -59,10 +59,14 @@ button, input[type="submit"], input[type="reset"] {
 
 
 /* Default fonts */
-h1, h2, h3, h4, h5, h6, a, button, label, span {
+h1, h2, h3, h4, h5, h6, a, button, label, span, td:first-child {
     font-family: 'AR One Sans', sans-serif;
 }
-p, ul, li {
+td:first-child {
+    font-weight: bold;
+    margin-right: 2rem;
+}
+p, ul, li, td {
     font-family: 'Inria Serif', serif;
 }
 

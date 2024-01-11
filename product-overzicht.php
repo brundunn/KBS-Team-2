@@ -31,11 +31,19 @@ include 'product-raster.php';
     <!-- Einde breadcrumbs -->
 
     <h1>Assortiment</h1>
-    <p>Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie samenkomen om aan al jouw
+    <p style="margin-bottom: 0.5rem;">Welkom bij ons uitgebreide assortiment, waar kwaliteit, diversiteit en innovatie
+        samenkomen om aan al jouw
         behoeften te voldoen.
         Ontdek een wereld van mogelijkheden terwijl je bladert door ons zorgvuldig samengestelde aanbod, ontworpen om
         aan de uiteenlopende
         wensen van onze gewaardeerde klanten te voldoen.</p>
+
+    <?php
+    if (isset($_GET["q"])) {
+    $searchFor = $_GET["q"];
+    echo '<h3 style="font-weight: normal; margin-bottom: 0.5rem;">Zoekresultaten voor: \'<span style="font-weight: bold;">' . $searchFor . '</span>\'</h3>';
+    }
+    ?>
 
     <div class="sidenav-raster-container">
         <div class="sidenav">
@@ -197,27 +205,27 @@ include 'product-raster.php';
 
             //if alles ingevuld
             if ($priceFromFilled && $priceToFilled && $categoryFilled) {
-                $query = $query . " AND price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
+                $query = $query . " AND (price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"] . ")";
             }
             //if categorie niet ingevuld
             if ($priceFromFilled && $priceToFilled && empty($categoryFilled)) {
-                $query = $query . " WHERE price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"];
+                $query = $query . " WHERE (price BETWEEN " . $_POST["price-from"] . " AND " . $_POST["price-to"] . ")";
             }
             //alleen price to niet ingevuld
             if ($priceFromFilled && empty($priceToFilled) && $categoryFilled) {
-                $query = $query . " AND price >= " . $_POST["price-from"];
+                $query = $query . " AND (price >= " . $_POST["price-from"].")";
             }
             //if price from niet ingevuld
             if (empty($priceFromFilled) && $priceToFilled && $categoryFilled) {
-                $query = $query . " AND price <= " . $_POST["price-to"];
+                $query = $query . " AND (price <= " . $_POST["price-to"].")";
             }
             //alleen price to
             if (empty($priceFromFilled) && $priceToFilled && empty($categoryFilled)) {
-                $query = $query . " WHERE price <= " . $_POST["price-to"];
+                $query = $query . " WHERE (price <= " . $_POST["price-to"].")";
             }
             //alleen price from
             if ($priceFromFilled && empty($priceToFilled) && empty($categoryFilled)) {
-                $query = $query . " WHERE price >= " . $_POST["price-from"];
+                $query = $query . " WHERE (price >= " . $_POST["price-from"].")";
             }
 
             $selection = "";
@@ -227,71 +235,83 @@ include 'product-raster.php';
 
             if (!empty($_POST["category"]) || !empty($_POST["price-from"]) || !empty($_POST["price-to"])) {
                 if ($selection == "five") {
-                    $query = $query . " AND id IN (
+                    $query = $query . " AND (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) = 5
-)";
+))";
                 }
                 if ($selection == "four") {
-                    $query = $query . " AND id IN (
+                    $query = $query . " AND (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 4 AND 5
-)";
+))";
                 }
                 if ($selection == "three") {
-                    $query = $query . " AND id IN (
+                    $query = $query . " AND (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 3 AND 5
-)";
+))";
                 }
                 if ($selection == "two") {
-                    $query = $query . " AND id IN (
+                    $query = $query . " AND (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 2 AND 5
-)";
+))";
                 }
                 if ($selection == "one") {
-                    $query = $query . " AND id IN (
+                    $query = $query . " AND (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 1 AND 5
-)";
+))";
                 }
             } else {
                 if ($selection == "five") {
-                    $query = $query . " WHERE id IN (
+                    $query = $query . " WHERE (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) = 5
-)";
+))";
                 }
                 if ($selection == "four") {
-                    $query = $query . " WHERE id IN (
+                    $query = $query . " WHERE (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 4 AND 5
-)";
+))";
                 }
                 if ($selection == "three") {
-                    $query = $query . " WHERE id IN (
+                    $query = $query . " WHERE (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 3 AND 5
-)";
+))";
                 }
                 if ($selection == "two") {
-                    $query = $query . " WHERE id IN (
+                    $query = $query . " WHERE (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 2 AND 5
-)";
+))";
                 }
                 if ($selection == "one") {
-                    $query = $query . " WHERE id IN (
+                    $query = $query . " WHERE (id IN (
 SELECT product_id FROM product_review GROUP BY product_id
 HAVING AVG(score) BETWEEN 1 AND 5
-)";
+))";
                 }
+            }
+
+            if (isset($_GET["q"])) {
+                $searchFor = $_GET["q"];
+                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled) {
+                    // Er is een zoekterm ingevuld, maar verder geen filtering
+                        $query = $query . " WHERE ";
+                } else {
+                    // Er is ook andere filtering aanwezig
+                    $query = $query . " AND ";
+                }
+                $query = $query . "lower(name) LIKE '%$searchFor%'";
             }
 
 
             $query = $query . ";";
-//            echo $query;
+//                        echo $query;
 
             // DATABASE CONNECTIE
             $servername = "localhost";

@@ -31,7 +31,7 @@ if (mysqli_connect_errno()) {
 //$stmt = $conn->prepare('SELECT password, email FROM user WHERE id = ?');
 $stmt = $conn->prepare('SELECT * FROM user WHERE id = ?');
 // In this case we can use the account ID to get the account info.
-$stmt->bind_param('i', $_SESSION['id']);
+$stmt->bind_param('i', $_SESSION['user_id']);
 $stmt->execute();
 //$stmt->bind_result($password, $email);
 $stmt->bind_result($id, $email, $password, $first_name, $surname_prefix, $surname, $streetname, $apartment_nr, $postal_code, $city);
@@ -51,10 +51,10 @@ $stmt->close();
     <hr>
 
     <h1>Mijn account</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati sequi similique voluptatem voluptatum?</p>
+    <p  style="margin-bottom: 0.6rem">Bekijk hier uw accountgegevens:</p>
     <table>
         <tr>
-            <td>Gebruikers-ID:</td>
+            <td>User ID:</td>
             <td><?php echo $id?></td>
         </tr>
         <tr>

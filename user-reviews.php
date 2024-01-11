@@ -28,7 +28,11 @@
     <h1>Reviews over NerdyGadgets</h1>
 
     <?php
-    echo '<a href="write-review.php?type=nerdygadgets">Schrijf review</a>';
+    if (!isset($_SESSION['loggedin'])) {
+        echo '<p style="font-style: italic">Log in om een review achter te laten!</p>';
+    } else {
+        echo '<a href="write-review.php?type=nerdygadgets">Schrijf review</a>';
+    }
 
     include 'src/review-functions.php';
     reviewPagina("SELECT r.id, u.first_name, u.surname_prefix, u.surname, r.date, r.score, r.description

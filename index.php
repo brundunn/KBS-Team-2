@@ -103,14 +103,34 @@
 <!--    </div>-->
 
     <!-- Dynamische HTML Slider --->
-    <div class="brand-introduction-container">
-        <div class="empty"></div>
+    <div class="brand-introduction-container" style="margin-top: 0.5rem;">
+        <div class="empty">
+            <button onclick="veranderKleuren()">KLIK NIET OP MIJ!</button>
+            <script>
+                function veranderKleuren() {
+                    var body = document.body;
+
+                    body.style.backgroundColor = getRandomColor();
+                    body.style.color = getRandomColor();
+                }
+
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+            </script>
+
+        </div>
 
 
 
         <div class="hero">
-            <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">
-            <h2>Nerdy Gadgets: Toevluchtsoord voor techliefhebbers en popcultuurfanaten.<span id="dots">...</span><span
+<!--            <img class="intro-logo" src="img/Logo_KBS-removebg-preview.png" alt="logo">-->
+            <h2 style="margin-top: 1rem;">Nerdy Gadgets: Toevluchtsoord voor techliefhebbers en popcultuurfanaten.<span id="dots">...</span><span
                         id="more">
 Het merk Nerdy Gadgets in Nederland is een buitengewone plek waar technologische innovatie en geek-cultuur samenkomen, en het nodigt iedereen uit om deel uit te maken van deze opwindende wereld van technologie en popcultuur.
 Het is een toevluchtsoord voor techliefhebbers en popcultuurfanaten waar de nieuwste technologische snufjes en nerdy verzamelobjecten samenkomen voor een magische ervaring. </span>
