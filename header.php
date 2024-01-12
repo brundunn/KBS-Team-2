@@ -32,7 +32,7 @@ session_start();
                    $searchFor = $_GET["q"];
                     echo "value='$searchFor'";
                }?>
-               placeholder="Zoeken naar een product..." <?php
+               placeholder="Zoeken naar een product..."> <?php
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
             if (str_starts_with($search, "google")) {
@@ -47,7 +47,7 @@ session_start();
              }
         }
 
-        ?>>
+        ?>
         </form>
 
 
