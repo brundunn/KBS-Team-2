@@ -299,7 +299,7 @@ HAVING AVG(score) BETWEEN 1 AND 5
 
             if (isset($_GET["q"])) {
                 $searchFor = $_GET["q"];
-                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled) {
+                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled && empty($_POST["stars"])) {
                     // Er is een zoekterm ingevuld, maar verder geen filtering
                         $query = $query . " WHERE ";
                 } else {
