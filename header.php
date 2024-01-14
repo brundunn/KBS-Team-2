@@ -26,7 +26,7 @@ session_start();
         </div>
 
         <form action="" method="post" class="searchbar">
-        <input type="text" name="search" class="main-searchbar"
+        <input type="text" name="search" class="main-searchbar" id="searchbar"
                <?php
                if (isset($_GET["q"])) {
                    $searchFor = $_GET["q"];

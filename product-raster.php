@@ -39,7 +39,7 @@ function toonProductRaster($query) {
             $productDesc = $row['description'];
             $productPrice = $row['price'];
 
-            echo "<a href='product.php?id=$productID'>";
+            echo "<a class='raster-item-a' href='product.php?id=$productID'>";
             echo "<div class='raster-item'>";
             echo "<div class='raster-img'><img src ='img/product_images/$productImage.jpg' alt='$productID'></div>";
             echo "<h3 class='raster-name'>$productName</h3>";

@@ -81,12 +81,12 @@ include 'product-raster.php';
                 <br>
                 <h4>Prijs</h4>
                 €
-                <input type="tel" class="price-input" name="price-from" <?php
+                <input type="number" class="price-input" name="price-from" <?php
                 if (isset($_POST["price-from"]))
                     echo 'value = "' . $_POST["price-from"] . '"';
                 ?>>
                 tot
-                <input type="tel" class="price-input" name="price-to" <?php
+                <input type="number" class="price-input" name="price-to" <?php
                 if (isset($_POST["price-to"]))
                     echo 'value = "' . $_POST["price-to"] . '"';
                 ?>>
@@ -160,8 +160,8 @@ include 'product-raster.php';
                 $query = $query . ')';
             }
 
-            $priceFromFilled = !empty($_POST["price-from"]);
-            $priceToFilled = !empty($_POST["price-to"]);
+            $priceFromFilled = !empty($_POST["price-from"]) && is_numeric($_POST["price-from"]);
+            $priceToFilled = !empty($_POST["price-to"])  && is_numeric($_POST["price-from"]);
             $categoryFilled = !empty($_POST["category"]);
 
             //if alles ingevuld
@@ -258,17 +258,17 @@ HAVING AVG(score) BETWEEN 1 AND 5
                 }
             }
 
-            if (isset($_GET["q"])) {
-                $searchFor = $_GET["q"];
-                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled && empty($_POST["stars"])) {
-                    // Er is een zoekterm ingevuld, maar verder geen filtering
-                        $query = $query . " WHERE ";
-                } else {
-                    // Er is ook andere filtering aanwezig
-                    $query = $query . " AND ";
-                }
-                $query = $query . "lower(name) LIKE '%$searchFor%'";
-            }
+//            if (isset($_GET["q"])) {
+//                $searchFor = $_GET["q"];
+//                if (!$priceFromFilled && !$priceToFilled && !$categoryFilled && empty($_POST["stars"])) {
+//                    // Er is een zoekterm ingevuld, maar verder geen filtering
+//                        $query = $query . " WHERE ";
+//                } else {
+//                    // Er is ook andere filtering aanwezig
+//                    $query = $query . " AND ";
+//                }
+//                $query = $query . "lower(name) LIKE '%$searchFor%'";
+//            }
 
 
             $query = $query . ";";
@@ -292,6 +292,22 @@ HAVING AVG(score) BETWEEN 1 AND 5
         <?php
         toonProductRaster("$query");
         ?>
+        <script>
+            // FIX VOOR SQL INJECTIE
+            const searchbar = document.getElementById("searchbar");
+            const searchbarValue = searchbar.value.toLowerCase();
+
+            const rasterItems = document.getElementsByClassName("raster-item-a"); // Alle producten
+            for (let i = 0; i < rasterItems.length; i++) {
+                const childOfRasterItems = rasterItems[i].children[0];
+                const nameElement = childOfRasterItems.children[1];
+                const name = nameElement.innerHTML.toLowerCase();
+                const nameMatchesSearchValue = name.includes(searchbarValue);
+                if (!nameMatchesSearchValue) {
+                    rasterItems[i].style.display = "none";
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
