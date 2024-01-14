@@ -26,9 +26,7 @@
     <hr>
 
     <h1>Registreren</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aspernatur atque esse molestiae
-        praesentium, recusandae saepe ullam! A accusantium architecto aspernatur excepturi fugiat molestias obcaecati
-        sequi similique voluptatem voluptatum?</p>
+    <p style="margin-bottom: 1rem">Registreren is binnen 1 minuut gedaan! Vul het formulier in, en uw account is klaar voor gebruik.</p>
 
     <form action="" method="post">
         <label for="firstname">Voornaam</label><input type="text" name="firstname" placeholder="Voornaam" id="firstname"
