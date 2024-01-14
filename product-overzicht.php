@@ -49,74 +49,35 @@ include 'product-raster.php';
         <div class="sidenav">
             <h3>Filter op:</h3><br>
             <form action="" method="post">
-                <h4>Categorie</h4>
-                <input type="checkbox" name="category[]" value="laptops" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
 
-                    if (in_array("laptops", $category)) {
-                        echo 'checked';
-                    }
+                <?php
+                // DATABASE CONNECTIE
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "nerdy_gadgets_start";
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
                 }
-                ?>>
-                <label for="category">Laptops</label>
-                <br>
-                <input type="checkbox" name="category[]" value="phones" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
-
-                    if (in_array("phones", $category)) {
-                        echo 'checked';
+                $sql = "SELECT DISTINCT category FROM product";
+                $res = mysqli_query($conn, $sql);
+                if ($res->num_rows > 0) {
+                    echo '<h4>Categorie</h4>';
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $category = $row["category"];
+                    echo '<input type="checkbox" name="category[]" value="'.$category.'"';
+                    if (isset($_POST['category'])) {
+                        $selectedCategory = $_POST["category"];
+                        if (in_array($category, $selectedCategory)) {
+                            echo 'checked';
+                        }
                     }
+                    echo '>';
+                    echo '<label for="category">'.ucfirst($category).'</label><br>';
                 }
-                ?>>
-                <label for="category">Smartphones</label>
-                <br>
-                <input type="checkbox" name="category[]" value="opslag" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
-
-                    if (in_array("opslag", $category)) {
-                        echo 'checked';
-                    }
                 }
-                ?>>
-                <label for="category">Opslag</label>
-                <br>
-                <input type="checkbox" name="category[]" value="routers" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
-
-                    if (in_array("routers", $category)) {
-                        echo 'checked';
-                    }
-                }
-                ?>>
-                <label for="category">Routers</label>
-                <br>
-                <input type="checkbox" name="category[]" value="componenten" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
-
-                    if (in_array("componenten", $category)) {
-                        echo 'checked';
-                    }
-                }
-
-                ?>>
-                <label for="category">Componenten</label>
-                <br>
-                <input type="checkbox" name="category[]" value="desktops" <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST["category"];
-
-                    if (in_array("desktops", $category)) {
-                        echo 'checked';
-                    }
-                }
-                ?>>
-                <label for="category">Desktops</label>
-                <br>
+                ?>
                 <br>
                 <h4>Prijs</h4>
                 €
